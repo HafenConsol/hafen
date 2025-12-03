@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hafen Consolidators</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* Reset básico */
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+    body { background: #f9f9f9; color: #111; line-height: 1.6; }
+    a { color: #0070f3; text-decoration: none; }
+    header, footer { background: #0f1116; color: #fff; }
+    header { padding: 20px 0; }
+    nav { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+    nav h1 { font-weight: 700; font-size: 1.5rem; }
+    nav .contact { text-align: right; font-size: 0.9rem; }
+    nav .contact div { margin-bottom: 5px; }
+    main { max-width: 1200px; margin: 40px auto; padding: 0 20px; }
+    section { margin-bottom: 60px; }
+    h2 { font-size: 2rem; margin-bottom: 20px; }
+    h3 { font-size: 1.25rem; margin-bottom: 10px; }
+    ul { list-style: none; margin-left: 0; padding-left: 0; }
+    li { margin-bottom: 10px; }
+    table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+    th, td { text-align: left; padding: 10px; border-bottom: 1px solid #ddd; }
+    th { font-weight: 600; }
+    .hub-flag { font-size: 1.5rem; margin-right: 8px; }
+    .hub-map { width: 24px; height: 24px; display: inline-block; margin-left: 5px; vertical-align: middle; background: url('https://img.icons8.com/ios-filled/50/000000/map-marker.png') no-repeat center center; background-size: contain; }
+    footer { padding: 30px 20px; text-align: center; font-size: 0.85rem; }
+    .careers ul { margin-left: 20px; }
+    .contact a { display: block; }
+    @media (max-width: 768px) {
+      nav { flex-direction: column; align-items: flex-start; }
+      nav .contact { text-align: left; margin-top: 10px; }
+      table { font-size: 0.9rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <nav>
+      <h1>Hafen Consolidators</h1>
+      <div class="contact">
+        <div>Phone: +44 7594 716370</div>
+        <div>WhatsApp: +44 7594 716370</div>
+        <div>Telegram: +44 7594 716370</div>
+        <div>Signal: +44 7594 716370</div>
+        <div>Email: <a href="mailto:contact@hafenconsolidators.com">contact@hafenconsolidators.com</a></div>
+        <div>Email HR: <a href="mailto:hr@hafenconsolidators.com">hr@hafenconsolidators.com</a></div>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- Careers Section -->
+    <section class="careers">
+      <h2>Careers at Hafen Consolidators</h2>
+      <p>Join our growing team and help us shape the future of logistics in LATAM.</p>
+      <h3>Current Openings:</h3>
+      <ul>
+        <li>Junior Inside Sales</li>
+        <li>Junior Operations Head Manager Support</li>
+        <li>Junior Business Development LATAM</li>
+        <li>Junior Social Media & Administrative and Operational</li>
+      </ul>
+      <p>Interested candidates should send their CV and a cover letter to: <a href="mailto:hr@hafenconsolidators.com">hr@hafenconsolidators.com</a></p>
+    </section>
+
+    <!-- Global Hubs Section -->
+    <section class="global-hubs">
+      <h2>Our Global Hubs</h2>
+      <table>
+        <tr>
+          <th>Country</th>
+          <th>Address</th>
+        </tr>
+        <tr>
+          <td>🇪🇨 Ecuador (HQ)</td>
+          <td>1, C 1 NE - Francisco Dep. Icaza 437, Guayaquil 090313</td>
+        </tr>
+        <tr>
+          <td>🇦🇷 Argentina</td>
+          <td>Edificio Republica, Tucumán 1, Buenos Aires C1048</td>
+        </tr>
+        <tr>
+          <td>🇧🇷 Brazil</td>
+          <td>Coming Soon!</td>
+        </tr>
+        <tr>
+          <td>🇵🇦 Panama</td>
+          <td>Uniplaza, Blvd. Costa Verde, 2nd Floor, Panama Oeste – Ciudad de Panama</td>
+        </tr>
+        <tr>
+          <td>🇳🇮 Nicaragua</td>
+          <td>Torre Nova 2, 9th Floor, Tegucigalpa 11101</td>
+        </tr>
+        <tr>
+          <td>🇲🇩 Moldova</td>
+          <td>9-9A Dimitrie Pompeiu Boulevard, Bucharest 020335</td>
+        </tr>
+        <tr>
+          <td>🇻🇳 Vietnam</td>
+          <td>74 Bach Dang Street, Hai Chau Ward, Danang City</td>
+        </tr>
+        <tr>
+          <td>🇵🇭 Philippines</td>
+          <td>Savya Financial Center, Pulse Street, Taguig 1630</td>
+        </tr>
+      </table>
+      <p style="margin-top: 10px;">Maps can be added as small clickable icons for each hub.</p>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p>A COMPANY FROM MARVERA GROUP. © 2024 Hafen Consolidators. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>

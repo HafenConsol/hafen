@@ -1,77 +1,99 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Hafen Consolidators</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Hafen Consolidators | Global Logistics & Supply Chain Solutions</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-<!-- Font Awesome (icons) -->
 <script src="https://kit.fontawesome.com/a2d9b1f0f1.js" crossorigin="anonymous"></script>
-
 <style>
-:root{
-  --bg:#0b0c0e;
-  --panel:#0f1116;
-  --muted:#cbd5d9;
-  --gold:#CFAF65;
-  --glow:#2fb0ff;
-  --glass: rgba(255,255,255,0.03);
-  --soft:#111417;
-}
-*{box-sizing:border-box;font-family:Inter,system-ui,Arial,Helvetica,sans-serif}
-html,body{height:100%;margin:0;background:linear-gradient(180deg,var(--bg),#050507);color:var(--muted);-webkit-font-smoothing:antialiased}
-a{color:var(--gold);text-decoration:none}
-.wrap{max-width:1200px;margin:22px auto;padding:20px}
-/* header */
-header{display:flex;justify-content:space-between;align-items:center;padding:12px 0}
-.brand{font-weight:800;font-size:20px;color:#fff}
-.contact{font-size:14px;text-align:right;color:var(--muted)}
-.contact a{color:var(--gold)}
-/* hero */
-.hero{background:linear-gradient(90deg,#071426 0%, #0f1116 100%);padding:28px;border-radius:12px;box-shadow:0 12px 40px rgba(0,0,0,0.6);display:flex;gap:24px;align-items:center}
-.hero-left{flex:1}
-.hero h1{margin:0;font-size:32px;color:#fff;line-height:1.05}
-.hero p{color:#cbd5dc;margin-top:10px;max-width:700px}
-.cta{display:inline-block;margin-top:16px;padding:10px 18px;background:var(--gold);color:#0b0c0f;font-weight:700;border-radius:999px}
-/* layout */
-.layout{display:grid;grid-template-columns:1fr 380px;gap:18px;margin-top:18px}
-.map-panel{background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);border-radius:12px;padding:14px;border:1px solid rgba(255,255,255,0.04)}
-.map-title{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
-.map-title h3{margin:0;color:#fff}
-.map-legend{font-size:13px;color:var(--muted)}
-.map-svg{width:100%;height:460px;border-radius:8px;display:block;background:linear-gradient(180deg,#061026 0%, rgba(6,8,10,0.8) 100%);overflow:hidden}
-.panel-right{background:linear-gradient(180deg,#070809, #0b0c0f);border-radius:12px;padding:16px;border:1px solid rgba(255,255,255,0.03)}
-.hubs-table h4,.careers h4{margin:0 0 8px 0;color:#fff}
-table{width:100%;border-collapse:collapse}
-th,td{padding:8px 6px;text-align:left;font-size:14px;color:var(--muted)}
-th{color:#fff;font-weight:700;font-size:13px}
-tr:nth-child(odd) td{background:rgba(255,255,255,0.01)}
-.career-opening{background:linear-gradient(90deg, rgba(255,255,255,0.01), rgba(255,255,255,0.00));padding:10px;border-radius:8px;margin-bottom:8px;border-left:4px solid var(--gold);color:var(--muted)}
-/* footer */
-footer{margin-top:18px;padding:14px;border-radius:12px;display:flex;justify-content:space-between;align-items:center;color:var(--muted)}
-.social a{color:var(--gold);margin-left:10px;font-size:18px}
-/* SVG styles */
-.hub-dot{fill:var(--gold);stroke:#fff;stroke-width:0.6;filter:drop-shadow(0 6px 8px rgba(0,0,0,0.6))}
-.country-dot{fill:#fff;opacity:0.95}
-.dot-label{fill:#fff;font-size:11px}
-.route{fill:none;stroke:var(--glow);stroke-width:2.6;stroke-linecap:round;opacity:0.95;filter:drop-shadow(0 6px 14px rgba(47,176,255,0.18))}
-.route.anim{stroke-dasharray:8 8;animation:dash 3.2s linear infinite}
-@keyframes dash{to{stroke-dashoffset:-200}}
-.plane{fill:var(--gold);stroke:#fff;stroke-width:0.6}
-.pulse{animation:pulse 1.6s infinite;transform-origin:center}
-@keyframes pulse{0%{transform:scale(1);opacity:1}50%{transform:scale(1.6);opacity:0.6}100%{transform:scale(1);opacity:1}}
-/* responsive */
-@media (max-width:1000px){ .layout{grid-template-columns:1fr} .map-svg{height:360px} .panel-right{order:2} }
-/* tooltip */
-.tooltip{position:fixed;pointer-events:none;padding:8px 10px;background:rgba(0,0,0,0.75);color:#fff;border-radius:6px;font-size:13px;display:none;z-index:9999}
-/* small */
-.muted{color:var(--muted);font-size:13px}
+  :root {
+    --bg: #0b0c0e;
+    --panel: #0f1116;
+    --muted: #cbd5d9;
+    --gold: #CFAF65;
+    --glow: #2fb0ff;
+    --glass: rgba(255,255,255,0.03);
+    --soft: #111417;
+  }
+
+  * { box-sizing: border-box; font-family: Inter, system-ui, Arial, Helvetica, sans-serif; }
+  html, body { height: 100%; margin: 0; background: linear-gradient(180deg,var(--bg),#050507); color: var(--muted); -webkit-font-smoothing: antialiased; }
+  a { color: var(--gold); text-decoration: none; transition: color 0.2s; }
+  a:hover { color: #fff; }
+  
+  .wrap { max-width: 1200px; margin: 20px auto; padding: 20px; }
+
+  /* Header */
+  header { display: flex; justify-content: space-between; align-items: center; padding: 16px 0; }
+  .brand { font-weight: 800; font-size: 24px; color: #fff; }
+  .contact { font-size: 14px; text-align: right; color: var(--muted); }
+  .contact a { color: var(--gold); }
+
+  /* Hero */
+  .hero { background: linear-gradient(90deg,#071426 0%, #0f1116 100%); padding: 40px; border-radius: 16px; box-shadow: 0 12px 40px rgba(0,0,0,0.6); display: flex; gap: 32px; align-items: center; flex-wrap: wrap; }
+  .hero-left { flex: 1; min-width: 280px; }
+  .hero h1 { margin: 0; font-size: 36px; color: #fff; line-height: 1.1; }
+  .hero p { color: #cbd5dc; margin-top: 12px; max-width: 700px; font-size: 16px; }
+  .cta { display: inline-block; margin-top: 20px; padding: 12px 22px; background: var(--gold); color: #0b0c0f; font-weight: 700; border-radius: 999px; transition: transform 0.2s; }
+  .cta:hover { transform: scale(1.05); }
+
+  .hero-right { width: 320px; text-align: right; color: var(--muted); font-size: 14px; }
+  .hero-right strong { color: #fff; display: block; margin-bottom: 8px; font-size: 16px; }
+
+  /* Layout */
+  .layout { display: grid; grid-template-columns: 1fr 380px; gap: 20px; margin-top: 24px; }
+  .map-panel { background: var(--panel); border-radius: 16px; padding: 16px; border: 1px solid rgba(255,255,255,0.04); }
+  .map-title { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+  .map-title h3 { margin: 0; color: #fff; font-size: 18px; }
+  .map-legend { font-size: 13px; color: var(--muted); }
+
+  .map-svg { width: 100%; height: 460px; border-radius: 12px; display: block; background: linear-gradient(180deg,#061026 0%, rgba(6,8,10,0.8) 100%); overflow: hidden; }
+  
+  .panel-right { background: var(--panel); border-radius: 16px; padding: 20px; border: 1px solid rgba(255,255,255,0.03); }
+
+  .hubs-table h4, .careers h4 { margin: 0 0 10px 0; color: #fff; font-size: 18px; }
+  table { width: 100%; border-collapse: collapse; margin-top: 8px; }
+  th, td { padding: 8px 6px; text-align: left; font-size: 14px; color: var(--muted); }
+  th { color: #fff; font-weight: 700; font-size: 13px; }
+  tr:nth-child(odd) td { background: rgba(255,255,255,0.01); }
+  .career-opening { background: rgba(255,255,255,0.02); padding: 10px; border-radius: 8px; margin-bottom: 8px; border-left: 4px solid var(--gold); color: var(--muted); font-weight: 500; cursor: default; }
+
+  /* Footer */
+  footer { margin-top: 24px; padding: 16px; border-radius: 12px; display: flex; justify-content: space-between; align-items: center; color: var(--muted); flex-wrap: wrap; gap: 12px; }
+  .social a { color: var(--gold); margin-left: 10px; font-size: 18px; transition: color 0.2s; }
+  .social a:hover { color: #fff; }
+
+  /* SVG styles */
+  .hub-dot { fill: var(--gold); stroke: #fff; stroke-width: 0.6; filter: drop-shadow(0 6px 8px rgba(0,0,0,0.6)); }
+  .country-dot { fill: #fff; opacity: 0.95; }
+  .dot-label { fill: #fff; font-size: 11px; font-weight: 600; }
+  .route { fill: none; stroke: var(--glow); stroke-width: 2.6; stroke-linecap: round; opacity: 0.95; filter: drop-shadow(0 6px 14px rgba(47,176,255,0.18)); }
+  .route.anim { stroke-dasharray: 8 8; animation: dash 3.2s linear infinite; }
+  @keyframes dash { to { stroke-dashoffset: -200; } }
+  .plane { fill: var(--gold); stroke: #fff; stroke-width: 0.6; }
+  .pulse { animation: pulse 1.6s infinite; transform-origin: center; }
+  @keyframes pulse { 0%{transform:scale(1);opacity:1} 50%{transform:scale(1.6);opacity:0.6} 100%{transform:scale(1);opacity:1} }
+
+  /* Tooltip */
+  .tooltip { position: fixed; pointer-events: none; padding: 8px 12px; background: rgba(0,0,0,0.8); color: #fff; border-radius: 6px; font-size: 13px; display: none; z-index: 9999; }
+
+  /* Responsive */
+  @media (max-width: 1024px) {
+    .layout { grid-template-columns: 1fr; }
+    .map-svg { height: 360px; }
+    .panel-right { order: 2; }
+  }
+  @media (max-width: 480px) {
+    .hero { flex-direction: column; text-align: center; }
+    .hero-right { width: 100%; text-align: center; margin-top: 16px; }
+  }
 </style>
 </head>
 <body>
 <div class="wrap">
 
-  <!-- header -->
+  <!-- Header -->
   <header>
     <div class="brand">Hafen Consolidators</div>
     <div class="contact">
@@ -80,43 +102,37 @@ footer{margin-top:18px;padding:14px;border-radius:12px;display:flex;justify-cont
     </div>
   </header>
 
-  <!-- hero -->
+  <!-- Hero -->
   <section class="hero" role="banner">
     <div class="hero-left">
       <h1>Seamless Global Logistics, Delivered.</h1>
-      <p>We simplify complex supply chains across LATAM, Europe and Asia — consolidation, customs, and secure warehousing with a human touch.</p>
+      <p>We simplify complex supply chains across LATAM, Europe, and Asia — consolidation, customs, and secure warehousing with a human touch.</p>
       <a class="cta" href="#services">Explore Services</a>
     </div>
-    <div style="width:320px;text-align:right;color:var(--muted)">
-      <div style="font-weight:700;color:#fff">Global Hubs & Routes</div>
-      <div style="margin-top:8px">Interactive map with animated routes and hubs — visualized for operations planning.</div>
+    <div class="hero-right">
+      <strong>Global Hubs & Routes</strong>
+      Interactive map with animated routes and hubs — visualized for operations planning.
     </div>
   </section>
 
-  <div class="layout" style="margin-top:18px">
-    <!-- left: map -->
+  <div class="layout">
+    <!-- Left: Map -->
     <div class="map-panel" aria-hidden="false">
       <div class="map-title">
         <h3>Operational Map — Routes & Hubs</h3>
-        <div class="map-legend muted">Centers: Ecuador, Brazil, Argentina, Venezuela, Paraguay, Uruguay</div>
+        <div class="map-legend">Centers: Ecuador, Brazil, Argentina, Venezuela, Paraguay, Uruguay</div>
       </div>
-
-      <div class="map-overlay" style="position:relative">
-        <svg id="worldmap" class="map-svg" viewBox="0 0 900 460" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <linearGradient id="bggrad" x1="0" x2="1"><stop offset="0" stop-color="#04162a"/><stop offset="1" stop-color="#05101a"/></linearGradient>
-            <filter id="softShadow" x="-50%" y="-50%" width="200%" height="200%"><feDropShadow dx="0" dy="6" stdDeviation="10" flood-color="#000" flood-opacity="0.6" /></filter>
-          </defs>
-
-          <rect x="0" y="0" width="900" height="460" fill="url(#bggrad)"></rect>
-
-          <g id="routes"></g>
-          <g id="points"></g>
-        </svg>
-      </div>
+      <svg id="worldmap" class="map-svg" viewBox="0 0 900 460" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="bggrad" x1="0" x2="1"><stop offset="0" stop-color="#04162a"/><stop offset="1" stop-color="#05101a"/></linearGradient>
+        </defs>
+        <rect x="0" y="0" width="900" height="460" fill="url(#bggrad)"></rect>
+        <g id="routes"></g>
+        <g id="points"></g>
+      </svg>
     </div>
 
-    <!-- right panel -->
+    <!-- Right Panel -->
     <aside class="panel-right" aria-label="Info panel">
       <div class="hubs-table">
         <h4>Our Global Hubs</h4>
@@ -142,7 +158,9 @@ footer{margin-top:18px;padding:14px;border-radius:12px;display:flex;justify-cont
         <div class="career-opening">Junior Operations Head Manager Support</div>
         <div class="career-opening">Junior Business Development LATAM</div>
         <div class="career-opening">Junior Social Media & Administrative and Operational</div>
-        <div style="margin-top:10px;font-size:14px;color:var(--muted)">Interested candidates: <a href="mailto:contact@hafenconsolidators.com">contact@hafenconsolidators.com</a></div>
+        <div style="margin-top:10px;font-size:14px;color:var(--muted)">
+          Interested candidates: <a href="mailto:contact@hafenconsolidators.com">contact@hafenconsolidators.com</a>
+        </div>
       </div>
 
       <div style="border-top:1px dashed rgba(255,255,255,0.03);padding-top:12px;margin-top:8px">
@@ -165,14 +183,13 @@ footer{margin-top:18px;padding:14px;border-radius:12px;display:flex;justify-cont
       <a href="tel:+447594716370" title="Signal"><i class="fas fa-phone"></i></a>
     </div>
   </footer>
-
 </div>
 
 <div class="tooltip" id="tooltip"></div>
 
 <script>
 const W = 900, H = 460;
-function project(lon, lat){const x=(lon+180)/360*W; const y=(90-lat)/180*H; return [x,y];}
+function project(lon, lat){ const x=(lon+180)/360*W; const y=(90-lat)/180*H; return [x,y]; }
 
 const hubs = {
   "Ecuador": {lon:-79.9, lat:-2.15, label:"Ecuador (HQ)"},
@@ -184,112 +201,82 @@ const hubs = {
 };
 
 const countries = {
-  "Brazil": [-51.9253, -14.2350],
-  "Romania": [24.9668, 45.9432],
-  "Lithuania": [23.8813, 55.1694],
-  "Estonia": [25.0136, 58.5953],
-  "Bulgaria": [25.4858, 42.7339],
-  "Mexico": [-102.5528, 23.6345],
-  "Colombia": [-74.2973, 4.5709],
-  "Jamaica": [-77.2975, 18.1096],
-  "Trinidad and Tobago": [-61.2225, 10.6918],
-  "Dominican Republic": [-70.1627, 18.7357],
-  "Cuba": [-77.7812, 21.5218],
-  "Honduras": [-86.2419, 15.199999],
-  "Nigeria": [8.675277, 9.081999],
-  "Ecuador": [-78.183406, -1.831239],
-  "Argentina": [-63.6167, -38.4161],
-  "Peru": [-75.0152, -9.189967],
-  "Venezuela": [-66.5897, 6.4238],
-  "Panama": [-80.7821, 8.5380],
-  "Nicaragua": [-85.2072, 12.8654],
-  "Moldova": [28.3699, 47.4116],
-  "Vietnam": [108.2772, 14.0583],
-  "Philippines": [121.7740, 12.8797],
-  "Paraguay": [-58.4438, -23.4425],
-  "Uruguay": [-55.7658, -32.5228]
+  "Brazil":[-51.9253,-14.2350],"Romania":[24.9668,45.9432],"Lithuania":[23.8813,55.1694],
+  "Estonia":[25.0136,58.5953],"Bulgaria":[25.4858,42.7339],"Mexico":[-102.5528,23.6345],
+  "Colombia":[-74.2973,4.5709],"Jamaica":[-77.2975,18.1096],"Trinidad and Tobago":[-61.2225,10.6918],
+  "Dominican Republic":[-70.1627,18.7357],"Cuba":[-77.7812,21.5218],"Honduras":[-86.2419,15.199999],
+  "Nigeria":[8.675277,9.081999],"Ecuador":[-78.183406,-1.831239],"Argentina":[-63.6167,-38.4161],
+  "Peru":[-75.0152,-9.189967],"Venezuela":[-66.5897,6.4238],"Panama":[-80.7821,8.5380],
+  "Nicaragua":[-85.2072,12.8654],"Moldova":[28.3699,47.4116],"Vietnam":[108.2772,14.0583],
+  "Philippines":[121.7740,12.8797],"Paraguay":[-58.4438,-23.4425],"Uruguay":[-55.7658,-32.5228]
 };
 
 const hubRoutes = {
-  "Ecuador": ["Ecuador","Colombia","Peru","Panama","Brazil","Argentina","Venezuela","Nicaragua"],
-  "Brazil": ["Brazil","Argentina","Paraguay","Uruguay","Colombia","Peru","Venezuela"],
-  "Argentina": ["Argentina","Uruguay","Paraguay","Brazil","Peru"],
-  "Venezuela": ["Venezuela","Colombia","Dominican Republic","Cuba","Jamaica","Trinidad and Tobago"],
-  "Paraguay": ["Paraguay","Argentina","Brazil"],
-  "Uruguay": ["Uruguay","Argentina","Brazil"]
+  "Ecuador":["Ecuador","Colombia","Peru","Panama","Brazil","Argentina","Venezuela","Nicaragua"],
+  "Brazil":["Brazil","Argentina","Paraguay","Uruguay","Colombia","Peru","Venezuela"],
+  "Argentina":["Argentina","Uruguay","Paraguay","Brazil","Peru"],
+  "Venezuela":["Venezuela","Colombia","Dominican Republic","Cuba","Jamaica","Trinidad and Tobago"],
+  "Paraguay":["Paraguay","Argentina","Brazil"],
+  "Uruguay":["Uruguay","Argentina","Brazil"]
 };
 
 const svgRoot = document.getElementById('worldmap');
 const routesG = document.getElementById('routes');
 const ptsG = document.getElementById('points');
 
-function svg(tag, attrs={}){const el=document.createElementNS("http://www.w3.org/2000/svg",tag); for(const k in attrs) el.setAttribute(k, attrs[k]); return el;}
+function svg(tag, attrs={}){ const el=document.createElementNS("http://www.w3.org/2000/svg",tag); for(const k in attrs) el.setAttribute(k, attrs[k]); return el; }
 
 // hubs
 for(const [name,h] of Object.entries(hubs)){
-  const [x,y] = project(h.lon, h.lat);
-  const pulse = svg('circle',{cx:x, cy:y, r:8, class:'hub-dot pulse'});
-  const label = svg('text',{x:x+12, y:y+4, class:'dot-label', style:'font-weight:700;fill:#fff'}); label.textContent = h.label || name;
+  const [x,y]=project(h.lon,h.lat);
+  const pulse=svg('circle',{cx:x,cy:y,r:8,class:'hub-dot pulse'});
+  const label=svg('text',{x:x+12,y:y+4,class:'dot-label',style:'font-weight:700;fill:#fff'}); label.textContent=h.label||name;
   ptsG.appendChild(pulse); ptsG.appendChild(label);
 }
 
 // countries
 for(const [name,coords] of Object.entries(countries)){
-  const [lon,lat] = coords;
-  const [x,y] = project(lon,lat);
-  const dot = svg('circle',{cx:x, cy:y, r:4, class:'country-dot'});
-  const lab = svg('text',{x:x+6,y:y+3,class:'dot-label', style:'font-size:11px;fill:rgba(255,255,255,0.95)'}); lab.textContent = name;
+  const [lon,lat]=coords;
+  const [x,y]=project(lon,lat);
+  const dot=svg('circle',{cx:x,cy:y,r:4,class:'country-dot'});
+  const lab=svg('text',{x:x+6,y:y+3,class:'dot-label',style:'font-size:11px;fill:rgba(255,255,255,0.95)'}); lab.textContent=name;
   ptsG.appendChild(dot); ptsG.appendChild(lab);
 }
 
-// routes with moving markers
-let idCounter = 0;
+// routes
+let idCounter=0;
 for(const [hubName,targets] of Object.entries(hubRoutes)){
-  const hub = hubs[hubName];
-  if(!hub) continue;
-  const [hx,hy] = project(hub.lon, hub.lat);
+  const hub=hubs[hubName]; if(!hub) continue;
+  const [hx,hy]=project(hub.lon,hub.lat);
   targets.forEach((tgt,i)=>{
-    const c = countries[tgt];
-    if(!c) return;
-    const [tx,ty] = project(c[0],c[1]);
-
-    const mx=(hx+tx)/2, my=(hy+ty)/2;
+    const c=countries[tgt]; if(!c) return;
+    const [tx,ty]=project(c[0],c[1]);
+    const mx=(hx+tx)/2,my=(hy+ty)/2;
     const dx=tx-hx, dy=ty-hy; const len=Math.sqrt(dx*dx+dy*dy)||1;
     const nx=-dy/len, ny=dx/len;
-    const curvature = 0.12 + Math.min(0.6, Math.hypot(dx,dy)/1200);
-    const cx = mx + nx * 140 * curvature;
-    const cy = my + ny * 140 * curvature;
+    const curvature=0.12+Math.min(0.6,Math.hypot(dx,dy)/1200);
+    const cx=mx+nx*140*curvature; const cy=my+ny*140*curvature;
+    const d=`M ${hx} ${hy} Q ${cx} ${cy} ${tx} ${ty}`;
+    const pid='r'+(idCounter++);
+    const path=svg('path',{d,id:pid,class:'route anim'}); routesG.appendChild(path);
 
-    const d = `M ${hx} ${hy} Q ${cx} ${cy} ${tx} ${ty}`;
-    const pid = 'r'+(idCounter++);
-    const path = svg('path',{d, id:pid, class:'route anim'});
-    routesG.appendChild(path);
-
-    const marker = svg('circle',{r:3, class:'plane'});
-    const anim = svg('animateMotion',{dur:(3 + Math.random()*2).toFixed(2)+'s', repeatCount:'indefinite', begin:(i*0.2)+'s'});
-    const mpath = document.createElementNS("http://www.w3.org/2000/svg",'mpath');
-    mpath.setAttribute('href','#'+pid);
+    const marker=svg('circle',{r:3,class:'plane'});
+    const anim=svg('animateMotion',{dur:(3+Math.random()*2).toFixed(2)+'s',repeatCount:'indefinite'});
+    const mpath=document.createElementNS("http://www.w3.org/2000/svg",'mpath');
+    mpath.setAttributeNS('http://www.w3.org/1999/xlink','xlink:href','#'+pid);
     anim.appendChild(mpath);
-    marker.appendChild(anim);
-    routesG.appendChild(marker);
+    anim.setAttribute('begin',(i*0.2)+'s');
+    marker.appendChild(anim); routesG.appendChild(marker);
   });
 }
 
 // tooltip
-const tooltip = document.getElementById('tooltip');
+const tooltip=document.getElementById('tooltip');
 ptsG.querySelectorAll('text').forEach(t=>{
   t.style.cursor='default';
-  t.addEventListener('mouseenter', e=>{
-    tooltip.textContent = t.textContent;
-    tooltip.style.display='block';
-  });
-  t.addEventListener('mousemove', e=>{
-    tooltip.style.left = (e.clientX + 12) + 'px';
-    tooltip.style.top = (e.clientY + 10) + 'px';
-  });
-  t.addEventListener('mouseleave', e=>{
-    tooltip.style.display='none';
-  });
+  t.addEventListener('mouseenter',e=>{ tooltip.textContent=t.textContent; tooltip.style.display='block'; });
+  t.addEventListener('mousemove',e=>{ tooltip.style.left=(e.clientX+12)+'px'; tooltip.style.top=(e.clientY+10)+'px'; });
+  t.addEventListener('mouseleave',e=>{ tooltip.style.display='none'; });
 });
 </script>
 </body>

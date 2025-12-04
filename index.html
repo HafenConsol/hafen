@@ -13,66 +13,46 @@
   --panel: #0f1116;
   --muted: #cbd5d9;
   --gold: #CFAF65;
-  --glow: #2fb0ff;
-  --soft: #111417;
   --shadow: rgba(0,0,0,0.5);
 }
-* { box-sizing: border-box; font-family: 'Inter', sans-serif; margin:0; padding:0;}
+* { box-sizing:border-box; margin:0; padding:0; font-family:'Inter', sans-serif;}
 body { background: var(--bg); color: var(--muted); -webkit-font-smoothing: antialiased;}
 a { color: var(--gold); text-decoration: none;}
-.wrap { max-width: 1200px; margin: 0 auto; padding: 20px; }
+.wrap { max-width: 1200px; margin:0 auto; padding: 20px; }
 
 /* Header */
-header { display: flex; justify-content: space-between; align-items: center; padding: 16px 0; }
-.brand { font-weight: 800; font-size: 24px; color: #fff; }
-.contact { font-size: 14px; text-align: right; }
+header { display:flex; justify-content:space-between; align-items:center; padding:16px 0;}
+.brand { font-weight:800; font-size:24px; color:#fff; }
+.contact { font-size:14px; text-align:right;}
 .contact a { color: var(--gold); }
 
 /* Hero */
-.hero { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; background: linear-gradient(90deg,#071426,#0f1116); padding: 40px; border-radius: 16px; box-shadow: 0 12px 40px var(--shadow); margin-bottom: 24px;}
-.hero-left { flex: 1 1 500px; }
-.hero h1 { font-size: 36px; color: #fff; margin-bottom: 16px; line-height: 1.1; }
-.hero p { color: var(--muted); font-size: 16px; margin-bottom: 20px; max-width: 600px;}
-.cta { display: inline-block; padding: 12px 24px; background: var(--gold); color: #0b0c0e; font-weight: 700; border-radius: 999px; transition: transform 0.2s; }
-.cta:hover { transform: scale(1.05); }
+.hero { display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; background: linear-gradient(90deg,#071426,#0f1116); padding:40px; border-radius:16px; box-shadow:0 12px 40px var(--shadow); margin-bottom:24px;}
+.hero-left { flex:1 1 500px; }
+.hero h1 { font-size:36px; color:#fff; margin-bottom:16px; line-height:1.1;}
+.hero p { font-size:16px; margin-bottom:20px; max-width:600px;}
+.cta { display:inline-block; padding:12px 24px; background:var(--gold); color:#0b0c0e; font-weight:700; border-radius:999px; transition: transform 0.2s;}
+.cta:hover { transform:scale(1.05); }
 
 /* Layout */
-.layout { display: grid; grid-template-columns: 1fr 380px; gap: 24px; margin-bottom: 24px; }
-.map-panel { background: var(--panel); border-radius: 16px; padding: 16px; border: 1px solid rgba(255,255,255,0.05); }
-.map-title { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
-.map-title h3 { color: #fff; margin:0; }
-.map-legend { font-size: 13px; color: var(--muted);}
-.map-svg { width: 100%; height: 460px; border-radius: 12px; background: linear-gradient(180deg,#061026,#0b0c0f); display: block; overflow:hidden; }
-
-/* Right panel */
-.panel-right { background: var(--panel); border-radius: 16px; padding: 20px; border: 1px solid rgba(255,255,255,0.03);}
+.layout { display:grid; grid-template-columns:1fr 380px; gap:24px; margin-bottom:24px;}
+.panel-right { background: var(--panel); border-radius:16px; padding:20px; border:1px solid rgba(255,255,255,0.03);}
 .panel-right h4 { color:#fff; margin-bottom:12px; font-size:18px; }
-.table-wrapper { overflow-x:auto; margin-bottom:20px;}
-table { width:100%; border-collapse: collapse; }
-th, td { padding:10px; text-align:left; font-size:14px; color: var(--muted);}
+.table-wrapper { overflow-x:auto; margin-bottom:20px; }
+table { width:100%; border-collapse:collapse; }
+th, td { padding:10px; text-align:left; font-size:14px; color:var(--muted);}
 th { font-weight:700; color:#fff; }
 tr:nth-child(odd) td { background: rgba(255,255,255,0.01);}
-.career-opening { background: rgba(255,255,255,0.02); padding:12px; border-left:4px solid var(--gold); border-radius:8px; margin-bottom:8px; font-weight:600; color: var(--muted);}
+.career-opening { background: rgba(255,255,255,0.02); padding:12px; border-left:4px solid var(--gold); border-radius:8px; margin-bottom:8px; font-weight:600; color:var(--muted);}
 .muted { color: var(--muted); font-size:13px; }
 
 /* Footer */
-footer { display:flex; justify-content: space-between; align-items: center; padding:16px 0; color: var(--muted); font-size:14px; flex-wrap: wrap;}
+footer { display:flex; justify-content:space-between; align-items:center; padding:16px 0; color:var(--muted); font-size:14px; flex-wrap:wrap;}
 footer .social a { margin-left:12px; color: var(--gold); font-size:18px; transition: transform 0.2s;}
 footer .social a:hover { transform: scale(1.1); }
 
-/* SVG elements */
-.hub-dot{fill:var(--gold);stroke:#fff;stroke-width:0.6;filter:drop-shadow(0 6px 8px rgba(0,0,0,0.5));}
-.country-dot{fill:#fff;opacity:0.9;}
-.dot-label{fill:#fff;font-size:11px;}
-.route{fill:none;stroke:var(--glow);stroke-width:2;stroke-linecap:round;opacity:0.95;filter:drop-shadow(0 4px 10px rgba(47,176,255,0.15));}
-.route.anim{stroke-dasharray:8 8;animation:dash 3.2s linear infinite;}
-@keyframes dash{to{stroke-dashoffset:-200;}}
-.plane{fill:var(--gold);stroke:#fff;stroke-width:0.6;}
-.pulse{animation:pulse 1.6s infinite;transform-origin:center;}
-@keyframes pulse{0%{transform:scale(1);opacity:1}50%{transform:scale(1.6);opacity:0.6}100%{transform:scale(1);opacity:1;}}
-
 /* Responsive */
-@media(max-width:1000px){ .layout{grid-template-columns:1fr;} .map-svg{height:360px;} .panel-right{order:2; margin-top:16px;} }
+@media(max-width:1000px){ .layout{grid-template-columns:1fr;} .panel-right{margin-top:16px;} }
 </style>
 </head>
 <body>
@@ -85,34 +65,19 @@ footer .social a:hover { transform: scale(1.1); }
     </div>
   </header>
 
-  <section class="hero" role="banner">
+  <section class="hero">
     <div class="hero-left">
       <h1>Seamless Global Logistics, Delivered</h1>
       <p>We simplify complex supply chains across LATAM, Europe, and Asia — consolidation, customs, and secure warehousing with a human touch.</p>
       <a class="cta" href="#services">Explore Services</a>
     </div>
     <div style="flex:1; text-align:right; color:var(--muted)">
-      <div style="font-weight:700;color:#fff">Global Hubs & Routes</div>
-      <div style="margin-top:8px;">Interactive map with animated routes and hubs — visualized for operations planning.</div>
+      <div style="font-weight:700;color:#fff">Global Hubs & Operations</div>
+      <div style="margin-top:8px;">Efficient logistics, global reach, transparent operations — simplified for your business.</div>
     </div>
   </section>
 
   <div class="layout">
-    <div class="map-panel">
-      <div class="map-title">
-        <h3>Operational Map — Routes & Hubs</h3>
-        <div class="map-legend muted">Centers: Ecuador, Brazil, Argentina, Venezuela, Paraguay, Uruguay</div>
-      </div>
-      <svg id="worldmap" class="map-svg" viewBox="0 0 900 460" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <linearGradient id="bggrad" x1="0" x2="1"><stop offset="0" stop-color="#04162a"/><stop offset="1" stop-color="#05101a"/></linearGradient>
-        </defs>
-        <rect x="0" y="0" width="900" height="460" fill="url(#bggrad)"/>
-        <g id="routes"></g>
-        <g id="points"></g>
-      </svg>
-    </div>
-
     <aside class="panel-right">
       <div class="table-wrapper">
         <h4>Our Global Hubs</h4>
@@ -155,33 +120,5 @@ footer .social a:hover { transform: scale(1.1); }
     </div>
   </footer>
 </div>
-
-<script>
-// JS para mapa, hubs e rotas animadas
-const W=900,H=460;
-function project(lon,lat){return [(lon+180)/360*W,(90-lat)/180*H];}
-
-const hubs={"Ecuador":{lon:-79.9,lat:-2.15,label:"Ecuador (HQ)"},"Brazil":{lon:-51.9,lat:-14.2,label:"Brazil Hub"},"Argentina":{lon:-58.4,lat:-34.6,label:"Argentina Hub"},"Venezuela":{lon:-66.6,lat:6.4,label:"Venezuela Hub"},"Paraguay":{lon:-58.4,lat:-23.4,label:"Paraguay"},"Uruguay":{lon:-56.2,lat:-32.5,label:"Uruguay"}};
-
-const countries={"Brazil":[-51.9253,-14.2350],"Romania":[24.9668,45.9432],"Lithuania":[23.8813,55.1694],"Estonia":[25.0136,58.5953],"Bulgaria":[25.4858,42.7339],"Mexico":[-102.5528,23.6345],"Colombia":[-74.2973,4.5709],"Jamaica":[-77.2975,18.1096],"Trinidad and Tobago":[-61.2225,10.6918],"Dominican Republic":[-70.1627,18.7357],"Cuba":[-77.7812,21.5218],"Honduras":[-86.2419,15.2],"Nigeria":[8.675277,9.081999],"Ecuador":[-78.183406,-1.831239],"Argentina":[-63.6167,-38.4161],"Peru":[-75.0152,-9.189967],"Venezuela":[-66.5897,6.4238],"Panama":[-80.7821,8.538],"Nicaragua":[-85.2072,12.8654],"Moldova":[28.3699,47.4116],"Vietnam":[108.2772,14.0583],"Philippines":[121.774,12.8797],"Paraguay":[-58.4438,-23.4425],"Uruguay":[-55.7658,-32.5228]};
-
-const hubRoutes={"Ecuador":["Ecuador","Colombia","Peru","Panama","Brazil","Argentina","Venezuela","Nicaragua"],"Brazil":["Brazil","Argentina","Paraguay","Uruguay","Colombia","Peru","Venezuela"],"Argentina":["Argentina","Uruguay","Paraguay","Brazil","Peru"],"Venezuela":["Venezuela","Colombia","Dominican Republic","Cuba","Jamaica","Trinidad and Tobago"],"Paraguay":["Paraguay","Argentina","Brazil"],"Uruguay":["Uruguay","Argentina","Brazil"]};
-
-const svgRoot=document.getElementById('worldmap');
-const routesG=document.getElementById('routes');
-const ptsG=document.getElementById('points');
-
-function svg(tag,attrs={}){ const el=document.createElementNS("http://www.w3.org/2000/svg",tag); for(const k in attrs) el.setAttribute(k,attrs[k]); return el; }
-
-// hubs
-for(const [name,h] of Object.entries(hubs)){ const [x,y]=project(h.lon,h.lat); ptsG.appendChild(svg('circle',{cx:x,cy:y,r:8,class:'hub-dot pulse'})); const label=svg('text',{x:x+12,y:y+4,class:'dot-label',style:'font-weight:700;fill:#fff'}); label.textContent=h.label; ptsG.appendChild(label);}
-
-// countries
-for(const [name,coords] of Object.entries(countries)){ const [lon,lat]=coords; const [x,y]=project(lon,lat); ptsG.appendChild(svg('circle',{cx:x,cy:y,r:4,class:'country-dot'})); const lab=svg('text',{x:x+6,y:y+3,class:'dot-label',style:'font-size:11px;fill:rgba(255,255,255,0.95)'}); lab.textContent=name; ptsG.appendChild(lab);}
-
-// routes
-let idCounter=0;
-for(const [hubName,targets] of Object.entries(hubRoutes)){ const hub=hubs[hubName]; if(!hub) continue; const [hx,hy]=project(hub.lon,hub.lat); targets.forEach((tgt,i)=>{ const c=countries[tgt]; if(!c) return; const [tx,ty]=project(c[0],c[1]); const mx=(hx+tx)/2,my=(hy+ty)/2; const dx=tx-hx,dy=ty-hy,len=Math.sqrt(dx*dx+dy*dy)||1,nx=-dy/len,ny=dx/len,curvature=0.12+Math.min(0.6,Math.hypot(dx,dy)/1200),cx=mx+nx*140*curvature,cy=my+ny*140*curvature,d=`M ${hx} ${hy} Q ${cx} ${cy} ${tx} ${ty}`,pid='r'+(idCounter++),path=svg('path',{d:idCounter,id:pid,class:'route anim'}); routesG.appendChild(path); const marker=svg('circle',{r:3,class:'plane'}); const anim=svg('animateMotion',{dur:(3+Math.random()*2).toFixed(2)+'s',repeatCount:'indefinite'}); const mpath=document.createElementNS("http://www.w3.org/2000/svg",'mpath'); mpath.setAttributeNS('http://www.w3.org/1999/xlink','xlink:href','#'+pid); anim.appendChild(mpath); anim.setAttribute('begin',(i*0.2)+'s'); marker.appendChild(anim); routesG.appendChild(marker);});}
-</script>
 </body>
 </html>

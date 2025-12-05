@@ -4,107 +4,90 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>HAFEN Consolidators - Global Logistics</title>
-
-<!-- Fonts & Icons -->
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
 <style>
-:root {
-    --primary-color: #ffffff;
-    --secondary-color: #4A90E2;
-    --text-dark: #333333;
-    --text-light: #f5f5f5;
-    --max-width: 1200px;
-    --tooltip-bg: #4A90E2;
+/* -------- Variables -------- */
+:root{
+  --primary:#ffffff;
+  --secondary:#4A90E2;
+  --dark:#3D3D3D;
+  --light:#f5f5f5;
+  --font:'Montserrat', sans-serif;
+  --max-width:1200px;
 }
-
-/* Reset */
-* {margin:0; padding:0; box-sizing:border-box; font-family:'Montserrat', sans-serif;}
-body {background:#f9f9f9; color: var(--text-dark);}
-a {text-decoration:none; color: inherit;}
-ul {list-style:none;}
-
-/* Header */
-.header {position:sticky; top:0; background:var(--primary-color); padding:15px 20px; box-shadow:0 2px 5px rgba(0,0,0,0.1); z-index:1000;}
-.header-content {max-width:var(--max-width); margin:0 auto; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap;}
-.logo {font-size:28px; font-weight:900;}
-.logo span {color:var(--secondary-color);}
-.nav-links {display:flex; gap:20px; flex-wrap:wrap;}
-.nav-links a {font-weight:700; transition:color 0.3s;}
-.nav-links a:hover {color:var(--secondary-color);}
-.contact-info {display:flex; gap:15px; font-weight:700; align-items:center; color:var(--text-dark);}
-.contact-info i {color:var(--secondary-color);}
-
-/* Hero */
-.hero {text-align:center; padding:100px 20px; background:linear-gradient(rgba(255,255,255,0.7), rgba(255,255,255,0.7)), url('https://placehold.co/1920x800/eee/333?text=Global+Logistics') no-repeat center/cover;}
-.hero h1 {font-size:50px; margin-bottom:20px; font-weight:900;}
-.hero p {font-size:20px; max-width:700px; margin:0 auto 30px; color:#555;}
-.btn {display:inline-block; padding:12px 25px; background:var(--secondary-color); color:#fff; border:none; border-radius:5px; font-weight:700; cursor:pointer; transition:0.3s;}
-.btn:hover {background:#3a7fd6; transform:translateY(-2px);}
-
-/* Services */
-.services {padding:80px 20px; background:#fff;}
-.services h2 {text-align:center; font-size:36px; margin-bottom:10px; font-weight:900;}
-.subtitle {text-align:center; color:#555; margin-bottom:50px; font-weight:400;}
-.services-grid {display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:30px;}
-.service-card {background:#fff; padding:30px; border-radius:8px; text-align:center; box-shadow:0 4px 12px rgba(0,0,0,0.08); border:1px solid #eee; transition:0.3s;}
-.service-card:hover {transform:translateY(-10px);}
-.service-card i {font-size:40px; color:var(--secondary-color); margin-bottom:15px;}
-.service-card h3 {font-size:20px; font-weight:700; text-transform:uppercase; margin-bottom:10px;}
-
-/* Network Table */
-.network-table {width:100%; border-collapse:collapse; font-size:16px;}
-.network-table th, .network-table td {padding:15px; border-bottom:1px solid #e0e0e0; text-align:left;}
-.network-table th {background:var(--secondary-color); color:#fff; font-weight:700; text-transform:uppercase;}
-.network-table tr:nth-child(even) {background:#f5f5f5;}
-.tooltip {position:relative; cursor:help;}
-.tooltip span {visibility:hidden; width:150px; background:var(--tooltip-bg); color:#fff; text-align:center; border-radius:5px; padding:5px 10px; position:absolute; z-index:1; bottom:125%; left:50%; transform:translateX(-50%); opacity:0; transition:0.3s;}
-.tooltip:hover span {visibility:visible; opacity:1;}
-
-/* Contact */
-.contact-form {max-width:600px; margin:0 auto; display:flex; flex-direction:column; gap:15px;}
-.contact-form input, .contact-form textarea {width:100%; padding:15px; border:1px solid #ddd; border-radius:5px; font-size:16px;}
-.contact-form textarea {resize:vertical; min-height:150px;}
-#contact {padding:80px 20px; background:#fff;}
-#messageBox {display:none; margin-top:30px; padding:20px; background:var(--secondary-color); color:#fff; border-radius:5px; text-align:center; font-weight:700;}
-
-/* Footer */
-.footer {background:#333; color:#f5f5f5; padding:50px 20px; font-size:14px;}
-.footer-grid {max-width:var(--max-width); margin:0 auto; display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:30px;}
-.footer h4 {color:var(--secondary-color); margin-bottom:20px; font-weight:700;}
-.footer ul li a {color:#ccc; transition:0.3s;}
-.footer ul li a:hover {color:var(--secondary-color);}
-.social-icons a {color:var(--secondary-color); font-size:24px; margin-right:15px; transition:0.3s;}
-.social-icons a:hover {color:#fff;}
-.footer-bottom {text-align:center; padding-top:30px; margin-top:30px; border-top:1px solid #555; color:#ccc;}
-
-/* Responsive */
-@media(max-width:767px){.header-content{flex-direction:column;gap:15px;}.nav-links{justify-content:center;}.hero h1{font-size:35px;}}
+*{margin:0;padding:0;box-sizing:border-box;font-family:var(--font);}
+body{background:#f9f9f9;color:var(--dark);line-height:1.6;overflow-x:hidden;}
+a{text-decoration:none;color:inherit;}
+/* -------- Header -------- */
+header{position:sticky;top:0;background:var(--primary);padding:15px 0;box-shadow:0 2px 5px rgba(0,0,0,0.1);z-index:1000;}
+.header-content{max-width:var(--max-width);margin:0 auto;padding:0 20px;display:flex;justify-content:space-between;align-items:center;}
+.logo{font-size:28px;font-weight:900;}
+.logo span{color:var(--secondary);}
+.logo small{display:block;font-size:14px;font-weight:400;letter-spacing:2px;color:var(--dark);}
+.nav-links{display:flex;gap:25px;}
+.nav-links a{font-weight:700;transition:0.3s;}
+.nav-links a:hover{color:var(--secondary);}
+.contact-info{display:none;font-weight:700;gap:10px;align-items:center;}
+/* -------- Hero -------- */
+.hero{background:linear-gradient(rgba(255,255,255,0.8),rgba(255,255,255,0.9)), url('https://placehold.co/1920x800/eee/333?text=Global+Logistics') center/cover no-repeat;text-align:center;padding:100px 20px;}
+.hero h1{font-size:56px;font-weight:900;margin-bottom:20px;}
+.hero p{font-size:22px;max-width:800px;margin:0 auto 40px;color:#555;}
+.btn{display:inline-block;padding:12px 25px;background:var(--secondary);color:var(--primary);border:none;border-radius:5px;font-weight:700;text-transform:uppercase;cursor:pointer;transition:0.3s;}
+.btn:hover{background:#3a7fd6;transform:translateY(-2px);}
+/* -------- Sections -------- */
+section{padding:80px 20px;max-width:var(--max-width);margin:0 auto;}
+h2{text-align:center;font-size:36px;font-weight:900;margin-bottom:10px;text-transform:uppercase;}
+.subtitle{text-align:center;color:#555;margin-bottom:50px;font-weight:400;}
+.services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:30px;}
+.service-card{background:#fff;padding:30px;border-radius:8px;text-align:center;box-shadow:0 4px 12px rgba(0,0,0,0.08);border:1px solid #eee;transition:0.3s;}
+.service-card:hover{transform:translateY(-10px);}
+.service-card i{font-size:40px;color:var(--secondary);margin-bottom:15px;}
+.service-card h3{text-transform:uppercase;margin-bottom:10px;}
+.network-table{width:100%;border-collapse:collapse;font-size:16px;margin-top:30px;}
+.network-table th, .network-table td{padding:15px;text-align:left;border-bottom:1px solid #e0e0e0;}
+.network-table th{background:var(--secondary);color:var(--primary);font-weight:700;text-transform:uppercase;}
+.network-table tr:nth-child(even){background:#f5f5f5;}
+.coming-soon{font-style:italic;font-weight:700;color:#E63946;}
+/* -------- Contact -------- */
+.contact-form{max-width:600px;margin:0 auto;display:flex;flex-direction:column;gap:15px;}
+.contact-form input, .contact-form textarea{width:100%;padding:15px;border:1px solid #ddd;border-radius:5px;font-size:16px;background:#fff;color:var(--dark);}
+.contact-form textarea{resize:vertical;min-height:150px;}
+#contact{background:#fff;}
+/* -------- Footer -------- */
+.footer{background:var(--dark);color:var(--light);padding:50px 20px;font-size:14px;}
+.footer-grid{max-width:var(--max-width);margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:30px;}
+.footer h4{color:var(--secondary);margin-bottom:20px;font-weight:700;}
+.footer ul{list-style:none;}
+.footer ul li a{color:#ccc;margin-bottom:8px;display:block;transition:0.3s;}
+.footer ul li a:hover{color:var(--secondary);}
+.social-icons a{color:var(--secondary);font-size:24px;margin-right:15px;transition:0.3s;}
+.social-icons a:hover{color:#fff;}
+.footer-bottom{text-align:center;padding-top:30px;margin-top:30px;border-top:1px solid #555;color:#ccc;}
+/* -------- Responsive -------- */
+@media(min-width:768px){.contact-info{display:flex;}} 
+@media(max-width:767px){.header-content{flex-direction:column;gap:15px;}.nav-links{justify-content:center;}.hero h1{font-size:40px;}}
 </style>
 </head>
 <body>
-
 <!-- Header -->
-<header class="header">
+<header>
 <div class="header-content">
-    <div class="logo"><span>HAFEN</span> Consolidators</div>
-    <nav class="nav-links">
-        <a href="#home">Home</a>
-        <a href="#services">Services</a>
-        <a href="#network">Global Network</a>
-        <a href="#contact">Contact</a>
-    </nav>
-    <div class="contact-info">
-        <i class="fas fa-phone-alt"></i> +44 7594 716370
-    </div>
+<div class="logo"><span>HAFEN</span> Consolidators<small>GLOBAL LOGISTICS</small></div>
+<nav class="nav-links">
+<a href="#home">Home</a>
+<a href="#services">Services</a>
+<a href="#network">Global Network</a>
+<a href="#contact">Contact</a>
+</nav>
+<div class="contact-info"><i class="fas fa-phone-alt" style="color:var(--secondary)"></i> +44 7594 716370</div>
 </div>
 </header>
 
 <!-- Hero -->
 <section class="hero" id="home">
 <h1>We Move Your World</h1>
-<p>Consolidation and logistics solutions that move goods across continents, by air and sea.</p>
+<p>Consolidation and logistics solutions that move goods across continents, by air and sea, with safety and efficiency.</p>
 <a href="#contact" class="btn">Request a Quote</a>
 </section>
 
@@ -113,61 +96,39 @@ ul {list-style:none;}
 <h2>Our Services</h2>
 <p class="subtitle">Integrated logistics for your supply chain.</p>
 <div class="services-grid">
-<div class="service-card"><i class="fas fa-ship"></i><h3>Ocean Freight</h3><p>Optimized cargo space and cost-efficient international shipping.</p></div>
-<div class="service-card"><i class="fas fa-plane"></i><h3>Air Freight</h3><p>Fast and secure solutions for time-sensitive cargo.</p></div>
-<div class="service-card"><i class="fas fa-truck"></i><h3>Road Transport</h3><p>Efficient land distribution to ports and airports.</p></div>
-<div class="service-card"><i class="fas fa-warehouse"></i><h3>Warehousing</h3><p>Inventory management, pick-and-pack, value-added services.</p></div>
+<div class="service-card"><i class="fas fa-ship"></i><h3>Ocean Freight</h3><p>Optimized vessel cargo consolidation reducing shipping costs.</p></div>
+<div class="service-card"><i class="fas fa-plane"></i><h3>Air Freight</h3><p>Fast, secure solutions for time-sensitive cargo worldwide.</p></div>
+<div class="service-card"><i class="fas fa-truck"></i><h3>Road Transport</h3><p>Efficient local distribution and port/airport connections.</p></div>
+<div class="service-card"><i class="fas fa-warehouse"></i><h3>Warehousing</h3><p>Inventory management, pick-pack, value-added services in modern warehouses.</p></div>
 </div>
 </section>
 
 <!-- Network -->
 <section id="network">
-<h2>Global Hubs</h2>
-<p class="subtitle">Connecting the world's main trade centers.</p>
-
+<h2>Our Global Hubs</h2>
+<p class="subtitle">Connecting main trade centers worldwide.</p>
 <table class="network-table">
 <thead>
-<tr><th>Country</th><th>Address / Status</th></tr>
+<tr><th>Country / Status</th><th>Address</th><th>Map</th></tr>
 </thead>
 <tbody>
-<tr><td>🇪🇨 Ecuador (HQ)</td><td>1, C 1 NE - Francisco Dep. Icaza 437, Guayaquil 090313</td></tr>
-<tr><td>🇦🇷 Argentina</td><td>Edificio Republica, Tucumán 1, Buenos Aires C1048</td></tr>
-<tr><td>🇧🇷 Brazil</td><td class="tooltip">Launching Soon<span>Hub planned and operational soon</span></td></tr>
-<tr><td>🇳🇮 Nicaragua</td><td class="tooltip">Launching Soon<span>Hub planned and operational soon</span></td></tr>
-<tr><td>🇭🇳 Honduras</td><td class="tooltip">Launching Soon<span>Hub planned and operational soon</span></td></tr>
-<tr><td>🇷🇴 Romania</td><td class="tooltip">Launching Soon<span>Hub planned and operational soon</span></td></tr>
-<tr><td>🇨🇺 Cuba</td><td class="tooltip">Launching Soon<span>Hub planned and operational soon</span></td></tr>
-<tr><td>🇩🇴 Dominican Republic</td><td class="tooltip">Launching Soon<span>Hub planned and operational soon</span></td></tr>
-<tr><td>🇹🇹 Trinidad & Tobago</td><td class="tooltip">Launching Soon<span>Hub planned and operational soon</span></td></tr>
-<tr><td>🇨🇷 Costa Rica</td><td class="tooltip">Launching Soon<span>Hub planned and operational soon</span></td></tr>
-<tr><td>🇵🇪 Peru</td><td class="tooltip">Launching Soon<span>Hub planned and operational soon</span></td></tr>
-<tr><td>🇬🇹 Guatemala</td><td class="tooltip">Launching Soon<span>Hub planned and operational soon</span></td></tr>
-<tr><td>🇨🇱 Chile</td><td class="tooltip">Launching Soon<span>Hub planned and operational soon</span></td></tr>
-<tr><td>🇵🇾 Paraguay</td><td class="tooltip">Launching Soon<span>Hub planned and operational soon</span></td></tr>
-<tr><td>🇺🇾 Uruguay</td><td class="tooltip">Launching Soon<span>Hub planned and operational soon</span></td></tr>
-<tr><td>🇹🇼 Taiwan</td><td class="tooltip">Launching Soon<span>Hub planned and operational soon</span></td></tr>
-<tr><td>🇵🇭 Philippines</td><td class="tooltip">Launching Soon<span>Hub planned and operational soon</span></td></tr>
-<tr><td>🇳🇬 Nigeria</td><td class="tooltip">Launching Soon<span>Hub planned and operational soon</span></td></tr>
-<tr><td>🇨🇬 Republic of Congo</td><td class="tooltip">Launching Soon<span>Hub planned and operational soon</span></td></tr>
-<tr><td>🇲🇿 Mozambique</td><td class="tooltip">Launching Soon<span>Hub planned and operational soon</span></td></tr>
-<tr><td>🇨🇮 Ivory Coast</td><td class="tooltip">Launching Soon<span>Hub planned and operational soon</span></td></tr>
-<tr><td>🇿🇼 Zimbabwe</td><td class="tooltip">Launching Soon<span>Hub planned and operational soon</span></td></tr>
-<tr><td>🇮🇩 Indonesia</td><td class="tooltip">Launching Soon<span>Hub planned and operational soon</span></td></tr>
-<tr><td>🇲🇾 Malaysia</td><td class="tooltip">Launching Soon<span>Hub planned and operational soon</span></td></tr>
-<tr><td>🇹🇭 Thailand</td><td class="tooltip">Launching Soon<span>Hub planned and operational soon</span></td></tr>
-<tr><td>🇱🇻 Latvia</td><td class="tooltip">Launching Soon<span>Hub planned and operational soon</span></td></tr>
-<tr><td>🇱🇹 Lithuania</td><td class="tooltip">Launching Soon<span>Hub planned and operational soon</span></td></tr>
-<tr><td>🇦🇱 Albania</td><td class="tooltip">Launching Soon<span>Hub planned and operational soon</span></td></tr>
-<tr><td>🇺🇿 Uzbekistan</td><td class="tooltip">Launching Soon<span>Hub planned and operational soon</span></td></tr>
-<tr><td>🇰🇿 Kazakhstan</td><td class="tooltip">Launching Soon<span>Hub planned and operational soon</span></td></tr>
-<tr><td>🇵🇰 Pakistan</td><td class="tooltip">Launching Soon<span>Hub planned and operational soon</span></td></tr>
-<tr><td>🇶🇦 Qatar</td><td class="tooltip">Launching Soon<span>Hub planned and operational soon</span></td></tr>
-<tr><td>🇺🇸 USA</td><td class="tooltip">Launching Soon<span>Hub planned and operational soon</span></td></tr>
-<tr><td>🇨🇦 Canada</td><td class="tooltip">Launching Soon<span>Hub planned and operational soon</span></td></tr>
-<tr><td>🇸🇦 Saudi Arabia</td><td class="tooltip">Launching Soon<span>Hub planned and operational soon</span></td></tr>
-<tr><td>🇯🇴 Jordan</td><td class="tooltip">Launching Soon<span>Hub planned and operational soon</span></td></tr>
-<tr><td>🇵🇸 Palestine</td><td class="tooltip">Launching Soon<span>Hub planned and operational soon</span></td></tr>
-<tr><td>🇺🇦 Ukraine</td><td class="tooltip">Launching Soon<span>Hub planned and operational soon</span></td></tr>
+<tr><td>🇪🇨 Ecuador (HQ)</td><td>1, C 1 NE - Francisco Dep. Icaza 437, Guayaquil 090313</td><td style="text-align:center;"><i class="fas fa-map-marker-alt" style="color:var(--secondary)"></i></td></tr>
+<tr><td>🇦🇷 Argentina</td><td>Edificio Republica, Tucumán 1, Buenos Aires C1048</td><td style="text-align:center;"><i class="fas fa-map-marker-alt" style="color:var(--secondary)"></i></td></tr>
+<tr><td>🇧🇷 Brazil</td><td class="coming-soon">Launching Soon</td><td style="text-align:center;">-</td></tr>
+<tr><td>🇳🇮 Nicaragua</td><td class="coming-soon">Launching Soon</td><td style="text-align:center;">-</td></tr>
+<tr><td>🇭🇳 Honduras</td><td class="coming-soon">Launching Soon</td><td style="text-align:center;">-</td></tr>
+<tr><td>🇨🇺 Cuba</td><td class="coming-soon">Launching Soon</td><td style="text-align:center;">-</td></tr>
+<tr><td>🇩🇴 Dominican Republic</td><td class="coming-soon">Launching Soon</td><td style="text-align:center;">-</td></tr>
+<tr><td>🇵🇪 Peru</td><td class="coming-soon">Launching Soon</td><td style="text-align:center;">-</td></tr>
+<tr><td>🇹🇼 Taiwan</td><td class="coming-soon">Launching Soon</td><td style="text-align:center;">-</td></tr>
+<tr><td>🇵🇭 Philippines</td><td class="coming-soon">Launching Soon</td><td style="text-align:center;">-</td></tr>
+<tr><td>🇨🇦 Canada</td><td class="coming-soon">Launching Soon</td><td style="text-align:center;">-</td></tr>
+<tr><td>🇺🇸 USA</td><td class="coming-soon">Launching Soon</td><td style="text-align:center;">-</td></tr>
+<tr><td>🇸🇦 Saudi Arabia</td><td class="coming-soon">Launching Soon</td><td style="text-align:center;">-</td></tr>
+<tr><td>🇵🇰 Pakistan</td><td class="coming-soon">Launching Soon</td><td style="text-align:center;">-</td></tr>
+<tr><td>🇺🇿 Uzbekistan</td><td class="coming-soon">Launching Soon</td><td style="text-align:center;">-</td></tr>
+<tr><td>🇰🇿 Kazakhstan</td><td class="coming-soon">Launching Soon</td><td style="text-align:center;">-</td></tr>
+<!-- Adicione outros países da mesma forma -->
 </tbody>
 </table>
 </section>
@@ -182,7 +143,7 @@ ul {list-style:none;}
 <textarea placeholder="Message / Cargo Details" required></textarea>
 <button type="submit" class="btn">Send Message</button>
 </form>
-<div id="messageBox">Message sent! We will contact you shortly.</div>
+<div id="messageBox" style="display:none;margin-top:30px;padding:20px;background:var(--secondary);color:#fff;border-radius:5px;text-align:center;font-weight:700;">Message sent! We will contact you shortly.</div>
 </section>
 
 <!-- Footer -->
@@ -190,8 +151,8 @@ ul {list-style:none;}
 <div class="footer-grid">
 <div>
 <h4>HAFEN</h4>
-<p>Moving cargo with confidence across sea and sky.</p>
-<div class="social-icons">
+<p>Moving cargo with the confidence of those who know the sea and the sky.</p>
+<div class="social-icons" style="margin-top:20px;">
 <a href="#"><i class="fab fa-linkedin"></i></a>
 <a href="#"><i class="fab fa-facebook-square"></i></a>
 <a href="#"><i class="fab fa-instagram"></i></a>
@@ -207,13 +168,13 @@ ul {list-style:none;}
 </ul>
 </div>
 <div>
-<h4>Contact</h4>
-<p><i class="fas fa-map-marker-alt" style="color:var(--secondary-color);"></i> 1, C 1 NE - Francisco Dep. Icaza 437, Guayaquil 090313, Ecuador</p>
-<p><i class="fas fa-phone-alt" style="color:var(--secondary-color);"></i> +44 7594 716370</p>
-<p><i class="fab fa-whatsapp" style="color:var(--secondary-color);"></i> +44 7594 716370</p>
-<p><i class="fab fa-telegram" style="color:var(--secondary-color);"></i> +44 7594 716370</p>
-<p><i class="fab fa-signal" style="color:var(--secondary-color);"></i> +44 7594 716370</p>
-<p><i class="fas fa-envelope" style="color:var(--secondary-color);"></i> contact@hafenconsolidators.com</p>
+<h4>Information</h4>
+<p><i class="fas fa-map-marker-alt" style="color:var(--secondary);margin-right:10px;"></i> 1, C 1 NE - Francisco Dep. Icaza 437, Guayaquil 090313, Ecuador</p>
+<p style="margin-top:10px;"><i class="fas fa-phone-alt" style="color:var(--secondary);margin-right:10px;"></i> +44 7594 716370</p>
+<p style="margin-top:10px;"><i class="fab fa-whatsapp" style="color:var(--secondary);margin-right:10px;"></i> WhatsApp: +44 7594 716370</p>
+<p style="margin-top:10px;"><i class="fab fa-telegram" style="color:var(--secondary);margin-right:10px;"></i> Telegram: +44 7594 716370</p>
+<p style="margin-top:10px;"><i class="fab fa-signal" style="color:var(--secondary);margin-right:10px;"></i> Signal: +44 7594 716370</p>
+<p style="margin-top:10px;"><i class="fas fa-envelope" style="color:var(--secondary);margin-right:10px;"></i> contact@hafenconsolidators.com</p>
 </div>
 </div>
 <div class="footer-bottom">&copy; 2025 HAFEN Consolidators. All rights reserved.</div>
@@ -221,17 +182,15 @@ ul {list-style:none;}
 
 <script>
 function showMessage(){
-document.getElementById('messageBox').style.display='block';
-setTimeout(()=>{document.getElementById('messageBox').style.display='none';},5000);
+  const box=document.getElementById('messageBox');
+  box.style.display='block';
+  setTimeout(()=>{box.style.display='none';},5000);
 }
-// Smooth scroll
+// Smooth Scroll
 document.querySelectorAll('a[href^="#"]').forEach(anchor=>{
-anchor.addEventListener('click',function(e){
-e.preventDefault();
-document.querySelector(this.getAttribute('href')).scrollIntoView({behavior:'smooth'});
-});
+  anchor.addEventListener('click',function(e){e.preventDefault();
+  document.querySelector(this.getAttribute('href')).scrollIntoView({behavior:'smooth'});});
 });
 </script>
-
 </body>
 </html>

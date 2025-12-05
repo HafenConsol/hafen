@@ -207,4 +207,22 @@ h2{text-align:center;font-size:36px;font-weight:900;margin-bottom:10px;text-tran
 <p><i class="fas fa-envelope" style="color:var(--secondary);margin-right:10px;"></i>contact@hafen.com</p>
 </div>
 </div>
-<div class="footer-bottom">&copy; 2025 HAFEN Consolidators. All rights reserved.</
+<div class="footer-bottom">&copy; 2025 HAFEN Consolidators. All rights reserved.</div>
+</footer>
+
+<script>
+function showMessage() {
+    document.getElementById('messageBox').style.display='block';
+    setTimeout(()=>{document.getElementById('messageBox').style.display='none';},4000);
+}
+
+function showMessageAlert(msg) {
+    const box=document.getElementById('mapAlertBox');
+    box.innerText=msg;
+    box.style.display='block';
+    setTimeout(()=>{box.style.display='none';},4000);
+}
+</script>
+
+</body>
+</html>

@@ -4,125 +4,481 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HAFEN Consolidators - Global Logistics</title>
-    <!-- Font and Icons -->
+    <!-- Font and Icon Setup -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
     <style>
-        /* ---------- VARIABLES ---------- */
+        /* NEW Color Variables (Clean and Light Palette) */
         :root {
-            --color-primary: #000000;
-            --color-secondary: #FFD700;
-            --color-bg: #f5f5f5;
-            --color-text-dark: #333333;
-            --color-text-light: #fff;
-            --font-main: 'Montserrat', sans-serif;
+            --color-primary: #FFFFFF; /* White - Used for main backgrounds */
+            --color-secondary: #4A90E2; /* Clean Professional Blue - Used for accents/highlights */
+            --color-text-light: #f5f5f5;
+            --color-text-dark: #3D3D3D; /* Soft Dark Gray - Used for main text */
+            --font-family-primary: 'Montserrat', sans-serif;
             --max-width: 1200px;
         }
 
-        /* ---------- GLOBAL ---------- */
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: var(--font-main); }
-        body { background: var(--color-bg); color: var(--color-text-dark); line-height: 1.6; }
-        a { text-decoration: none; }
-        img { max-width: 100%; }
-
-        /* ---------- HEADER ---------- */
-        header { background: var(--color-primary); color: var(--color-text-light); padding: 20px 0; }
-        .header-content { max-width: var(--max-width); margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 20px; flex-wrap: wrap; }
-        .logo { font-size: 28px; font-weight: 900; }
-        .logo span { color: var(--color-secondary); }
-        nav { display: flex; gap: 25px; flex-wrap: wrap; }
-        nav a { color: var(--color-text-light); font-weight: 700; transition: color 0.3s; }
-        nav a:hover { color: var(--color-secondary); }
-
-        /* ---------- HERO ---------- */
-        .hero { text-align: center; padding: 120px 20px; background: url('https://placehold.co/1920x800/222/fff?text=Global+Logistics') center/cover no-repeat; color: var(--color-text-light); }
-        .hero h1 { font-size: 56px; margin-bottom: 20px; font-weight: 900; }
-        .hero p { font-size: 22px; margin-bottom: 40px; max-width: 800px; margin-left: auto; margin-right: auto; color: #ccc; }
-        .btn { display: inline-block; padding: 12px 25px; background: var(--color-secondary); color: var(--color-primary); font-weight: 700; border-radius: 5px; text-transform: uppercase; transition: transform 0.2s; }
-        .btn:hover { transform: translateY(-2px); }
-
-        /* ---------- SECTIONS ---------- */
-        section { padding: 80px 20px; max-width: var(--max-width); margin: 0 auto; }
-        h2 { font-size: 36px; font-weight: 900; text-align: center; margin-bottom: 10px; text-transform: uppercase; }
-        .subtitle { text-align: center; color: #555; margin-bottom: 50px; font-weight: 400; }
-
-        /* ---------- SERVICES ---------- */
-        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
-        .service-card { background: var(--color-primary); color: var(--color-text-light); padding: 30px; border-radius: 8px; text-align: center; transition: transform 0.3s; }
-        .service-card:hover { transform: translateY(-10px); }
-        .service-card i { font-size: 40px; color: var(--color-secondary); margin-bottom: 15px; }
-        .service-card h3 { font-size: 20px; font-weight: 700; margin-bottom: 10px; text-transform: uppercase; }
-        .service-card p { font-size: 16px; color: #ccc; }
-
-        /* ---------- HUBS ---------- */
-        .network-table { width: 100%; border-collapse: collapse; font-size: 16px; }
-        .network-table th, .network-table td { padding: 15px; text-align: left; border-bottom: 1px solid #ddd; }
-        .network-table th { background: var(--color-secondary); color: var(--color-primary); font-weight: 700; text-transform: uppercase; }
-        .network-table td.coming-soon { font-style: italic; color: #ff3333; font-weight: 700; }
-        .network-table td img { width: 24px; height: auto; margin-right: 8px; vertical-align: middle; }
-
-        /* ---------- CONTACT ---------- */
-        .contact-form { max-width: 600px; margin: 0 auto; display: flex; flex-direction: column; gap: 15px; }
-        .contact-form input, .contact-form textarea { width: 100%; padding: 15px; border-radius: 5px; border: 1px solid #ccc; font-size: 16px; }
-        .contact-form textarea { min-height: 150px; resize: vertical; }
-        .contact-form .btn { align-self: flex-start; }
-
-        /* ---------- CONTACT APPS ---------- */
-        .contact-apps { display: flex; gap: 15px; margin-top: 15px; justify-content: center; flex-wrap: wrap; }
-        .contact-apps a { color: var(--color-primary); font-size: 24px; transition: color 0.3s; }
-        .contact-apps a:hover { color: var(--color-secondary); }
-
-        /* ---------- FOOTER ---------- */
-        footer { background: var(--color-primary); color: var(--color-text-light); padding: 50px 20px; font-size: 14px; }
-        .footer-grid { display: grid; max-width: var(--max-width); margin: 0 auto; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; }
-        .footer h4 { font-size: 18px; color: var(--color-secondary); margin-bottom: 20px; font-weight: 700; }
-        .footer ul { list-style: none; }
-        .footer ul li a { color: #aaa; display: block; margin-bottom: 8px; transition: color 0.3s; }
-        .footer ul li a:hover { color: var(--color-secondary); }
-        .footer-bottom { text-align: center; padding-top: 30px; margin-top: 30px; border-top: 1px solid #1a1a1a; color: #aaa; }
-
-        /* ---------- MEDIA ---------- */
-        @media (max-width: 767px) {
-            .hero h1 { font-size: 40px; }
-            .network-table th, .network-table td { padding: 10px; font-size: 14px; }
+        /* Basic Reset and Fonts */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: var(--font-family-primary);
         }
+
+        body {
+            line-height: 1.6;
+            background-color: #F9F9F9; /* Very light background */
+            color: var(--color-text-dark);
+            overflow-x: hidden;
+        }
+
+        /* Button Style (Blue Highlight) */
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            background-color: var(--color-secondary);
+            color: var(--color-primary); /* White text on blue button */
+            text-decoration: none;
+            font-weight: 700;
+            border-radius: 5px;
+            transition: background-color 0.3s, transform 0.1s;
+            text-transform: uppercase;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #3a7fd6; /* Slightly darker blue on hover */
+            transform: translateY(-2px);
+        }
+
+        /* ---------------------------------------------------- */
+        /* 1. HEADER (Now White/Light) */
+        /* ---------------------------------------------------- */
+        .header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background-color: var(--color-primary); /* White background */
+            color: var(--color-text-dark); /* Dark text */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Lighter shadow */
+            padding: 15px 0;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 900;
+            line-height: 1.1;
+        }
+
+        .logo span {
+            color: var(--color-secondary); /* HAFEN in Blue */
+        }
+
+        .logo small {
+            display: block;
+            font-size: 14px;
+            font-weight: 400;
+            color: var(--color-text-dark);
+            letter-spacing: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+        }
+
+        .nav-links a {
+            color: var(--color-text-dark); /* Dark text on light background */
+            text-decoration: none;
+            font-weight: 700;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--color-secondary); /* Blue hover */
+        }
+
+        .contact-info {
+            font-weight: 700;
+            display: none; 
+            align-items: center;
+            gap: 10px;
+            color: var(--color-text-dark);
+        }
+
+        /* ---------------------------------------------------- */
+        /* 2. HERO SECTION (Lighter Overlay) */
+        /* ---------------------------------------------------- */
+        .hero {
+            /* Lighter image overlay for a clean look */
+            background: linear-gradient(rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0.85)), 
+                        url('https://placehold.co/1920x800/eee/333?text=Global+Logistics') no-repeat center center/cover;
+            color: var(--color-text-dark); /* Dark text on light background */
+            text-align: center;
+            padding: 100px 20px;
+        }
+
+        .hero h1 {
+            font-size: 56px;
+            margin-bottom: 20px;
+            font-weight: 900;
+        }
+
+        .hero p {
+            font-size: 22px;
+            margin-bottom: 40px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            color: #555;
+        }
+        
+        /* Blue divider line */
+        .divider {
+            width: 100px;
+            height: 4px;
+            background-color: var(--color-secondary);
+            margin: 20px auto 30px;
+        }
+
+
+        /* ---------------------------------------------------- */
+        /* 3. ANIMATION AREA (Lighter Sky and Water) */
+        /* ---------------------------------------------------- */
+        .animation-area {
+            position: relative;
+            width: 100%;
+            height: 400px;
+            overflow: hidden;
+            /* Very light blue gradient for sky and water */
+            background: linear-gradient(to bottom, #E0F2FF 0%, #E0F2FF 50%, #C3E6FF 50%, #C3E6FF 100%);
+            border-bottom: 5px solid var(--color-secondary); /* Blue border */
+            cursor: grab;
+        }
+
+        .ship, .plane {
+            position: absolute;
+            font-size: 60px;
+            transition: color 0.2s;
+            cursor: grab;
+            touch-action: none; 
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2); /* Lighter shadow */
+        }
+        
+        .ship {
+            color: #555; /* Dark gray ship */
+            bottom: 20px; 
+            left: 5%;
+        }
+
+        .plane {
+            color: var(--color-secondary); /* Blue plane in the sky */
+            top: 20px; 
+            right: 5%;
+        }
+        
+        /* Rotate the ship horizontally */
+        .ship.rotated {
+            transform: rotateY(180deg);
+        }
+
+        /* ---------------------------------------------------- */
+        /* 4. GENERAL CONTENT SECTIONS */
+        /* ---------------------------------------------------- */
+        section {
+            padding: 80px 20px;
+            max-width: var(--max-width);
+            margin: 0 auto;
+        }
+
+        h2 {
+            font-size: 36px;
+            font-weight: 900;
+            text-align: center;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: #555;
+            margin-bottom: 50px;
+            font-weight: 400;
+        }
+
+        /* Services Section (Now Light) */
+        .services {
+            background-color: var(--color-primary); /* White background */
+            color: var(--color-text-dark);
+        }
+
+        .services h2, .services .subtitle {
+            color: var(--color-text-dark);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background-color: #FFFFFF; /* White card */
+            padding: 30px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* Very light shadow for clean lift */
+            border: 1px solid #eee;
+            transition: transform 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .service-card i {
+            font-size: 40px;
+            color: var(--color-secondary); /* Blue icon */
+            margin-bottom: 15px;
+        }
+
+        .service-card h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        /* Global Network Section (Table) */
+        .network-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 30px;
+            font-size: 16px;
+        }
+
+        .network-table th, .network-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #e0e0e0; /* Lighter border */
+        }
+
+        .network-table th {
+            background-color: var(--color-secondary); /* Blue header */
+            color: var(--color-primary); /* White text */
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+        
+        .network-table tr:nth-child(even) {
+            background-color: #f5f5f5; /* Very soft gray striping */
+        }
+        
+        .map-link {
+            color: var(--color-secondary); /* Blue map icon */
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .map-link:hover {
+            color: var(--color-text-dark);
+        }
+        
+        .coming-soon {
+            font-style: italic;
+            color: #E63946; /* Soft red for status emphasis */
+            font-weight: 700;
+        }
+
+        /* ---------------------------------------------------- */
+        /* 5. CONTACT FORM */
+        /* ---------------------------------------------------- */
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        /* Contact Section Background is now White */
+        #contact {
+            background-color: var(--color-primary);
+        }
+
+        .contact-form input, .contact-form textarea {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            background-color: #fff;
+            color: var(--color-text-dark);
+        }
+
+        .contact-form textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        .contact-form .btn {
+            align-self: flex-start;
+        }
+
+        /* ---------------------------------------------------- */
+        /* 6. FOOTER (Dark Gray for Contrast/Anchor) */
+        /* ---------------------------------------------------- */
+        .footer {
+            background-color: #3D3D3D; /* Retaining a dark footer for visual grounding */
+            color: var(--color-text-light);
+            padding: 50px 20px;
+            font-size: 14px;
+        }
+
+        .footer-grid {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+        }
+
+        .footer h4 {
+            font-size: 18px;
+            color: var(--color-secondary); /* Blue header */
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .footer ul {
+            list-style: none;
+        }
+
+        .footer ul li a {
+            color: #ccc;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 8px;
+            transition: color 0.3s;
+        }
+
+        .footer ul li a:hover {
+            color: var(--color-secondary); /* Blue hover */
+        }
+
+        .social-icons a {
+            color: var(--color-secondary); /* Blue icons */
+            font-size: 24px;
+            margin-right: 15px;
+            transition: color 0.3s;
+        }
+
+        .social-icons a:hover {
+            color: #fff;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            margin-top: 30px;
+            border-top: 1px solid #555;
+            color: #ccc;
+        }
+
+        /* Media Queries (Responsiveness) */
+        @media (min-width: 768px) {
+            .contact-info {
+                display: flex; 
+            }
+        }
+        
+        @media (max-width: 767px) {
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+            .nav-links {
+                justify-content: center;
+            }
+            .hero h1 {
+                font-size: 40px;
+            }
+            .animation-area {
+                height: 300px;
+            }
+            .network-table th, .network-table td {
+                padding: 10px 5px; 
+            }
+            .network-table td:nth-child(2) {
+                font-size: 14px; 
+            }
+        }
+
     </style>
 </head>
 <body>
 
-    <!-- HEADER -->
-    <header>
+    <!-- Header (Sticky - Now White) -->
+    <header class="header">
         <div class="header-content">
-            <div class="logo"><span>HAFEN</span> Consolidators</div>
-            <nav>
+            <div class="logo">
+                <span style="color:var(--color-secondary);">HAFEN</span> Consolidators
+                <small>GLOBAL LOGISTICS</small>
+            </div>
+            <nav class="nav-links">
                 <a href="#home">Home</a>
                 <a href="#services">Services</a>
-                <a href="#network">Global Hubs</a>
+                <a href="#network">Global Network</a>
                 <a href="#contact">Contact</a>
             </nav>
+            <div class="contact-info">
+                <i class="fas fa-phone-alt" style="color:var(--color-secondary);"></i>
+                +44 7594 716370
+            </div>
         </div>
     </header>
 
-    <!-- HERO -->
+    <!-- 1. HERO SECTION -->
     <section class="hero" id="home">
         <h1>We Move Your World</h1>
+        <div class="divider"></div>
         <p>Consolidation and logistics solutions that move goods across continents, by air and sea, with safety and efficiency.</p>
         <a href="#contact" class="btn">Request a Quote</a>
     </section>
 
-    <!-- SERVICES -->
+    <!-- 2. INTERACTIVE ANIMATION AREA (Light Blue) -->
+    <div class="animation-area">
+        <!-- Font Awesome Icons (Ship and Plane) -->
+        <i class="fas fa-ship ship" id="containerShip"></i>
+        <i class="fas fa-plane plane" id="cargoPlane"></i>
+    </div>
+
+    <!-- 3. SERVICES SECTION (Now White/Light) -->
     <section class="services" id="services">
         <h2>Our Services</h2>
-        <p class="subtitle">Integrated logistics for your supply chain</p>
+        <p class="subtitle">Integrated logistics for your supply chain.</p>
         <div class="services-grid">
             <div class="service-card">
                 <i class="fas fa-ship"></i>
-                <h3>Ocean Freight</h3>
-                <p>Optimizing cargo space in vessels, reducing international shipping costs.</p>
+                <h3>Ocean Freight Consolidation</h3>
+                <p>We optimize cargo space in vessels, reducing international shipping costs.</p>
             </div>
             <div class="service-card">
                 <i class="fas fa-plane"></i>
-                <h3>Air Freight</h3>
+                <h3>Express Air Freight</h3>
                 <p>Fast and secure solutions for time-sensitive cargo, with global coverage.</p>
             </div>
             <div class="service-card">
@@ -138,82 +494,340 @@
         </div>
     </section>
 
-    <!-- HUBS -->
+    <!-- 4. GLOBAL NETWORK SECTION -->
     <section id="network">
         <h2>Our Global Hubs</h2>
-        <p class="subtitle">Connecting the world's main trade centers</p>
+        <p class="subtitle">Connecting the world's main trade centers.</p>
+
         <table class="network-table">
             <thead>
                 <tr>
-                    <th>Country / Status</th>
-                    <th>Address</th>
+                    <th style="width: 25%;">Country / Status</th>
+                    <th style="width: 60%;">Address</th>
+                    <th style="width: 15%; text-align: center;">Map</th>
                 </tr>
             </thead>
             <tbody>
-                <tr><td>🇪🇨 Ecuador (HQ)</td><td>1, C 1 NE - Francisco Dep. Icaza 437, Guayaquil 090313</td></tr>
-                <tr><td>🇦🇷 Argentina</td><td>Edificio Republica, Tucumán 1, Buenos Aires C1048</td></tr>
-                <tr><td>🇧🇷 Brazil</td><td class="coming-soon">Coming Soon!</td></tr>
-                <tr><td>🇩🇴 Dominican Republic</td><td class="coming-soon">Coming Soon!</td></tr>
-                <tr><td>🇨🇺 Cuba</td><td class="coming-soon">Coming Soon!</td></tr>
-                <tr><td>🇹🇼 Taiwan</td><td class="coming-soon">Coming Soon!</td></tr>
-                <tr><td>🇭🇳 Honduras</td><td class="coming-soon">Coming Soon!</td></tr>
-                <tr><td>🇳🇮 Nicaragua</td><td class="coming-soon">Coming Soon!</td></tr>
-                <tr><td>🇵🇪 Peru</td><td class="coming-soon">Coming Soon!</td></tr>
-                <tr><td>🇵🇾 Paraguay</td><td class="coming-soon">Coming Soon!</td></tr>
-                <tr><td>🇪🇪 Estonia</td><td class="coming-soon">Coming Soon!</td></tr>
-                <tr><td>🇱🇹 Lithuania</td><td class="coming-soon">Coming Soon!</td></tr>
-                <tr><td>🇵🇱 Poland</td><td class="coming-soon">Coming Soon!</td></tr>
-                <tr><td>🇧🇾 Belarus</td><td class="coming-soon">Coming Soon!</td></tr>
-                <tr><td>🇰🇿 Kazakhstan</td><td class="coming-soon">Coming Soon!</td></tr>
-                <tr><td>🇺🇿 Uzbekistan</td><td class="coming-soon">Coming Soon!</td></tr>
-                <tr><td>🇸🇦 Saudi Arabia</td><td class="coming-soon">Coming Soon!</td></tr>
-                <tr><td>🇵🇰 Pakistan</td><td class="coming-soon">Coming Soon!</td></tr>
+                <tr>
+                    <td>🇪🇨 Ecuador (HQ)</td>
+                    <td>1, C 1 NE - Francisco Dep. Icaza 437, Guayaquil 090313</td>
+                    <td style="text-align: center;"><a href="#" class="map-link" onclick="showMessageAlert('Map Placeholder for Ecuador Hub')"><i class="fas fa-map-marker-alt"></i></a></td>
+                </tr>
+                <tr>
+                    <td>🇦🇷 Argentina</td>
+                    <td>Edificio Republica, Tucumán 1, Buenos Aires C1048</td>
+                    <td style="text-align: center;"><a href="#" class="map-link" onclick="showMessageAlert('Map Placeholder for Argentina Hub')"><i class="fas fa-map-marker-alt"></i></a></td>
+                </tr>
+                <tr>
+                    <td>🇧🇷 Brazil</td>
+                    <td class="coming-soon">Coming Soon!</td>
+                    <td style="text-align: center;">-</td> 
+                </tr>
+                <tr>
+                    <td>🇵🇦 Panama</td>
+                    <td>Uniplaza, Blvd. Costa Verde, 2nd Floor, Panama Oeste – Ciudad de Panama</td>
+                    <td style="text-align: center;"><a href="#" class="map-link" onclick="showMessageAlert('Map Placeholder for Panama Hub')"><i class="fas fa-map-marker-alt"></i></a></td>
+                </tr>
+                <tr>
+                    <td>🇳🇮 Nicaragua</td>
+                    <td>Torre Nova 2, 9th Floor, Tegucigalpa 11101</td>
+                    <td style="text-align: center;"><a href="#" class="map-link" onclick="showMessageAlert('Map Placeholder for Nicaragua Hub')"><i class="fas fa-map-marker-alt"></i></a></td>
+                </tr>
+                <tr>
+                    <td>🇲🇩 Moldova</td>
+                    <td>9-9A Dimitrie Pompeiu Boulevard, Bucharest 020335</td>
+                    <td style="text-align: center;"><a href="#" class="map-link" onclick="showMessageAlert('Map Placeholder for Moldova Hub')"><i class="fas fa-map-marker-alt"></i></a></td>
+                </tr>
+                <tr>
+                    <td>🇻🇳 Vietnam</td>
+                    <td>74 Bach Dang Street, Hai Chau Ward, Danang City</td>
+                    <td style="text-align: center;"><a href="#" class="map-link" onclick="showMessageAlert('Map Placeholder for Vietnam Hub')"><i class="fas fa-map-marker-alt"></i></a></td>
+                </tr>
+                <tr>
+                    <td>🇵🇭 Philippines</td>
+                    <td>Savya Financial Center, Pulse Street, Taguig 1630</td>
+                    <td style="text-align: center;"><a href="#" class="map-link" onclick="showMessageAlert('Map Placeholder for Philippines Hub')"><i class="fas fa-map-marker-alt"></i></a></td>
+                </tr>
             </tbody>
         </table>
+        
+        <!-- Custom Message Box for Map Alerts -->
+        <div id="mapAlertBox" style="
+            display: none; 
+            margin-top: 30px; 
+            padding: 15px; 
+            background-color: #333; 
+            color: var(--color-text-light); 
+            border-radius: 5px; 
+            text-align: center;
+            font-weight: 700;
+        ">
+            Map Placeholder Message
+        </div>
     </section>
 
-    <!-- CONTACT -->
-    <section id="contact">
+    <!-- 5. CONTACT FORM (Now White) -->
+    <section id="contact" style="background-color: var(--color-primary);">
         <h2>Get in Touch</h2>
-        <p class="subtitle">Speak to a specialist and receive your quote in 24 hours</p>
-        <form class="contact-form" onsubmit="event.preventDefault(); alert('Message sent! We will contact you shortly.');">
+        <p class="subtitle">Speak to a specialist and receive your quote in 24 hours.</p>
+        
+        <form class="contact-form" onsubmit="event.preventDefault(); showMessage();">
             <input type="text" placeholder="Your Full Name" required>
             <input type="email" placeholder="Your Email" required>
             <textarea placeholder="Message / Cargo Details" required></textarea>
             <button type="submit" class="btn">Send Message</button>
         </form>
-        <div class="contact-apps">
-            <a href="https://wa.me/447594716370" target="_blank"><i class="fab fa-whatsapp"></i></a>
-            <a href="https://t.me/+447594716370" target="_blank"><i class="fab fa-telegram"></i></a>
-            <a href="signal://chat?number=447594716370" target="_blank"><i class="fab fa-signal"></i></a>
-            <a href="https://instagram.com/hafen_consolidators" target="_blank"><i class="fab fa-instagram"></i></a>
+
+        <div id="messageBox" style="
+            display: none; 
+            margin-top: 30px; 
+            padding: 20px; 
+            background-color: var(--color-secondary); /* Blue accent */
+            color: var(--color-primary); /* White text */
+            border-radius: 5px; 
+            text-align: center;
+            font-weight: 700;
+        ">
+            Message sent! We will contact you shortly.
         </div>
+
     </section>
 
-    <!-- FOOTER -->
-    <footer>
+    <!-- FOOTER (Dark Gray for grounding) -->
+    <footer class="footer">
         <div class="footer-grid">
             <div>
                 <h4>HAFEN</h4>
                 <p>Moving cargo with the confidence of those who know the sea and the sky.</p>
+                <div class="social-icons" style="margin-top: 20px;">
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-facebook-square"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
             </div>
             <div>
                 <h4>Navigation</h4>
                 <ul>
                     <li><a href="#home">Home</a></li>
                     <li><a href="#services">Services</a></li>
-                    <li><a href="#network">Global Hubs</a></li>
-                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#network">Global Network</a></li>
+                    <li><a href="#">Careers</a></li>
                 </ul>
             </div>
             <div>
-                <h4>Contact</h4>
-                <p><i class="fas fa-map-marker-alt" style="color: var(--color-secondary); margin-right: 8px;"></i> 1, C 1 NE - Francisco Dep. Icaza 437, Guayaquil 090313, Ecuador</p>
-                <p><i class="fas fa-phone-alt" style="color: var(--color-secondary); margin-right: 8px;"></i> +44 7594 716370</p>
+                <h4>Information</h4>
+                <p><i class="fas fa-map-marker-alt" style="color:var(--color-secondary); margin-right: 10px;"></i> 1, C 1 NE - Francisco Dep. Icaza 437, Guayaquil 090313, Ecuador</p>
+                
+                <p style="margin-top: 10px;"><i class="fas fa-phone-alt" style="color:var(--color-secondary); margin-right: 10px;"></i> +44 7594 716370</p>
+
+                <p style="margin-top: 10px;">
+                    <i class="fab fa-whatsapp" style="color:var(--color-secondary); margin-right: 10px;"></i> 
+                    WhatsApp: +44 7594 716370
+                </p>
+                <p style="margin-top: 10px;">
+                    <i class="fab fa-telegram" style="color:var(--color-secondary); margin-right: 10px;"></i> 
+                    Telegram: +44 7594 716370
+                </p>
+                <p style="margin-top: 10px;">
+                    <i class="fab fa-signal" style="color:var(--color-secondary); margin-right: 10px;"></i> 
+                    Signal: +44 7594 716370
+                </p>
+                
+                <p style="margin-top: 10px;"><i class="fas fa-envelope" style="color:var(--color-secondary); margin-right: 10px;"></i> contact@hafen.com</p>
             </div>
         </div>
-        <div class="footer-bottom">&copy; 2025 HAFEN Consolidators. All rights reserved.</div>
+        <div class="footer-bottom">
+            &copy; 2025 HAFEN Consolidators. All rights reserved.
+        </div>
     </footer>
+
+    <!-- JavaScript for Drag and Drop Functionality and Messages -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const ship = document.getElementById('containerShip');
+            const plane = document.getElementById('cargoPlane');
+            const animationArea = document.querySelector('.animation-area');
+            const elements = [ship, plane];
+            
+            let activeElement = null;
+            let currentX;
+            let currentY;
+            let initialX;
+            let initialY;
+            let xOffset = 0;
+            let yOffset = 0;
+            
+            // Height of the animation area
+            const areaHeight = animationArea.offsetHeight;
+            // Division point between sky and water (50% of height)
+            const splitPointY = areaHeight / 2;
+            
+            // Set initial position (only once to avoid conflicts with CSS)
+            ship.style.transform = 'translate3d(0px, 0px, 0)';
+            plane.style.transform = 'translate3d(0px, 0px, 0)';
+
+            // --- Drag and Drop Logic (Mouse and Touch) ---
+            elements.forEach(element => {
+                element.addEventListener("touchstart", startDrag, false);
+                element.addEventListener("touchend", stopDrag, false);
+                element.addEventListener("touchmove", drag, false);
+
+                element.addEventListener("mousedown", startDrag, false);
+                element.addEventListener("mouseup", stopDrag, false);
+                element.addEventListener("mousemove", drag, false);
+            });
+            
+            function getCoords(e) {
+                // Returns correct coordinates for mouse or touch
+                if (e.type.includes('touch')) {
+                    return { x: e.touches[0].clientX, y: e.touches[0].clientY };
+                }
+                return { x: e.clientX, y: e.clientY };
+            }
+
+            function startDrag(e) {
+                e.preventDefault();
+                activeElement = e.target.closest('.ship, .plane');
+
+                if (!activeElement) return;
+
+                const coords = getCoords(e);
+                
+                // Initial click/touch position
+                initialX = coords.x;
+                initialY = coords.y;
+
+                // Capture current translate3d values
+                const style = window.getComputedStyle(activeElement);
+                const matrix = new DOMMatrix(style.transform);
+                xOffset = matrix.m41;
+                yOffset = matrix.m42;
+                
+                // Add global listeners for mouse events
+                if (e.type === 'mousedown') {
+                    document.addEventListener('mouseup', stopDrag, false);
+                    document.addEventListener('mousemove', drag, false);
+                }
+                
+                activeElement.style.cursor = 'grabbing';
+            }
+
+            function drag(e) {
+                if (!activeElement) return;
+                e.preventDefault();
+
+                const coords = getCoords(e);
+                
+                currentX = coords.x - initialX;
+                currentY = coords.y - initialY;
+
+                let newX = currentX + xOffset;
+                let newY = currentY + yOffset;
+
+                // --- Implementing Boundaries and Area Restrictions (CRITICAL) ---
+                const rect = animationArea.getBoundingClientRect();
+                const iconSize = 60; // Approximate size of the icon
+
+                // 1. Horizontal Boundaries (Both)
+                newX = Math.max(newX, -rect.width + iconSize); // Left boundary
+                newX = Math.min(newX, rect.width - iconSize * 2); // Right boundary
+                
+                // 2. Vertical Restrictions (Sky vs Water)
+                if (activeElement === ship) {
+                    // SHIP (Water Only: Bottom half of the screen - Y > splitPointY)
+                    
+                    const shipRect = ship.getBoundingClientRect();
+                    
+                    // Upper limit of water (middle of the area)
+                    const minShipY = splitPointY - (shipRect.height / 2);
+                    // Lower limit (end of the area)
+                    const maxShipY = areaHeight - shipRect.height;
+                    
+                    // Ship can only be in the dark blue part (water)
+                    newY = Math.min(newY, maxShipY + 20); // Prevents it from moving down too far
+                    newY = Math.max(newY, minShipY);     // Prevents it from moving up into the sky area
+
+                    // Horizontal Rotation Logic (CRITICAL)
+                    // We check the new X position relative to the center of the animation area
+                    if (newX + ship.offsetWidth / 2 > rect.width / 2) {
+                        // Facing Right (no rotation)
+                        activeElement.classList.remove('rotated');
+                    } else {
+                        // Facing Left (with 180deg rotation)
+                        activeElement.classList.add('rotated');
+                    }
+                    
+                } else if (activeElement === plane) {
+                    // PLANE (Sky Only: Top half of the screen - Y < splitPointY)
+                    
+                    const planeRect = plane.getBoundingClientRect();
+                    
+                    // Lower limit of sky (middle of the area)
+                    const maxPlaneY = splitPointY - planeRect.height;
+                    // Upper limit (start of the area)
+                    const minPlaneY = 0; 
+                    
+                    // Plane can only be in the light blue part (sky)
+                    newY = Math.max(newY, minPlaneY); // Prevents it from moving up too far
+                    newY = Math.min(newY, maxPlaneY - 20); // Prevents it from moving down into the water
+                }
+
+                // Apply the movement transformation
+                activeElement.style.transform = `translate3d(${newX}px, ${newY}px, 0)`;
+            }
+
+            function stopDrag() {
+                if (activeElement) {
+                    // Update offsets for the next drag round
+                    const style = window.getComputedStyle(activeElement);
+                    const matrix = new DOMMatrix(style.transform);
+                    xOffset = matrix.m41;
+                    yOffset = matrix.m42;
+                    
+                    activeElement.style.cursor = 'grab';
+                }
+                
+                // Remove global listeners for mouse events
+                document.removeEventListener('mouseup', stopDrag, false);
+                document.removeEventListener('mousemove', drag, false);
+                
+                activeElement = null;
+            }
+
+            // --- Form Message Logic (Uses custom message box instead of alert()) ---
+            function showMessage() {
+                const messageBox = document.getElementById('messageBox');
+                messageBox.style.display = 'block';
+                // Hide the message after 5 seconds
+                setTimeout(() => {
+                    messageBox.style.display = 'none';
+                }, 5000);
+            }
+            window.showMessage = showMessage; 
+            
+            // --- Map Alert Logic (Uses custom message box instead of alert()) ---
+            function showMessageAlert(message) {
+                const mapAlertBox = document.getElementById('mapAlertBox');
+                mapAlertBox.textContent = message;
+                mapAlertBox.style.display = 'block';
+                // Hide the message after 3 seconds
+                setTimeout(() => {
+                    mapAlertBox.style.display = 'none';
+                }, 3000);
+            }
+            window.showMessageAlert = showMessageAlert;
+
+            // Smooth Scroll Functionality
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        });
+    </script>
 
 </body>
 </html>

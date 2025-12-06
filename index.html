@@ -1,196 +1,143 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>HAFEN Consolidators - Global Logistics</title>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Hafen Consolidators</title>
+
 <style>
-/* -------- Variables -------- */
-:root{
-  --primary:#ffffff;
-  --secondary:#4A90E2;
-  --dark:#3D3D3D;
-  --light:#f5f5f5;
-  --font:'Montserrat', sans-serif;
-  --max-width:1200px;
-}
-*{margin:0;padding:0;box-sizing:border-box;font-family:var(--font);}
-body{background:#f9f9f9;color:var(--dark);line-height:1.6;overflow-x:hidden;}
-a{text-decoration:none;color:inherit;}
-/* -------- Header -------- */
-header{position:sticky;top:0;background:var(--primary);padding:15px 0;box-shadow:0 2px 5px rgba(0,0,0,0.1);z-index:1000;}
-.header-content{max-width:var(--max-width);margin:0 auto;padding:0 20px;display:flex;justify-content:space-between;align-items:center;}
-.logo{font-size:28px;font-weight:900;}
-.logo span{color:var(--secondary);}
-.logo small{display:block;font-size:14px;font-weight:400;letter-spacing:2px;color:var(--dark);}
-.nav-links{display:flex;gap:25px;}
-.nav-links a{font-weight:700;transition:0.3s;}
-.nav-links a:hover{color:var(--secondary);}
-.contact-info{display:none;font-weight:700;gap:10px;align-items:center;}
-/* -------- Hero -------- */
-.hero{background:linear-gradient(rgba(255,255,255,0.8),rgba(255,255,255,0.9)), url('https://placehold.co/1920x800/eee/333?text=Global+Logistics') center/cover no-repeat;text-align:center;padding:100px 20px;}
-.hero h1{font-size:56px;font-weight:900;margin-bottom:20px;}
-.hero p{font-size:22px;max-width:800px;margin:0 auto 40px;color:#555;}
-.btn{display:inline-block;padding:12px 25px;background:var(--secondary);color:var(--primary);border:none;border-radius:5px;font-weight:700;text-transform:uppercase;cursor:pointer;transition:0.3s;}
-.btn:hover{background:#3a7fd6;transform:translateY(-2px);}
-/* -------- Sections -------- */
-section{padding:80px 20px;max-width:var(--max-width);margin:0 auto;}
-h2{text-align:center;font-size:36px;font-weight:900;margin-bottom:10px;text-transform:uppercase;}
-.subtitle{text-align:center;color:#555;margin-bottom:50px;font-weight:400;}
-.services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:30px;}
-.service-card{background:#fff;padding:30px;border-radius:8px;text-align:center;box-shadow:0 4px 12px rgba(0,0,0,0.08);border:1px solid #eee;transition:0.3s;}
-.service-card:hover{transform:translateY(-10px);}
-.service-card i{font-size:40px;color:var(--secondary);margin-bottom:15px;}
-.service-card h3{text-transform:uppercase;margin-bottom:10px;}
-.network-table{width:100%;border-collapse:collapse;font-size:16px;margin-top:30px;}
-.network-table th, .network-table td{padding:15px;text-align:left;border-bottom:1px solid #e0e0e0;}
-.network-table th{background:var(--secondary);color:var(--primary);font-weight:700;text-transform:uppercase;}
-.network-table tr:nth-child(even){background:#f5f5f5;}
-.coming-soon{font-style:italic;font-weight:700;color:#E63946;}
-/* -------- Contact -------- */
-.contact-form{max-width:600px;margin:0 auto;display:flex;flex-direction:column;gap:15px;}
-.contact-form input, .contact-form textarea{width:100%;padding:15px;border:1px solid #ddd;border-radius:5px;font-size:16px;background:#fff;color:var(--dark);}
-.contact-form textarea{resize:vertical;min-height:150px;}
-#contact{background:#fff;}
-/* -------- Footer -------- */
-.footer{background:var(--dark);color:var(--light);padding:50px 20px;font-size:14px;}
-.footer-grid{max-width:var(--max-width);margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:30px;}
-.footer h4{color:var(--secondary);margin-bottom:20px;font-weight:700;}
-.footer ul{list-style:none;}
-.footer ul li a{color:#ccc;margin-bottom:8px;display:block;transition:0.3s;}
-.footer ul li a:hover{color:var(--secondary);}
-.social-icons a{color:var(--secondary);font-size:24px;margin-right:15px;transition:0.3s;}
-.social-icons a:hover{color:#fff;}
-.footer-bottom{text-align:center;padding-top:30px;margin-top:30px;border-top:1px solid #555;color:#ccc;}
-/* -------- Responsive -------- */
-@media(min-width:768px){.contact-info{display:flex;}} 
-@media(max-width:767px){.header-content{flex-direction:column;gap:15px;}.nav-links{justify-content:center;}.hero h1{font-size:40px;}}
+    body {
+        margin: 0;
+        font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+        background: #ffffff;
+        color: #333;
+    }
+
+    /* Top bar with logo */
+    .top-bar {
+        width: 100%;
+        padding: 10px 20px;
+        display: flex;
+        align-items: center;
+        background: #ffffff;
+        border-bottom: 1px solid #eee;
+    }
+
+    .top-bar img {
+        height: 50px;
+        opacity: 0.95;
+    }
+
+    /* Container */
+    .container {
+        max-width: 1100px;
+        margin: 35px auto;
+        padding: 0 20px;
+    }
+
+    h2 {
+        font-size: 26px;
+        margin-bottom: 10px;
+        color: #c6a340;
+        letter-spacing: 0.3px;
+    }
+
+    .grid {
+        display: grid;
+        gap: 16px;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    }
+
+    .hub {
+        padding: 14px 16px;
+        border-radius: 8px;
+        background: #fafafa;
+        border: 1px solid #eee;
+    }
+
+    .hub h3 {
+        margin: 0 0 6px 0;
+        color: #c6a340;
+        font-size: 17px;
+    }
+
+    .hub p {
+        margin: 0;
+        line-height: 1.4;
+        font-size: 14px;
+    }
+
+    footer {
+        margin-top: 50px;
+        padding: 20px;
+        background: #f7f7f7;
+        border-top: 1px solid #ddd;
+        font-size: 14px;
+    }
 </style>
 </head>
+
 <body>
-<!-- Header -->
-<header>
-<div class="header-content">
-<div class="logo"><span>HAFEN</span> Consolidators<small>GLOBAL LOGISTICS</small></div>
-<nav class="nav-links">
-<a href="#home">Home</a>
-<a href="#services">Services</a>
-<a href="#network">Global Network</a>
-<a href="#contact">Contact</a>
-</nav>
-<div class="contact-info"><i class="fas fa-phone-alt" style="color:var(--secondary)"></i> +44 7594 716370</div>
-</div>
-</header>
 
-<!-- Hero -->
-<section class="hero" id="home">
-<h1>We Move Your World</h1>
-<p>Consolidation and logistics solutions that move goods across continents, by air and sea, with safety and efficiency.</p>
-<a href="#contact" class="btn">Request a Quote</a>
-</section>
+<!-- Logo -->
+<div class="top-bar">
+    <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBk...RgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIy" alt="Hafen Logo">
+</div>
 
-<!-- Services -->
-<section class="services" id="services">
-<h2>Our Services</h2>
-<p class="subtitle">Integrated logistics for your supply chain.</p>
-<div class="services-grid">
-<div class="service-card"><i class="fas fa-ship"></i><h3>Ocean Freight</h3><p>Optimized vessel cargo consolidation reducing shipping costs.</p></div>
-<div class="service-card"><i class="fas fa-plane"></i><h3>Air Freight</h3><p>Fast, secure solutions for time-sensitive cargo worldwide.</p></div>
-<div class="service-card"><i class="fas fa-truck"></i><h3>Road Transport</h3><p>Efficient local distribution and port/airport connections.</p></div>
-<div class="service-card"><i class="fas fa-warehouse"></i><h3>Warehousing</h3><p>Inventory management, pick-pack, value-added services in modern warehouses.</p></div>
-</div>
-</section>
+<div class="container">
 
-<!-- Network -->
-<section id="network">
-<h2>Our Global Hubs</h2>
-<p class="subtitle">Connecting main trade centers worldwide.</p>
-<table class="network-table">
-<thead>
-<tr><th>Country / Status</th><th>Address</th><th>Map</th></tr>
-</thead>
-<tbody>
-<tr><td>🇪🇨 Ecuador (HQ)</td><td>1, C 1 NE - Francisco Dep. Icaza 437, Guayaquil 090313</td><td style="text-align:center;"><i class="fas fa-map-marker-alt" style="color:var(--secondary)"></i></td></tr>
-<tr><td>🇦🇷 Argentina</td><td>Edificio Republica, Tucumán 1, Buenos Aires C1048</td><td style="text-align:center;"><i class="fas fa-map-marker-alt" style="color:var(--secondary)"></i></td></tr>
-<tr><td>🇧🇷 Brazil</td><td class="coming-soon">Launching Soon</td><td style="text-align:center;">-</td></tr>
-<tr><td>🇳🇮 Nicaragua</td><td class="coming-soon">Launching Soon</td><td style="text-align:center;">-</td></tr>
-<tr><td>🇭🇳 Honduras</td><td class="coming-soon">Launching Soon</td><td style="text-align:center;">-</td></tr>
-<tr><td>🇨🇺 Cuba</td><td class="coming-soon">Launching Soon</td><td style="text-align:center;">-</td></tr>
-<tr><td>🇩🇴 Dominican Republic</td><td class="coming-soon">Launching Soon</td><td style="text-align:center;">-</td></tr>
-<tr><td>🇵🇪 Peru</td><td class="coming-soon">Launching Soon</td><td style="text-align:center;">-</td></tr>
-<tr><td>🇹🇼 Taiwan</td><td class="coming-soon">Launching Soon</td><td style="text-align:center;">-</td></tr>
-<tr><td>🇵🇭 Philippines</td><td class="coming-soon">Launching Soon</td><td style="text-align:center;">-</td></tr>
-<tr><td>🇨🇦 Canada</td><td class="coming-soon">Launching Soon</td><td style="text-align:center;">-</td></tr>
-<tr><td>🇺🇸 USA</td><td class="coming-soon">Launching Soon</td><td style="text-align:center;">-</td></tr>
-<tr><td>🇸🇦 Saudi Arabia</td><td class="coming-soon">Launching Soon</td><td style="text-align:center;">-</td></tr>
-<tr><td>🇵🇰 Pakistan</td><td class="coming-soon">Launching Soon</td><td style="text-align:center;">-</td></tr>
-<tr><td>🇺🇿 Uzbekistan</td><td class="coming-soon">Launching Soon</td><td style="text-align:center;">-</td></tr>
-<tr><td>🇰🇿 Kazakhstan</td><td class="coming-soon">Launching Soon</td><td style="text-align:center;">-</td></tr>
-<!-- Adicione outros países da mesma forma -->
-</tbody>
-</table>
-</section>
+    <h2>Nossos Hubs</h2>
+    <p>Endereços dos escritórios regionais da Hafen Consolidators.</p>
 
-<!-- Contact -->
-<section id="contact">
-<h2>Get in Touch</h2>
-<p class="subtitle">Speak to a specialist and receive your quote in 24 hours.</p>
-<form class="contact-form" onsubmit="event.preventDefault(); showMessage();">
-<input type="text" placeholder="Your Full Name" required>
-<input type="email" placeholder="Your Email" required>
-<textarea placeholder="Message / Cargo Details" required></textarea>
-<button type="submit" class="btn">Send Message</button>
-</form>
-<div id="messageBox" style="display:none;margin-top:30px;padding:20px;background:var(--secondary);color:#fff;border-radius:5px;text-align:center;font-weight:700;">Message sent! We will contact you shortly.</div>
-</section>
+    <div class="grid">
 
-<!-- Footer -->
-<footer class="footer">
-<div class="footer-grid">
-<div>
-<h4>HAFEN</h4>
-<p>Moving cargo with the confidence of those who know the sea and the sky.</p>
-<div class="social-icons" style="margin-top:20px;">
-<a href="#"><i class="fab fa-linkedin"></i></a>
-<a href="#"><i class="fab fa-facebook-square"></i></a>
-<a href="#"><i class="fab fa-instagram"></i></a>
-</div>
-</div>
-<div>
-<h4>Navigation</h4>
-<ul>
-<li><a href="#home">Home</a></li>
-<li><a href="#services">Services</a></li>
-<li><a href="#network">Global Network</a></li>
-<li><a href="#contact">Contact</a></li>
-</ul>
-</div>
-<div>
-<h4>Information</h4>
-<p><i class="fas fa-map-marker-alt" style="color:var(--secondary);margin-right:10px;"></i> 1, C 1 NE - Francisco Dep. Icaza 437, Guayaquil 090313, Ecuador</p>
-<p style="margin-top:10px;"><i class="fas fa-phone-alt" style="color:var(--secondary);margin-right:10px;"></i> +44 7594 716370</p>
-<p style="margin-top:10px;"><i class="fab fa-whatsapp" style="color:var(--secondary);margin-right:10px;"></i> WhatsApp: +44 7594 716370</p>
-<p style="margin-top:10px;"><i class="fab fa-telegram" style="color:var(--secondary);margin-right:10px;"></i> Telegram: +44 7594 716370</p>
-<p style="margin-top:10px;"><i class="fab fa-signal" style="color:var(--secondary);margin-right:10px;"></i> Signal: +44 7594 716370</p>
-<p style="margin-top:10px;"><i class="fas fa-envelope" style="color:var(--secondary);margin-right:10px;"></i> contact@hafenconsolidators.com</p>
-</div>
-</div>
-<div class="footer-bottom">&copy; 2025 HAFEN Consolidators. All rights reserved.</div>
-</footer>
+        <div class="hub"><h3>Nicaragua</h3><p>Centro Comercial Novacentro, Corporativo los Proceres, Torre Nova 2, Piso 9 Nicaragua Center.</p></div>
 
-<script>
-function showMessage(){
-  const box=document.getElementById('messageBox');
-  box.style.display='block';
-  setTimeout(()=>{box.style.display='none';},5000);
-}
-// Smooth Scroll
-document.querySelectorAll('a[href^="#"]').forEach(anchor=>{
-  anchor.addEventListener('click',function(e){e.preventDefault();
-  document.querySelector(this.getAttribute('href')).scrollIntoView({behavior:'smooth'});});
-});
-</script>
+        <div class="hub"><h3>Honduras</h3><p>Centro Comercial Novacentro, Corporativo los Proceres, Torre Nova 2, Piso 11, Tegucigalpa. Honduras</p></div>
+
+        <div class="hub"><h3>Cuba</h3><p>20 Genesis Close George Town KY1-1208</p></div>
+
+        <div class="hub"><h3>República Dominicana</h3><p>Rafael Augusto Sanchez No 86, Plantini, Roble Corporate Center, 7th Floor, Santo Domingo, República Dominicana.</p></div>
+
+        <div class="hub"><h3>Peru</h3><p>Av. Almte. Miguel Grau 709, Lima, 15063, PER</p></div>
+
+        <div class="hub"><h3>Taiwan</h3><p>Shin Liang Center, No.239, Sec.2, Taiwan Blvd., West Dist. Taichung, 403018, TWN</p></div>
+
+        <div class="hub"><h3>Filipinas</h3><p>Tagbilaran East Bloc Building 1, Uptown IT HUB 2, Barangay Dampas, Tagbilaran City, 6300, PHL</p></div>
+
+        <div class="hub"><h3>Canadá</h3><p>10611 98 Avenue NW, 9th Floor, Edmonton, T5K 2P7, CAN</p></div>
+
+        <div class="hub"><h3>USA</h3><p>1801 Northeast 123rd Street, Causeway Square, Suite 314, North Miami, 33181, USA.</p></div>
+
+        <div class="hub"><h3>Arábia Saudita</h3><p>Quartz building, Ash Shati - Al Kurnaysh, 4th Floor, Jeddah, 23412, SAU</p></div>
+
+        <div class="hub"><h3>Paquistão</h3><p>Bahria Complex III, MT Khan Road, 1/F Bahria Complex III, Karachi, 75500, PAK</p></div>
+
+        <div class="hub"><h3>Tajiquistão</h3><p>Nisor Muhammed street 5/5, Dushanbe, 734000, TJK</p></div>
+
+        <div class="hub"><h3>Lituânia</h3><p>Gedimino pr.9, Vilnius, 01103, LTU</p></div>
+
+        <div class="hub"><h3>Estônia / Letônia</h3><p>Skanstes iela 25, 4th, 5th floor, Riga, LV-1013, LVA</p></div>
+
+        <div class="hub"><h3>Ucrânia</h3><p>3, Dorogozhitska Str. Corp. 6, Spaces Unit B06, Kyiv, 04112, UKR</p></div>
+
+        <div class="hub"><h3>Eslovênia</h3><p>Schellenburg, Gosposvetska cesta 11, 1st floor, Ljubljana, 1000, SVN</p></div>
+
+        <div class="hub"><h3>Bulgária</h3><p>179 Tsar Boris III Blvd, Flavia Business Park, Ground Floor, Plovdiv, 4000, BGR</p></div>
+
+        <div class="hub"><h3>Omã</h3><p>Squadra Building, The Special Economic Zone at Duqm, Ground Floor, Duqm, 006, OMN</p></div>
+
+    </div>
+
+    <footer>
+        <strong>Contato:</strong><br>
+        ✉️ contact@hafenconsolidators.com<br>
+        📞 +XX XXX XXX XXX (colocar seu número atual)<br>
+        🌐 hafenconsolidators.com<br>
+        📱 Apps e plataformas: WhatsApp Business, Telegram, Email Corporativo<br>
+        ✈️ Operações Globais – Freight, Trading & Logistics
+    </footer>
+
+</div>
 </body>
 </html>

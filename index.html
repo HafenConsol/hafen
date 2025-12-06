@@ -1,143 +1,299 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Hafen Consolidators</title>
+<title>Hafen Consolidators — Global Freight & Trading</title>
 
 <style>
-    body {
-        margin: 0;
-        font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
-        background: #ffffff;
-        color: #333;
-    }
+ :root{
+   --gold:#d4af37;
+   --navy:#0d1b2a;
+   --muted:#7a7a7a;
+   --maxw:1320px;
+ }
 
-    /* Top bar with logo */
-    .top-bar {
-        width: 100%;
-        padding: 10px 20px;
-        display: flex;
-        align-items: center;
-        background: #ffffff;
-        border-bottom: 1px solid #eee;
-    }
+ body{
+   margin:0;
+   font-family:Inter,Arial;
+   line-height:1.6;
+   background:#ffffff;
+   color:#111;
+ }
 
-    .top-bar img {
-        height: 50px;
-        opacity: 0.95;
-    }
+ header{
+   position:fixed;
+   top:0; left:0; right:0;
+   height:90px;
+   background:#ffffff;
+   display:flex;
+   align-items:center;
+   justify-content:space-between;
+   padding:0 40px;
+   border-bottom:1px solid #eee;
+   z-index:1000;
+ }
 
-    /* Container */
-    .container {
-        max-width: 1100px;
-        margin: 35px auto;
-        padding: 0 20px;
-    }
+ header img{
+   height:60px;
+ }
 
-    h2 {
-        font-size: 26px;
-        margin-bottom: 10px;
-        color: #c6a340;
-        letter-spacing: 0.3px;
-    }
+ nav{
+   display:flex;
+   gap:30px;
+   font-weight:600;
+ }
 
-    .grid {
-        display: grid;
-        gap: 16px;
-        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    }
+ main{
+   padding-top:140px;
+ }
 
-    .hub {
-        padding: 14px 16px;
-        border-radius: 8px;
-        background: #fafafa;
-        border: 1px solid #eee;
-    }
+ .hero{
+   max-width:var(--maxw);
+   margin:0 auto;
+   padding:80px 40px;
+   display:grid;
+   grid-template-columns:1fr 420px;
+   gap:50px;
+   align-items:center;
+ }
 
-    .hub h3 {
-        margin: 0 0 6px 0;
-        color: #c6a340;
-        font-size: 17px;
-    }
+ .hero h1{
+   font-size:52px;
+   color:var(--navy);
+   margin-bottom:16px;
+   font-weight:800;
+ }
 
-    .hub p {
-        margin: 0;
-        line-height: 1.4;
-        font-size: 14px;
-    }
+ .hero p{
+   font-size:19px;
+   color:var(--muted);
+ }
 
-    footer {
-        margin-top: 50px;
-        padding: 20px;
-        background: #f7f7f7;
-        border-top: 1px solid #ddd;
-        font-size: 14px;
-    }
+ .btn{
+   padding:14px 24px;
+   border-radius:10px;
+   font-weight:700;
+   display:inline-block;
+ }
+
+ .primary{
+   background:var(--gold);
+   color:#081226;
+ }
+
+ .ghost{
+   border:1px solid #bbb;
+   color:#222;
+ }
+
+ .section{
+   max-width:var(--maxw);
+   margin:60px auto;
+   padding:0 40px;
+ }
+
+ .section h2{
+   font-size:36px;
+   margin-bottom:20px;
+   font-weight:800;
+   color:var(--navy);
+ }
+
+ .grid{
+   max-width:var(--maxw);
+   margin:30px auto;
+   padding:0 40px;
+   display:grid;
+   grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+   gap:28px;
+ }
+
+ .card{
+   background:#fff;
+   padding:26px;
+   border-radius:14px;
+   border:1px solid #e6e6e6;
+   box-shadow:0 10px 32px rgba(0,0,0,0.05);
+ }
+
+ footer{
+   background:var(--navy);
+   color:#ffffff;
+   margin-top:80px;
+   padding:70px 40px;
+ }
+
+ .footer-flex{
+   max-width:var(--maxw);
+   margin:0 auto;
+   display:flex;
+   flex-wrap:wrap;
+   gap:40px;
+   justify-content:space-between;
+ }
+
+ .footer-logo{
+   height:100px;
+   margin-top:28px;
+ }
+
+ @media(max-width:900px){
+   nav{display:none;}
+   .hero{grid-template-columns:1fr;}
+ }
 </style>
+
 </head>
 
 <body>
 
-<!-- Logo -->
-<div class="top-bar">
-    <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBk...RgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIy" alt="Hafen Logo">
+<header>
+  <div style="display:flex;align-items:center;gap:16px">
+    <img src="data:image/png;base64,{{HAFEN_BASE64}}" alt="Hafen Logo">
+    <div style="font-size:14px;color:#666;font-weight:700">HAFEN CONSOLIDATORS</div>
+  </div>
+
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#services">Services</a>
+    <a href="#cases">Cases</a>
+    <a href="#hubs">Global Hubs</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <div style="text-align:right;font-size:14px;color:#222">
+    <strong>+44 7594 716370</strong><br>
+    contact@hafenconsolidators.com
+  </div>
+</header>
+
+
+<main id="home">
+
+<section class="hero">
+  <div>
+    <h1>Global Freight, NVOCC & International Trading</h1>
+    <p>Worldwide cargo movement with precision consolidation, air & ocean freight, cross-trade routing and international trading support for micro, small and medium companies.</p>
+
+    <div style="margin-top:22px;display:flex;gap:16px">
+      <a class="btn primary" href="#contact">Request Quote</a>
+      <a class="btn ghost" href="#services">Our Services</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3 style="margin-top:0;color:var(--navy)">Quick Facts</h3>
+    <ul style="padding-left:20px;color:var(--muted);font-size:15px;line-height:1.5">
+      <li>HQ: Guayaquil, Ecuador</li>
+      <li>International Hotline: +44 7594 716370</li>
+      <li>Global Freight • Trading • NVOCC • Cross-Trade</li>
+    </ul>
+  </div>
+</section>
+
+
+<section id="services" class="section">
+  <h2>Services</h2>
+</section>
+
+<div class="grid">
+  <div class="card"><h3>Ocean Freight (LCL/FCL)</h3><p>Smart routing and global consolidation.</p></div>
+  <div class="card"><h3>Air Freight</h3><p>Priority cargo delivery worldwide.</p></div>
+  <div class="card"><h3>Warehousing</h3><p>Bonded facilities, inventory control and distribution.</p></div>
+  <div class="card"><h3>Trading & Sourcing</h3><p>International procurement and compliance.</p></div>
 </div>
 
-<div class="container">
 
-    <h2>Nossos Hubs</h2>
-    <p>Endereços dos escritórios regionais da Hafen Consolidators.</p>
+<section id="cases" class="section">
+  <h2>Case Studies</h2>
+</section>
 
-    <div class="grid">
+<div class="grid">
+  <div class="card"><h3>AgroEcuador Foods</h3><p>8 TEUs/month — Lead-time 12→8 days — Losses 3.2%→0.8%</p></div>
+  <div class="card"><h3>PartsFast JIT</h3><p>99.8% on-time — Stock buffer −27% — Express customs</p></div>
+  <div class="card"><h3>NovaTech Electronics</h3><p>Cross-trade Shenzhen→Panama→Madrid — Cost −12%</p></div>
+</div>
 
-        <div class="hub"><h3>Nicaragua</h3><p>Centro Comercial Novacentro, Corporativo los Proceres, Torre Nova 2, Piso 9 Nicaragua Center.</p></div>
 
-        <div class="hub"><h3>Honduras</h3><p>Centro Comercial Novacentro, Corporativo los Proceres, Torre Nova 2, Piso 11, Tegucigalpa. Honduras</p></div>
+<section id="hubs" class="section">
+  <h2>Global Hubs</h2>
 
-        <div class="hub"><h3>Cuba</h3><p>20 Genesis Close George Town KY1-1208</p></div>
+  <div class="card">
+    <p><strong>Nicaragua</strong> — Centro Comercial Novacentro, Torre Nova 2, Piso 9.</p>
+    <p><strong>Honduras</strong> — Torre Nova 2, Piso 11, Tegucigalpa.</p>
+    <p><strong>Cuba</strong> — 20 Genesis Close, George Town KY1-1208.</p>
+    <p><strong>Dominican Republic</strong> — Rafael Augusto Sanchez Nº 86, Santo Domingo.</p>
+    <p><strong>Peru</strong> — Av. Miguel Grau 709, Lima.</p>
+    <p><strong>Taiwan</strong> — Shin Liang Center, Taichung.</p>
+    <p><strong>Philippines</strong> — East Bloc Building 1, Tagbilaran City.</p>
+    <p><strong>Canada</strong> — Edmonton T5K 2P7.</p>
+    <p><strong>USA</strong> — North Miami 33181.</p>
+    <p><strong>Saudi Arabia</strong> — Jeddah 23412.</p>
+    <p><strong>Pakistan</strong> — Karachi 75500.</p>
+    <p><strong>Tajikistan</strong> — Dushanbe 734000.</p>
+    <p><strong>Lithuania</strong> — Vilnius 01103.</p>
+    <p><strong>Estonia / Latvia</strong> — Skanstes iela 25, Riga.</p>
+    <p><strong>Ukraine</strong> — Kyiv 04112.</p>
+    <p><strong>Slovenia</strong> — Ljubljana 1000.</p>
+    <p><strong>Bulgaria</strong> — Plovdiv 4000.</p>
+    <p><strong>Oman</strong> — Duqm 006.</p>
+  </div>
+</section>
 
-        <div class="hub"><h3>República Dominicana</h3><p>Rafael Augusto Sanchez No 86, Plantini, Roble Corporate Center, 7th Floor, Santo Domingo, República Dominicana.</p></div>
 
-        <div class="hub"><h3>Peru</h3><p>Av. Almte. Miguel Grau 709, Lima, 15063, PER</p></div>
+<section id="about" class="section">
+  <h2>About Us</h2>
+  <p style="max-width:900px;color:var(--muted)">Hafen Consolidators is an independent NVOCC & International Trading company headquartered in Guayaquil, Ecuador, providing integrated freight, trading and cross-trade logistics solutions for businesses worldwide.</p>
+</section>
 
-        <div class="hub"><h3>Taiwan</h3><p>Shin Liang Center, No.239, Sec.2, Taiwan Blvd., West Dist. Taichung, 403018, TWN</p></div>
 
-        <div class="hub"><h3>Filipinas</h3><p>Tagbilaran East Bloc Building 1, Uptown IT HUB 2, Barangay Dampas, Tagbilaran City, 6300, PHL</p></div>
+<section id="contact" class="section">
+  <h2>Contact</h2>
 
-        <div class="hub"><h3>Canadá</h3><p>10611 98 Avenue NW, 9th Floor, Edmonton, T5K 2P7, CAN</p></div>
-
-        <div class="hub"><h3>USA</h3><p>1801 Northeast 123rd Street, Causeway Square, Suite 314, North Miami, 33181, USA.</p></div>
-
-        <div class="hub"><h3>Arábia Saudita</h3><p>Quartz building, Ash Shati - Al Kurnaysh, 4th Floor, Jeddah, 23412, SAU</p></div>
-
-        <div class="hub"><h3>Paquistão</h3><p>Bahria Complex III, MT Khan Road, 1/F Bahria Complex III, Karachi, 75500, PAK</p></div>
-
-        <div class="hub"><h3>Tajiquistão</h3><p>Nisor Muhammed street 5/5, Dushanbe, 734000, TJK</p></div>
-
-        <div class="hub"><h3>Lituânia</h3><p>Gedimino pr.9, Vilnius, 01103, LTU</p></div>
-
-        <div class="hub"><h3>Estônia / Letônia</h3><p>Skanstes iela 25, 4th, 5th floor, Riga, LV-1013, LVA</p></div>
-
-        <div class="hub"><h3>Ucrânia</h3><p>3, Dorogozhitska Str. Corp. 6, Spaces Unit B06, Kyiv, 04112, UKR</p></div>
-
-        <div class="hub"><h3>Eslovênia</h3><p>Schellenburg, Gosposvetska cesta 11, 1st floor, Ljubljana, 1000, SVN</p></div>
-
-        <div class="hub"><h3>Bulgária</h3><p>179 Tsar Boris III Blvd, Flavia Business Park, Ground Floor, Plovdiv, 4000, BGR</p></div>
-
-        <div class="hub"><h3>Omã</h3><p>Squadra Building, The Special Economic Zone at Duqm, Ground Floor, Duqm, 006, OMN</p></div>
-
+  <div class="grid">
+    <div class="card">
+      <h3>Contact</h3>
+      <p><strong>Phone:</strong> +44 7594 716370<br>
+         <strong>Email:</strong> contact@hafenconsolidators.com</p>
     </div>
 
-    <footer>
-        <strong>Contato:</strong><br>
-        ✉️ contact@hafenconsolidators.com<br>
-        📞 +XX XXX XXX XXX (colocar seu número atual)<br>
-        🌐 hafenconsolidators.com<br>
-        📱 Apps e plataformas: WhatsApp Business, Telegram, Email Corporativo<br>
-        ✈️ Operações Globais – Freight, Trading & Logistics
-    </footer>
+    <div class="card">
+      <h3>HQ — Ecuador</h3>
+      <p>
+        1, C 1 NE - Francisco Dep. Icaza 437<br>
+        Guayaquil 090313 — Ecuador<br>
+        <strong>NIF:</strong> A90961707
+      </p>
+    </div>
+  </div>
+</section>
 
-</div>
+</main>
+
+
+<footer>
+  <div class="footer-flex">
+
+    <div>
+      <p><strong>Hafen Consolidators</strong></p>
+      <p>NVOCC • International Trading • Global Freight</p>
+      <p>© 2025 Hafen Consolidators — All Rights Reserved</p>
+      <p>A Marvera Group Company</p>
+      <img class="footer-logo" src="data:image/png;base64,{{MARVERA_BASE64}}" alt="Marvera Group">
+    </div>
+
+    <div>
+      <p><strong>HQ — Ecuador</strong></p>
+      <p>1, C 1 NE - Francisco Dep. Icaza 437<br>Guayaquil 090313</p>
+      <p><strong>NIF:</strong> A90961707</p>
+      <p><strong>Phone:</strong> +44 7594 716370</p>
+      <p><strong>Email:</strong> contact@hafenconsolidators.com</p>
+    </div>
+
+  </div>
+</footer>
+
 </body>
 </html>

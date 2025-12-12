@@ -1,943 +1,974 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Hafen Consolidators — Global Freight & Trading</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Hafen Consolidators — Global Freight & Trading</title>
 
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
-    
-    <style>
-        /* Base Variables */
-        :root{
-            --gold:#d4af37;
-            --navy:#0d1b2a;
-            --muted:#6b6b6b;
-            --maxw:1320px;
-            --white:#ffffff;
-            --black:#0b0b0b;
-            --light-bg: #f7f9fb;
-            --highlight-bg: rgba(212, 175, 55, 0.08); /* Gold highlight */
-        }
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Base Variables */
+        :root{
+            --gold:#d4af37;
+            --navy:#0d1b2a;
+            --muted:#6b6b6b;
+            --maxw:1320px;
+            --white:#ffffff;
+            --black:#0b0b0b;
+            --light-bg: #f7f9fb;
+            --highlight-bg: rgba(212, 175, 55, 0.08); /* Gold highlight */
+        }
 
-        /* Font Awesome Icons (Internalized for Performance) */
-        @font-face {
-            font-family: 'Font Awesome 6 Free';
-            font-style: normal;
-            font-weight: 900;
-            font-display: swap;
-            src: url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/webfonts/fa-solid-900.woff2) format('woff2');
-        }
-        .fas {
-            font-family: 'Font Awesome 6 Free';
-            font-weight: 900;
-            display: inline-block;
-            font-style: normal;
-            font-variant: normal;
-            text-rendering: auto;
-            -webkit-font-smoothing: antialiased;
-        }
-        /* Specific Icon Definitions */
-        .fa-ship:before { content: "\f21a"; }
-        .fa-plane:before { content: "\f072"; }
-        .fa-plane-departure:before { content: "\f5b0"; }
-        .fa-warehouse:before { content: "\f494"; }
-        .fa-handshake:before { content: "\f2b5"; }
-        .fa-route:before { content: "\f4d7"; }
-        .fa-box-open:before { content: "\f49e"; }
-        .fa-passport:before { content: "\f5ea"; }
-        .fa-shield-alt:before { content: "\f3ed"; }
-        .fa-money-check-dollar:before { content: "\f4c3"; } /* New icon for money */
-        .fa-globe:before { content: "\f0ac"; }
-        .fa-laptop-code:before { content: "\f5fc"; }
-        .fa-users:before { content: "\f0c0"; }
-        .fa-chart-line:before { content: "\f201"; }
-        .fa-bullhorn:before { content: "\f0a1"; } /* Icon for marketing */
-        .fa-phone-alt:before { content: "\f879"; } /* Icon for Phone in Footer */
-        .fa-envelope:before { content: "\f0e0"; } /* Icon for Email in Footer */
-        
-        /* WhatsApp Icon (using a basic solid fill for simplicity in single-file format) */
-        .fa-whatsapp:before { content: "\f232"; font-family: 'Font Awesome 6 Brands'; } 
-        @font-face {
-            font-family: 'Font Awesome 6 Brands';
-            font-style: normal;
-            font-weight: 400;
-            font-display: swap;
-            src: url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/webfonts/fa-brands-400.woff2) format('woff2');
-        }
-        .fab {
-            font-family: 'Font Awesome 6 Brands';
-            font-weight: 400;
-            display: inline-block;
-            font-style: normal;
-            font-variant: normal;
-            text-rendering: auto;
-            -webkit-font-smoothing: antialiased;
-        }
-
-
-        /* Base Reset & Typography */
-        *, *::before, *::after{box-sizing:border-box}
-        html{scroll-behavior:smooth}
-        body{
-            margin:0;
-            font-family:'Open Sans', Arial, sans-serif;
-            background:var(--white);
-            color:var(--black);
-            line-height:1.6;
-            -webkit-font-smoothing: antialiased;
-        }
-
-        h1, h2, h3, h4 {
-            font-family: 'Montserrat', sans-serif;
-            line-height: 1.2;
-            color: var(--navy);
-        }
-
-        /* Utility Classes & Components */
-        .container{max-width:var(--maxw); margin:0 auto; padding:0 28px}
-
-        .btn{
-            padding:12px 22px; 
-            border-radius:8px; 
-            font-weight:700; 
-            text-decoration:none; 
-            display:inline-block;
-            transition: transform 0.2s, opacity 0.2s;
-            text-align: center;
-            cursor: pointer;
-        }
-        .btn:hover{transform: translateY(-2px)}
-        .btn-primary{background:var(--gold); color:#081226; border:none;}
-        .btn-primary:hover{background: #c3a133}
-        .btn-ghost{border:1px solid #bbb; color:#222; background:transparent}
-        .btn-ghost:hover{background: #f0f0f0}
-
-        /* Header */
-        header{
-            position:sticky; top:0; left:0; right:0; 
-            height:88px;
-            background:rgba(255,255,255,0.98);
-            display:flex;
-            align-items:center;
-            justify-content:space-between;
-            padding:0 36px;
-            border-bottom:1px solid #eee;
-            z-index:1000;
-            box-shadow:0 2px 8px rgba(0,0,0,0.03);
-        }
-        .brand{
-            display:flex; align-items:center; gap:14px;
-        }
-        .brand img{height:56px; display:block}
-        .brand .title{font-weight:700; font-size:13px; letter-spacing:1px; color:#666}
-
-        nav{display:flex; gap:26px; font-weight:600}
-        nav a{color:var(--black); text-decoration:none; font-size:15px; transition:color .2s}
-        nav a:hover{color:var(--gold)}
-
-        .contact-mini{ text-align:right; font-size:13px; color:#222}
-        .contact-mini a {
-            color: #222; 
-            text-decoration: none; 
-            transition: color 0.2s;
-            display: flex;
-            align-items: center;
-            justify-content: flex-end;
-        }
-        .contact-mini a:hover { color: var(--gold); }
-        .contact-mini i {
-            margin-right: 4px;
-            font-size: 16px;
-            color: #25D366; /* WhatsApp Green */
-        }
-
-        /* Hamburger Menu */
-        .hamburger {
-            display: none; 
-            cursor: pointer;
-            width: 30px;
-            height: 21px;
-            justify-content: space-around;
-            flex-direction: column;
-            z-index: 1001;
-        }
-        .hamburger span {
-            display: block;
-            width: 100%;
-            height: 3px;
-            background-color: var(--navy);
-            border-radius: 3px;
-            transition: all 0.3s ease;
-        }
-        .hamburger.active span:nth-child(1) {
-            transform: translateY(9px) rotate(45deg);
-        }
-        .hamburger.active span:nth-child(2) {
-            opacity: 0;
-        }
-        .hamburger.active span:nth-child(3) {
-            transform: translateY(-9px) rotate(-45deg);
-        }
-
-        /* Mobile Nav */
-        .mobile-nav {
-            display: none;
-            position: fixed;
-            top: 88px; 
-            left: 0;
-            width: 100%;
-            height: calc(100vh - 88px);
-            background: rgba(255, 255, 255, 0.95);
-            z-index: 999;
-            flex-direction: column;
-            align-items: center;
-            padding-top: 40px;
-            overflow-y: auto;
-        }
-        .mobile-nav.open {
-            display: flex;
-        }
-        .mobile-nav a {
-            padding: 15px 20px;
-            font-size: 1.2rem;
-            color: var(--navy);
-            text-decoration: none;
-            width: 80%;
-            text-align: center;
-            border-bottom: 1px solid #eee;
-            transition: background 0.2s;
-        }
-        .mobile-nav a:hover {
-            background: var(--light-bg);
-            color: var(--gold);
-        }
-        
-        /* === V9 EXCHANGE BAR STYLES === */
-        #exchange-bar {
-            position: sticky;
-            top: 88px; /* Stick right under the main header */
-            background-color: var(--navy);
-            color: var(--white);
-            z-index: 900; /* Below the main header */
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            padding: 8px 0;
-        }
-        .rate-container {
-            max-width: var(--maxw);
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 28px;
-            flex-wrap: wrap;
-        }
-        .rate-title {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 700;
-            font-size: 14px;
-            color: var(--gold);
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            flex-shrink: 0;
-            margin-right: 15px;
-        }
-        .rate-list {
-            display: flex;
-            gap: 20px;
-            flex-wrap: wrap;
-            flex-grow: 1;
-        }
-        .rate-item {
-            font-weight: 600;
-            font-size: 14px;
-            color: var(--white);
-            white-space: nowrap;
-        }
-        .rate-item span {
-            font-weight: 800;
-            color: var(--gold);
-            margin-left: 4px;
-        }
-        .rate-update-info {
-            font-style: italic;
-            font-weight: 400;
-            color: #ccc;
-            font-size: 11px;
-            white-space: nowrap;
-            margin-left: 15px;
-            flex-shrink: 0;
-        }
-        /* Mobile adjustment for Exchange Bar */
-        @media(max-width: 980px) {
-            #exchange-bar {
-                top: 70px; /* Adjust sticky position for smaller header */
-            }
-            .rate-container {
-                justify-content: center;
-                text-align: center;
-                gap: 10px;
-            }
-            .rate-title {
-                margin-bottom: 5px;
-            }
-            .rate-list {
-                justify-content: center;
-            }
-            .rate-update-info {
-                width: 100%;
-                text-align: center;
-                margin-top: 5px;
-            }
-        }
-        @media(max-width: 560px) {
-             .rate-item {
-                font-size: 13px;
-             }
-             .rate-update-info {
-                font-size: 10px;
-             }
-             .rate-list {
-                gap: 12px;
-             }
-        }
-        /* === END V9 EXCHANGE BAR STYLES === */
-
-
-        /* Hero */
-        .hero{
-            min-height:100vh; 
-            display:flex;
-            align-items:center;
-            justify-content:center;
-            position:relative;
-            background:linear-gradient(135deg,#ffffff 0%,#f7f9fb 100%);
-            padding-top:88px;
-            overflow:hidden;
-        }
-        .hero .inner{
-            max-width:var(--maxw);
-            width:100%;
-            padding:80px 28px;
-            display:grid;
-            grid-template-columns:1fr 420px;
-            gap:48px;
-            align-items:center;
-        }
-        .hero h2{font-size:48px; margin:0 0 16px; opacity: 0;}
-        .hero p{color:var(--muted); font-size:17px; max-width:680px; opacity: 0;}
-        .cta-group{margin-top:30px; display:flex; gap:14px}
-        .cta-group a {opacity: 0;}
-
-        .quick-card{
-            background:#fff; 
-            padding:24px; 
-            border-radius:12px; 
-            border:1px solid #e6e6e6; 
-            box-shadow:0 10px 30px rgba(0,0,0,0.04);
-            transition: all 0.3s;
-        }
-        .quick-card:hover { transform: translateY(-3px); box-shadow:0 12px 35px rgba(0,0,0,0.08); }
-
-        .quick-card h3{margin:0 0 12px; color:var(--navy)}
-        .quick-card ul{margin:0; padding-left:18px; color:var(--muted); font-size:15px; line-height:1.6}
-
-        /* Sections */
-        .section{
-            max-width:var(--maxw); 
-            margin:90px auto; 
-            padding:0 28px;
-        }
-        .section .section-header{ text-align:center; margin-bottom:40px}
-        .section h2{font-size:36px; color:var(--navy); margin-bottom:12px; font-weight:800}
-        .section p.lead{color:var(--muted); max-width:850px; margin:0 auto; font-size: 18px;}
-
-        .grid{
-            display:grid;
-            grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-            gap:24px;
-        }
-        .card{
-            background:#fff; 
-            padding:26px; 
-            border-radius:12px; 
-            border:1px solid #e7e7e7; 
-            box-shadow:0 8px 26px rgba(0,0,0,0.04);
-            transition: all 0.3s;
-        }
-        .card:hover { transform: translateY(-3px); box-shadow:0 10px 30px rgba(0,0,0,0.08); }
-        .card h3{margin-top:0; color:var(--navy)}
-        .card p{color:var(--muted)}
-        .card i.fas, .card i.fab {color: var(--gold); margin-right: 10px;}
-        
-        /* Global Hubs Layout Refinement (V3) */
-        .hubs-list {
-            column-count: 3;
-            column-gap: 40px;
-            margin-top: 20px;
-        }
-        .hubs-list p {
-            margin-bottom: 12px;
-            break-inside: avoid;
-            font-size: 15px;
-            color: var(--navy);
-        }
-
-        /* Careers Highlight Card (V4 Improvement) */
-        .career-highlight {
-            background: var(--highlight-bg);
-            border-left: 5px solid var(--gold);
-            padding: 26px 30px;
-            margin-bottom: 30px;
-        }
-        .career-highlight h3 {
-            color: var(--gold);
-            margin-bottom: 8px;
-            font-size: 1.5rem;
-        }
-        .career-highlight .lead-text {
-            color: var(--navy);
-            font-weight: 600;
-            margin-bottom: 15px;
-        }
-        
-        /* Portfolio / Cases */
-        .portfolio-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(320px,1fr)); gap:24px}
-
-        /* Animations area */
-        .animations-section{padding:80px 0; background:linear-gradient(135deg,#fbfdff 0%,#f1f6fb 100%); position:relative; overflow:hidden; margin-top:90px; margin-bottom:90px;}
-        .animation-area{position:relative; width:100%; height:480px; border-radius:10px; overflow:hidden; border:2px solid rgba(212,175,55,0.08); background:linear-gradient(180deg,#eaf6ff 0%,#ffffff 100%); cursor:none;}
-        .map-background{position:absolute; inset:0; background-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><path d="M20,20 L80,20 L80,80 L20,80 Z" fill="none" stroke="%23d4af37" stroke-width="0.5" stroke-dasharray="2,2"/></svg>'); background-size:220px 220px; opacity:0.12}
-
-        /* Interactive Elements */
-        .interactive-element {
-            position: absolute;
-            transition: transform 0.1s linear; 
-            pointer-events: none; 
-            will-change: transform; 
-        }
-        
-        .container-ship{position:absolute; bottom:18%; left:20%; width:200px; height:50px; transform-origin:center; z-index:10}
-        .ship-body{position:absolute;width:100%;height:100%; background:linear-gradient(to bottom,#34495e,#2c3e50); border-radius:10px 40px 10px 10px}
-        .ship-deck{position:absolute; top:-30px; left:10px; width:180px; height:30px; background:#34495e; border-radius:5px 5px 0 0}
-        .ship-containers{position:absolute; top:-60px; left:20px; width:160px; height:30px; display:flex; gap:6px}
-        .ship-container{flex:1;background:var(--gold); border:2px solid var(--navy)}
-
-        .cargo-plane{position:absolute; top:18%; right:12%; width:180px; height:50px}
-        .plane-body{position:absolute;width:160px;height:40px;border-radius:20px 40px 10px 10px;background:linear-gradient(to bottom,#e74c3c,#c0392b)}
-        .plane-wing{position:absolute; width:200px; height:15px; background:#34495e; top:15px; left:-20px; border-radius:3px}
-        .plane-tail{position:absolute; width:30px; height:25px; background:#34495e; top:-5px; right:-5px}
-        .plane-windows{position:absolute; width:100px; height:10px; top:15px; left:30px; display:flex; gap:6px}
-        .plane-window{width:10px; height:10px; background:#fff; border-radius:50%}
-
-        .water{position:absolute; bottom:0; left:0; width:100%; height:26%; background:linear-gradient(to bottom,transparent 0%,#1e90ff 100%); z-index:1}
-        .wave{
-            position:absolute; bottom:0; left:0; width:2400px; height:24px; 
-            background-image:url('data:image/svg+xml;utf8,<svg viewBox="0 0 1200 120" xmlns="http://www.w3.org/2000/svg"><path d="M0 0v46c29.1-7.2 60.4-11 93-11s63.9 3.8 93 11c29.1 7.2 60.4 11 93 11s63.9-3.8 93-11c29.1-7.2 60.4-11 93 11s63.9 3.8 93 11V0H0z" fill="%231e90ff"/></svg>'); 
-            background-size:1200px 100%;
-            animation: wave 12s linear infinite; 
-        }
-        .wave:nth-child(2) {
-            animation-delay: -6s; 
-            opacity: 0.7;
-        }
-
-        /* Contact & Forms */
-        .contact-container{display:grid; grid-template-columns:1fr 1fr; gap:36px}
-        .contact-form{background:#f6f8fb; padding:25px; border-radius:8px; border:1px solid #eee}
-        .form-control{
-            font-family:'Open Sans', Arial, sans-serif;
-            font-size: 15px;
-        }
+        /* Font Awesome Icons (Internalized for Performance) */
+        @font-face {
+            font-family: 'Font Awesome 6 Free';
+            font-style: normal;
+            font-weight: 900;
+            font-display: swap;
+            src: url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/webfonts/fa-solid-900.woff2) format('woff2');
+        }
+        .fas {
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            display: inline-block;
+            font-style: normal;
+            font-variant: normal;
+            text-rendering: auto;
+            -webkit-font-smoothing: antialiased;
+        }
+        /* Specific Icon Definitions */
+        .fa-ship:before { content: "\f21a"; }
+        .fa-plane:before { content: "\f072"; }
+        .fa-plane-departure:before { content: "\f5b0"; }
+        .fa-warehouse:before { content: "\f494"; }
+        .fa-handshake:before { content: "\f2b5"; }
+        .fa-route:before { content: "\f4d7"; }
+        .fa-box-open:before { content: "\f49e"; }
+        .fa-passport:before { content: "\f5ea"; }
+        .fa-shield-alt:before { content: "\f3ed"; }
+        .fa-money-check-dollar:before { content: "\f4c3"; } /* New icon for money */
+        .fa-globe:before { content: "\f0ac"; }
+        .fa-laptop-code:before { content: "\f5fc"; }
+        .fa-users:before { content: "\f0c0"; }
+        .fa-chart-line:before { content: "\f201"; }
+        .fa-bullhorn:before { content: "\f0a1"; } /* Icon for marketing */
+        .fa-phone-alt:before { content: "\f879"; } /* Icon for Phone in Footer */
+        .fa-envelope:before { content: "\f0e0"; } /* Icon for Email in Footer */
         
-        /* NOVO CSS PARA PARCERIAS E CREDIBILIDADE */
-        .partners-section {
-            padding: 20px;
-            background-color: var(--light-bg); /* Usando variável light-bg para consistência */
-            text-align: center;
-            border-top: 1px solid #ddd;
-            margin-top: 30px;
+        /* WhatsApp Icon (using a basic solid fill for simplicity in single-file format) */
+        .fa-whatsapp:before { content: "\f232"; font-family: 'Font Awesome 6 Brands'; } 
+        @font-face {
+            font-family: 'Font Awesome 6 Brands';
+            font-style: normal;
+            font-weight: 400;
+            font-display: swap;
+            src: url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/webfonts/fa-brands-400.woff2) format('woff2');
+        }
+        .fab {
+            font-family: 'Font Awesome 6 Brands';
+            font-weight: 400;
+            display: inline-block;
+            font-style: normal;
+            font-variant: normal;
+            text-rendering: auto;
+            -webkit-font-smoothing: antialiased;
         }
 
-        .partners-title {
-            font-size: 1.1em;
+
+        /* Base Reset & Typography */
+        *, *::before, *::after{box-sizing:border-box}
+        html{scroll-behavior:smooth}
+        body{
+            margin:0;
+            font-family:'Open Sans', Arial, sans-serif;
+            background:var(--white);
+            color:var(--black);
+            line-height:1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.2;
             color: var(--navy);
-            margin-bottom: 15px;
-            font-weight: 700;
         }
 
-        .partners-logos {
+        /* Utility Classes & Components */
+        .container{max-width:var(--maxw); margin:0 auto; padding:0 28px}
+
+        .btn{
+            padding:12px 22px; 
+            border-radius:8px; 
+            font-weight:700; 
+            text-decoration:none; 
+            display:inline-block;
+            transition: transform 0.2s, opacity 0.2s;
+            text-align: center;
+            cursor: pointer;
+        }
+        .btn:hover{transform: translateY(-2px)}
+        .btn-primary{background:var(--gold); color:#081226; border:none;}
+        .btn-primary:hover{background: #c3a133}
+        .btn-ghost{border:1px solid #bbb; color:#222; background:transparent}
+        .btn-ghost:hover{background: #f0f0f0}
+
+        /* Header */
+        header{
+            position:sticky; top:0; left:0; right:0; 
+            height:88px;
+            background:rgba(255,255,255,0.98);
+            display:flex;
+            align-items:center;
+            justify-content:space-between;
+            padding:0 36px;
+            border-bottom:1px solid #eee;
+            z-index:1000;
+            box-shadow:0 2px 8px rgba(0,0,0,0.03);
+        }
+        .brand{
+            display:flex; align-items:center; gap:14px;
+        }
+        .brand img{height:56px; display:block}
+        .brand .title{font-weight:700; font-size:13px; letter-spacing:1px; color:#666}
+
+        nav{display:flex; gap:26px; font-weight:600}
+        nav a{color:var(--black); text-decoration:none; font-size:15px; transition:color .2s}
+        nav a:hover{color:var(--gold)}
+
+        .contact-mini{ text-align:right; font-size:13px; color:#222}
+        .contact-mini a {
+            color: #222; 
+            text-decoration: none; 
+            transition: color 0.2s;
             display: flex;
-            justify-content: center;
             align-items: center;
-            flex-wrap: wrap; 
-            gap: 30px; /* Espaço maior entre os logos */
+            justify-content: flex-end;
+        }
+        .contact-mini a:hover { color: var(--gold); }
+        .contact-mini i {
+            margin-right: 4px;
+            font-size: 16px;
+            color: #25D366; /* WhatsApp Green */
         }
 
-        .partners-logos img {
-            height: 40px; /* Altura padrão para os logos */
-            max-width: 120px;
-            object-fit: contain;
-            opacity: 0.8; 
-            transition: opacity 0.3s;
+        /* Hamburger Menu */
+        .hamburger {
+            display: none; 
+            cursor: pointer;
+            width: 30px;
+            height: 21px;
+            justify-content: space-around;
+            flex-direction: column;
+            z-index: 1001;
+        }
+        .hamburger span {
+            display: block;
+            width: 100%;
+            height: 3px;
+            background-color: var(--navy);
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+        .hamburger.active span:nth-child(1) {
+            transform: translateY(9px) rotate(45deg);
+        }
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+        .hamburger.active span:nth-child(3) {
+            transform: translateY(-9px) rotate(-45deg);
         }
 
-        .partners-logos img:hover {
-            opacity: 1;
+        /* Mobile Nav */
+        .mobile-nav {
+            display: none;
+            position: fixed;
+            top: 88px; 
+            left: 0;
+            width: 100%;
+            height: calc(100vh - 88px);
+            background: rgba(255, 255, 255, 0.95);
+            z-index: 999;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 40px;
+            overflow-y: auto;
         }
-        /* FIM DO NOVO CSS */
+        .mobile-nav.open {
+            display: flex;
+        }
+        .mobile-nav a {
+            padding: 15px 20px;
+            font-size: 1.2rem;
+            color: var(--navy);
+            text-decoration: none;
+            width: 80%;
+            text-align: center;
+            border-bottom: 1px solid #eee;
+            transition: background 0.2s;
+        }
+        .mobile-nav a:hover {
+            background: var(--light-bg);
+            color: var(--gold);
+        }
+        
+        /* === V9 EXCHANGE BAR STYLES === */
+        #exchange-bar {
+            position: sticky;
+            top: 88px; /* Stick right under the main header */
+            background-color: var(--navy);
+            color: var(--white);
+            z-index: 900; /* Below the main header */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 8px 0;
+        }
+        .rate-container {
+            max-width: var(--maxw);
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 28px;
+            flex-wrap: wrap;
+        }
+        .rate-title {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 14px;
+            color: var(--gold);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex-shrink: 0;
+            margin-right: 15px;
+        }
+        .rate-list {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            flex-grow: 1;
+        }
+        .rate-item {
+            font-weight: 600;
+            font-size: 14px;
+            color: var(--white);
+            white-space: nowrap;
+        }
+        .rate-item span {
+            font-weight: 800;
+            color: var(--gold);
+            margin-left: 4px;
+        }
+        .rate-update-info {
+            font-style: italic;
+            font-weight: 400;
+            color: #ccc;
+            font-size: 11px;
+            white-space: nowrap;
+            margin-left: 15px;
+            flex-shrink: 0;
+        }
+        /* Mobile adjustment for Exchange Bar */
+        @media(max-width: 980px) {
+            #exchange-bar {
+                top: 70px; /* Adjust sticky position for smaller header */
+            }
+            .rate-container {
+                justify-content: center;
+                text-align: center;
+                gap: 10px;
+            }
+            .rate-title {
+                margin-bottom: 5px;
+            }
+            .rate-list {
+                justify-content: center;
+            }
+            .rate-update-info {
+                width: 100%;
+                text-align: center;
+                margin-top: 5px;
+            }
+        }
+        @media(max-width: 560px) {
+             .rate-item {
+                font-size: 13px;
+             }
+             .rate-update-info {
+                font-size: 10px;
+             }
+             .rate-list {
+                gap: 12px;
+             }
+        }
+        /* === END V9 EXCHANGE BAR STYLES === */
 
-        /* Footer */
-        footer{background:var(--navy); color:#fff; padding:46px 28px; margin-top:60px}
-        .footer-flex{max-width:var(--maxw); margin:0 auto; display:flex; flex-wrap:wrap; gap:36px; justify-content:space-between}
-        .footer-logo{height:86px; margin-top:16px; filter: invert(0.8) grayscale(1)} 
-        .footer-column{min-width:220px; max-width:360px}
-        .footer-column h4{margin:0 0 12px; color:#fff}
-        .footer-column p, .footer-column li{color:#d6d6d6; font-size:14px}
-        .footer-column a{color:#d6d6d6; text-decoration:none; transition: color .2s;}
-        .footer-column a:hover{color: var(--gold);}
-        .footer-column .contact-link {
-             display: flex; 
-             align-items: center; 
-             margin-bottom: 5px; 
-        }
-        .footer-column .contact-link i {
-            margin-right: 8px;
-            font-size: 18px;
-        }
 
-        /* Animations Keyframes */
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes float { 
-            0%{transform:translateY(0) translateX(0)}
-            25%{transform:translateY(-18px) translateX(10px)}
-            50%{transform:translateY(-8px) translateX(18px)}
-            75%{transform:translateY(-12px) translateX(8px)}
-            100%{transform:translateY(0) translateX(0)}
-        }
-        .floating{animation:float 14s ease-in-out infinite}
-        @keyframes wave {
-            from { background-position-x: 0; }
-            to { background-position-x: -1200px; } 
-        }
+        /* Hero */
+        .hero{
+            min-height:100vh; 
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            position:relative;
+            background:linear-gradient(135deg,#ffffff 0%,#f7f9fb 100%);
+            padding-top:88px;
+            overflow:hidden;
+        }
+        .hero .inner{
+            max-width:var(--maxw);
+            width:100%;
+            padding:80px 28px;
+            display:grid;
+            grid-template-columns:1fr 420px;
+            gap:48px;
+            align-items:center;
+        }
+        .hero h2{font-size:48px; margin:0 0 16px; opacity: 0;}
+        .hero p{color:var(--muted); font-size:17px; max-width:680px; opacity: 0;}
+        .cta-group{margin-top:30px; display:flex; gap:14px}
+        .cta-group a {opacity: 0;}
 
-        /* Custom Cursor Style (V3) */
-        .custom-cursor {
-            position: fixed;
-            width: 18px;
-            height: 18px;
-            background: var(--gold);
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 9999;
-            transform: translate(-50%,-50%);
-            transition: transform 0.05s ease, width 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94), height 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            mix-blend-mode: difference;
-        }
-        .custom-cursor.hover-state {
-            width: 36px;
-            height: 36px;
-            background: var(--navy);
-            opacity: 0.7;
-        }
-        
-        /* ========== RESPONSIVE DESIGN ========== */
-        @media(max-width:1100px){
-            .hero .inner{grid-template-columns:1fr 1fr; gap:30px;}
-            .hubs-list { column-count: 2; }
-        }
+        .quick-card{
+            background:#fff; 
+            padding:24px; 
+            border-radius:12px; 
+            border:1px solid #e6e6e6; 
+            box-shadow:0 10px 30px rgba(0,0,0,0.04);
+            transition: all 0.3s;
+        }
+        .quick-card:hover { transform: translateY(-3px); box-shadow:0 12px 35px rgba(0,0,0,0.08); }
 
-        @media(max-width:980px){
-            nav{display:none} 
-            .hamburger{display:flex} 
-            header{padding:0 18px; height: 70px;}
-            .mobile-nav {top: 70px; height: calc(100vh - 70px);}
-            .contact-mini{display: none;}
-            .hero .inner{grid-template-columns:1fr; padding:40px 18px; text-align: center;}
-            .hero h2 {font-size: 38px;}
-            .cta-group{justify-content: center;}
-            .section h2{font-size: 32px;}
-            .contact-container{grid-template-columns:1fr}
-            .client-logo{max-width:110px}
-            .container-ship{width:160px}
-            .footer-flex{justify-content: center;}
-            .hubs-list { column-count: 1; }
-        }
+        .quick-card h3{margin:0 0 12px; color:var(--navy)}
+        .quick-card ul{margin:0; padding-left:18px; color:var(--muted); font-size:15px; line-height:1.6}
 
-        @media(max-width:560px){
-            header{padding:0 14px; height: 70px;}
-            .mobile-nav {top: 70px; height: calc(100vh - 70px);}
-            .brand img{height:44px}
-            .hero h2{font-size:28px}
-            .hero p{font-size:15px}
-            .quick-card{padding:16px}
-            .hero .inner{padding:36px 12px}
-            .btn{padding: 10px 18px; font-size: 14px;}
-            .cta-group {flex-direction: column; gap: 10px;}
-        }
-    </style>
+        /* Sections */
+        .section{
+            max-width:var(--maxw); 
+            margin:90px auto; 
+            padding:0 28px;
+        }
+        .section .section-header{ text-align:center; margin-bottom:40px}
+        .section h2{font-size:36px; color:var(--navy); margin-bottom:12px; font-weight:800}
+        .section p.lead{color:var(--muted); max-width:850px; margin:0 auto; font-size: 18px;}
+
+        .grid{
+            display:grid;
+            grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+            gap:24px;
+        }
+        .card{
+            background:#fff; 
+            padding:26px; 
+            border-radius:12px; 
+            border:1px solid #e7e7e7; 
+            box-shadow:0 8px 26px rgba(0,0,0,0.04);
+            transition: all 0.3s;
+        }
+        .card:hover { transform: translateY(-3px); box-shadow:0 10px 30px rgba(0,0,0,0.08); }
+        .card h3{margin-top:0; color:var(--navy)}
+        .card p{color:var(--muted)}
+        .card i.fas, .card i.fab {color: var(--gold); margin-right: 10px;}
+        
+        /* Global Hubs Layout Refinement (V3) */
+        .hubs-list {
+            column-count: 3;
+            column-gap: 40px;
+            margin-top: 20px;
+        }
+        .hubs-list p {
+            margin-bottom: 12px;
+            break-inside: avoid;
+            font-size: 15px;
+            color: var(--navy);
+        }
+
+        /* Careers Highlight Card (V4 Improvement) */
+        .career-highlight {
+            background: var(--highlight-bg);
+            border-left: 5px solid var(--gold);
+            padding: 26px 30px;
+            margin-bottom: 30px;
+        }
+        .career-highlight h3 {
+            color: var(--gold);
+            margin-bottom: 8px;
+            font-size: 1.5rem;
+        }
+        .career-highlight .lead-text {
+            color: var(--navy);
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        
+        /* Portfolio / Cases */
+        .portfolio-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(320px,1fr)); gap:24px}
+
+        /* Animations area */
+        .animations-section{padding:80px 0; background:linear-gradient(135deg,#fbfdff 0%,#f1f6fb 100%); position:relative; overflow:hidden; margin-top:90px; margin-bottom:90px;}
+        .animation-area{position:relative; width:100%; height:480px; border-radius:10px; overflow:hidden; border:2px solid rgba(212,175,55,0.08); background:linear-gradient(180deg,#eaf6ff 0%,#ffffff 100%); cursor:none;}
+        .map-background{position:absolute; inset:0; background-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><path d="M20,20 L80,20 L80,80 L20,80 Z" fill="none" stroke="%23d4af37" stroke-width="0.5" stroke-dasharray="2,2"/></svg>'); background-size:220px 220px; opacity:0.12}
+
+        /* Interactive Elements */
+        .interactive-element {
+            position: absolute;
+            transition: transform 0.1s linear; 
+            pointer-events: none; 
+            will-change: transform; 
+        }
+        
+        .container-ship{position:absolute; bottom:18%; left:20%; width:200px; height:50px; transform-origin:center; z-index:10}
+        .ship-body{position:absolute;width:100%;height:100%; background:linear-gradient(to bottom,#34495e,#2c3e50); border-radius:10px 40px 10px 10px}
+        .ship-deck{position:absolute; top:-30px; left:10px; width:180px; height:30px; background:#34495e; border-radius:5px 5px 0 0}
+        .ship-containers{position:absolute; top:-60px; left:20px; width:160px; height:30px; display:flex; gap:6px}
+        .ship-container{flex:1;background:var(--gold); border:2px solid var(--navy)}
+
+        .cargo-plane{position:absolute; top:18%; right:12%; width:180px; height:50px}
+        .plane-body{position:absolute;width:160px;height:40px;border-radius:20px 40px 10px 10px;background:linear-gradient(to bottom,#e74c3c,#c0392b)}
+        .plane-wing{position:absolute; width:200px; height:15px; background:#34495e; top:15px; left:-20px; border-radius:3px}
+        .plane-tail{position:absolute; width:30px; height:25px; background:#34495e; top:-5px; right:-5px}
+        .plane-windows{position:absolute; width:100px; height:10px; top:15px; left:30px; display:flex; gap:6px}
+        .plane-window{width:10px; height:10px; background:#fff; border-radius:50%}
+
+        .water{position:absolute; bottom:0; left:0; width:100%; height:26%; background:linear-gradient(to bottom,transparent 0%,#1e90ff 100%); z-index:1}
+        .wave{
+            position:absolute; bottom:0; left:0; width:2400px; height:24px; 
+            background-image:url('data:image/svg+xml;utf8,<svg viewBox="0 0 1200 120" xmlns="http://www.w3.org/2000/svg"><path d="M0 0v46c29.1-7.2 60.4-11 93-11s63.9 3.8 93 11c29.1 7.2 60.4 11 93 11s63.9-3.8 93-11c29.1-7.2 60.4-11 93 11s63.9 3.8 93 11V0H0z" fill="%231e90ff"/></svg>'); 
+            background-size:1200px 100%;
+            animation: wave 12s linear infinite; 
+        }
+        .wave:nth-child(2) {
+            animation-delay: -6s; 
+            opacity: 0.7;
+        }
+
+        /* Contact & Forms */
+        .contact-container{display:grid; grid-template-columns:1fr 1fr; gap:36px}
+        .contact-form{background:#f6f8fb; padding:25px; border-radius:8px; border:1px solid #eee}
+        .form-control{
+            font-family:'Open Sans', Arial, sans-serif;
+            font-size: 15px;
+        }
+
+        /* Footer */
+        footer{background:var(--navy); color:#fff; padding:46px 28px; margin-top:60px}
+        .footer-flex{max-width:var(--maxw); margin:0 auto; display:flex; flex-wrap:wrap; gap:36px; justify-content:space-between}
+        .footer-logo{height:86px; margin-top:16px; filter: invert(0.8) grayscale(1)} 
+        .footer-column{min-width:220px; max-width:360px}
+        .footer-column h4{margin:0 0 12px; color:#fff}
+        .footer-column p, .footer-column li{color:#d6d6d6; font-size:14px}
+        .footer-column a{color:#d6d6d6; text-decoration:none; transition: color .2s;}
+        .footer-column a:hover{color: var(--gold);}
+        .footer-column .contact-link {
+             display: flex; 
+             align-items: center; 
+             margin-bottom: 5px; 
+        }
+        .footer-column .contact-link i {
+            margin-right: 8px;
+            font-size: 18px;
+        }
+
+        /* Animations Keyframes */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes float { 
+            0%{transform:translateY(0) translateX(0)}
+            25%{transform:translateY(-18px) translateX(10px)}
+            50%{transform:translateY(-8px) translateX(18px)}
+            75%{transform:translateY(-12px) translateX(8px)}
+            100%{transform:translateY(0) translateX(0)}
+        }
+        .floating{animation:float 14s ease-in-out infinite}
+        @keyframes wave {
+            from { background-position-x: 0; }
+            to { background-position-x: -1200px; } 
+        }
+
+        /* Custom Cursor Style (V3) */
+        .custom-cursor {
+            position: fixed;
+            width: 18px;
+            height: 18px;
+            background: var(--gold);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%,-50%);
+            transition: transform 0.05s ease, width 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94), height 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            mix-blend-mode: difference;
+        }
+        .custom-cursor.hover-state {
+            width: 36px;
+            height: 36px;
+            background: var(--navy);
+            opacity: 0.7;
+        }
+        
+        /* ========== RESPONSIVE DESIGN ========== */
+        @media(max-width:1100px){
+            .hero .inner{grid-template-columns:1fr 1fr; gap:30px;}
+            .hubs-list { column-count: 2; }
+        }
+
+        @media(max-width:980px){
+            nav{display:none} 
+            .hamburger{display:flex} 
+            header{padding:0 18px; height: 70px;}
+            .mobile-nav {top: 70px; height: calc(100vh - 70px);}
+            .contact-mini{display: none;}
+            .hero .inner{grid-template-columns:1fr; padding:40px 18px; text-align: center;}
+            .hero h2 {font-size: 38px;}
+            .cta-group{justify-content: center;}
+            .section h2{font-size: 32px;}
+            .contact-container{grid-template-columns:1fr}
+            .client-logo{max-width:110px}
+            .container-ship{width:160px}
+            .footer-flex{justify-content: center;}
+            .hubs-list { column-count: 1; }
+        }
+
+        @media(max-width:560px){
+            header{padding:0 14px; height: 70px;}
+            .mobile-nav {top: 70px; height: calc(100vh - 70px);}
+            .brand img{height:44px}
+            .hero h2{font-size:28px}
+            .hero p{font-size:15px}
+            .quick-card{padding:16px}
+            .hero .inner{padding:36px 12px}
+            .btn{padding: 10px 18px; font-size: 14px;}
+            .cta-group {flex-direction: column; gap: 10px;}
+        }
+    </style>
 </head>
 <body>
 
 <header>
-    <div class="brand">
-        <img src="data:image/png;base64,{{HAFEN_BASE64}}" alt="Hafen Consolidators Logo">
-        <div class="title">HAFEN CONSOLIDATORS</div>
-    </div>
+    <div class="brand">
+        <img src="data:image/png;base64,{{HAFEN_BASE64}}" alt="Hafen Consolidators Logo">
+        <div class="title">HAFEN CONSOLIDATORS</div>
+    </div>
 
-    <nav aria-label="Main Navigation">
-        <a href="#home">Home</a>
-        <a href="#services">Services</a>
-        <a href="#portfolio">Portfolio</a>
-        <a href="#cases">Case Studies</a>
-        <a href="#hubs">Global Hubs</a>
-        <a href="#about">About</a>
-        <a href="#careers">Careers</a>
-        <a href="#contact">Contact</a>
-    </nav>
-    
-    <div class="contact-mini">
-        <a href="https://wa.me/447594716370" target="_blank" style="margin-bottom: 2px;">
-            <i class="fab fa-whatsapp" aria-hidden="true"></i> WhatsApp Us
-        </a>
-        <strong>+44 7594 716370</strong><br>
-        contact@hafenconsolidators.com
-    </div>
+    <nav aria-label="Main Navigation">
+        <a href="#home">Home</a>
+        <a href="#services">Services</a>
+        <a href="#portfolio">Portfolio</a>
+        <a href="#cases">Case Studies</a>
+        <a href="#hubs">Global Hubs</a>
+        <a href="#about">About</a>
+        <a href="#careers">Careers</a>
+        <a href="#contact">Contact</a>
+    </nav>
+    
+    <div class="contact-mini">
+        <a href="https://wa.me/447594716370" target="_blank" style="margin-bottom: 2px;">
+            <i class="fab fa-whatsapp" aria-hidden="true"></i> WhatsApp Us
+        </a>
+        <strong>+44 7594 716370</strong><br>
+        contact@hafenconsolidators.com
+    </div>
 
-    <div class="hamburger" id="hamburgerButton">
-        <span></span>
-        <span></span>
-        <span></span>
-    </div>
+    <div class="hamburger" id="hamburgerButton">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
 </header>
 
 <div class="mobile-nav" id="mobileNavMenu">
-    <a href="#home">Home</a>
-    <a href="#services">Services</a>
-    <a href="#portfolio">Portfolio</a>
-    <a href="#cases">Case Studies</a>
-    <a href="#hubs">Global Hubs</a>
-    <a href="#about">About</a>
-    <a href="#careers">Careers</a>
-    <a href="#contact">Contact</a>
+    <a href="#home">Home</a>
+    <a href="#services">Services</a>
+    <a href="#portfolio">Portfolio</a>
+    <a href="#cases">Case Studies</a>
+    <a href="#hubs">Global Hubs</a>
+    <a href="#about">About</a>
+    <a href="#careers">Careers</a>
+    <a href="#contact">Contact</a>
 </div>
 
 <section id="exchange-bar" aria-label="Daily Exchange Rates">
-    <div class="rate-container">
-        <div class="rate-title">
-            <i class="fas fa-money-check-dollar"></i> DAILY EXCHANGE RATES (BRL)
-        </div>
-        <div class="rate-list">
-            <div class="rate-item">USD <span>**5.15**</span></div>
-            <div class="rate-item">EUR <span>**5.60**</span></div>
-            <div class="rate-item">GBP <span>**6.45**</span></div>
-            <div class="rate-item">CAD <span>**3.80**</span></div>
-            <div class="rate-item">CNY <span>**0.72**</span></div>
-        </div>
-        <div class="rate-update-info">
-            Updated: **12/12/2025** (Reference Only)
-        </div>
-    </div>
-</section>
-<section id="home" class="hero" aria-label="Global Freight Solutions Hero">
-    <div class="inner">
-        <div>
-            <h2 style="animation: fadeInUp 1s ease forwards 0.3s;">Global Freight, NVOCC & Advanced Supply Chain Solutions</h2>
-            <p style="animation: fadeInUp 1s ease forwards 0.6s;">
-                Delivering precision-driven international logistics, consolidation, air & ocean freight, cross-trade routing and global trading support for micro, small and medium enterprises — with technology, reliability and British-standard service excellence.
-            </p>
-            <div class="cta-group">
-                <a class="btn btn-primary" href="#contact" style="animation: fadeInUp 1s ease forwards 0.9s;">Request Quote</a>
-                <a class="btn btn-ghost" href="#services" style="animation: fadeInUp 1s ease forwards 1.1s;">Explore Our Services</a>
-            </div>
-        </div>
-
-        <aside class="quick-card" aria-label="Quick Facts Summary">
-            <h3>Quick Facts</h3>
-            <ul>
-                <li><strong>HQ:</strong> Guayaquil, Ecuador</li>
-                <li><strong>International Hotline:</strong> +44 7594 716370</li>
-                <li>**Core:** Global Freight • Trading • NVOCC • Cross-Trade</li>
-            </ul>
-        </aside>
-    </div>
-
-    <div style="position:absolute; right:6%; top:10%; font-size:38px; opacity:0.08;" class="floating" aria-hidden="true"><i class="fas fa-ship"></i></div>
-    <div style="position:absolute; left:6%; bottom:12%; font-size:40px; opacity:0.06;" class="floating" aria-hidden="true"><i class="fas fa-plane"></i></div>
-</section>
-
-<section id="services" class="section" aria-label="Our Services">
-    <div class="section-header">
-        <h2>Our Services</h2>
-        <p class="lead">Comprehensive logistics solutions tailored for international trade: consolidation, customs, warehousing and end-to-end supply chain management.</p>
-    </div>
-
-    <div class="grid container">
-        <article class="card"><h3><i class="fas fa-ship"></i> Ocean Freight (LCL/FCL)</h3><p>Smart routing, consolidated loads and full-container options with global coverage.</p></article>
-        <article class="card"><h3><i class="fas fa-plane-departure"></i> Air Freight</h3><p>Priority air cargo services with time-definite options and premium handling.</p></article>
-        <article class="card"><h3><i class="fas fa-warehouse"></i> Warehousing & Distribution</h3><p>Bonded facilities, inventory control and regional distribution networks.</p></article>
-        <article class="card"><h3><i class="fas fa-handshake"></i> Trading & Sourcing</h3><p>International procurement, supplier consolidation and regulatory compliance support.</p></article>
-        <article class="card"><h3><i class="fas fa-route"></i> Cross-Trade Operations</h3><p>Confidential third-country shipments with efficient routing and documentation.</p></article>
-        <article class="card"><h3><i class="fas fa-box-open"></i> Supplier Consolidation</h3><p>Weekly multi-factory consolidation services to reduce costs and lead-times.</p></article>
-        <article class="card"><h3><i class="fas fa-passport"></i> Customs Clearance</h3><p>Pre-clearance and customs brokerage for rapid border transit.</p></article>
-        <article class="card"><h3><i class="fas fa-shield-alt"></i> Insurance & Risk Management</h3><p>Freight insurance optimisation and cargo risk mitigation.</p></article>
-    </div>
-</section>
-
-<section id="portfolio" class="section" aria-label="Selected Operations Portfolio">
-    <div class="section-header">
-        <h2>Portfolio</h2>
-        <p class="lead">Selected operations and capabilities demonstrating our end-to-end logistics expertise.</p>
-    </div>
-
-    <div class="portfolio-grid container">
-        <article class="card">
-            <h3>Maritime & Consolidation</h3>
-            <p>Consolidation lanes across Asia, Europe and the Americas with real-time tracking and route optimisation.</p>
-        </article>
-
-        <article class="card">
-            <h3>Air Express Movements</h3>
-            <p>Priority airfreight for critical parts and seasonal inventory replenishment.</p>
-        </article>
-
-        <article class="card">
-            <h3>Cold Chain & Reefers</h3>
-            <p>Temperature-controlled handling preserving integrity across origin-to-destination transit.</p>
-        </article>
-    </div>
-</section>
-
-<section id="cases" class="section" aria-label="Client Case Studies">
-    <div class="section-header">
-        <h2>Case Studies</h2>
-        <p class="lead">Real client outcomes achieved through smarter consolidation and route planning.</p>
-    </div>
-
-    <div class="grid container">
-        <article class="card">
-            <h3>Spare Parts Global</h3>
-            <p>5.4 tonnes/month — China → Panama → Brazil — Lead-time reduced **17→9 days** — Stockouts **−41%** — Multi-supplier air + ocean solution.</p>
-        </article>
-
-        <article class="card">
-            <h3>FreshHarvest Premium</h3>
-            <p>Reefer LCL — Ecuador → Rotterdam — Spoilage **4.7%→1.1%** — Transit **24→17 days** — Cold-chain integrity **99.2%**.</p>
-        </article>
-
-        <article class="card">
-            <h3>ElectroNova Components</h3>
-            <p>Cross-trade Shenzhen → Mexico → Chile — Freight cost **−14%** — Customs pre-clearance — JIT reliability **99.8%**.</p>
-        </article>
-
-        <article class="card">
-            <h3>ModaExpress LATAM</h3>
-            <p>Garments consolidation — Vietnam → Bogotá — Volume efficiency **+32%** — Weekly bookings — Peak stability.</p>
-        </article>
-
-        <article class="card">
-            <h3>HeavyMach Solutions</h3>
-            <p>Machinery parts — India → Paraguay — OOG handling — Insurance optimisation — Delays **−52%**.</p>
-        </article>
-    </div>
-</section>
-
-<section id="hubs" class="section" aria-label="Our Global Hub Locations">
-    <div class="section-header">
-        <h2>Global Hubs</h2>
-        <p class="lead">Strategic offices and partner hubs supporting worldwide operations.</p>
-    </div>
-
-    <div class="card container hubs-list">
-        <p><strong>Nicaragua</strong> — Centro Comercial Novacentro, Torre Nova 2, Piso 9.</p>
-        <p><strong>Honduras</strong> — Torre Nova 2, Piso 11, Tegucigalpa.</p>
-        <p><strong>Cuba</strong> — 20 Genesis Close, George Town KY1-1208.</p>
-        <p><strong>Dominican Republic</strong> — Rafael Augusto Sanchez Nº 86, Santo Domingo.</p>
-        <p><strong>Peru</strong> — Av. Miguel Grau 709, Lima.</p>
-        <p><strong>Taiwan</strong> — Shin Liang Center, Taichung.</p>
-        <p><strong>Philippines</strong> — East Bloc Building 1, Tagbilaran City.</p>
-        <p><strong>Canada</strong> — Edmonton T5K 2P7.</p>
-        <p><strong>USA</strong> — North Miami 33181.</p>
-        <p><strong>Saudi Arabia</strong> — Jeddah 23412.</p>
-        <p><strong>Pakistan</strong> — Karachi 75500.</p>
-        <p><strong>Tajikistan</strong> — Dushanbe 734000.</p>
-        <p><strong>Lithuania</strong> — Vilnius 01103.</p>
-        <p><strong>Estonia / Latvia</strong> — Skanstes iela 25, Riga.</p>
-        <p><strong>Ukraine</strong> — Kyiv 04112.</p>
-        <p><strong>Slovenia</strong> — Ljubljana 1000.</p>
-        <p><strong>Bulgaria</strong> — Plovdiv 4000.</p>
-        <p><strong>Oman</strong> — Duqm 006.</p>
-    </div>
-</section>
-
-<section id="about" class="section" aria-label="About Hafen Consolidators">
-    <div class="section-header">
-        <h2>About Us</h2>
-        <p class="lead">Independent NVOCC & International Trading company with integrated freight forwarding, sourcing and consolidation solutions.</p>
-    </div>
-
-    <div class="grid container" style="align-items:center;">
-        <article class="card">
-            <h3>Hafen Consolidators</h3>
-            <p>
-                Hafen Consolidators is an independent NVOCC & International Trading company headquartered in Guayaquil, Ecuador. We provide integrated freight forwarding, sourcing, consolidation and cross-trade logistics solutions for global businesses — focused on micro, small and medium enterprises seeking reliable, cost-effective trade routes.
-            </p>
-            <p style="color:var(--muted)"><strong>Core capabilities:</strong> Consolidation, cross-trade routing, customs pre-clearance, bonded warehousing and supplier consolidation.</p>
-        </article>
-
-        <article class="card">
-            <h3>Our Approach</h3>
-            <p>
-                We combine hands-on operations experience with technology-driven planning — route optimisation, transparent documentation and trusted global partnerships — to reduce lead times and total landed cost while improving service reliability.
-            </p>
-            <p style="color:var(--muted)"><strong>Our promise:</strong> practical, measurable improvements for customers trading internationally.</p>
-        </article>
-    </div>
-</section>
-
-<section id="animations" class="animations-section" aria-label="Interactive Logistics Map">
-    <div class="section-header" style="padding-top:8px;">
-        <h2>Interactive Logistics Map</h2>
-        <p class="lead">Move your cursor or touch the screen to guide our ship and plane across the interactive map area.</p>
-    </div>
-
-    <div class="container">
-        <div class="animation-
-    </div>
-</section>
-
-<section class="partners-section" aria-label="Certificações e Parcerias Internacionais">
-    <div class="container">
-        <div class="partners-title">Certificações e Parcerias Internacionais para sua Confiança e Segurança:</div>
-        <div class="partners-logos">
-            <img src="iata-logo.png" alt="IATA Cargo Agent">
-            <img src="fiata-logo.svg" alt="FIATA Member">
-            <img src="oea-logo.jpg" alt="OEA Certificado">
-            <img src="iso9001-logo.png" alt="ISO 9001 Certified">
-            <img src="azfreight-logo.png" alt="AZ Freight Member">
-            <img src="wca-logo.png" alt="WCA Family Member">
+    <div class="rate-container">
+        <div class="rate-title">
+            <i class="fas fa-money-check-dollar"></i> DAILY EXCHANGE RATES (BRL)
+        </div>
+        <div class="rate-list">
+            <div class="rate-item">USD <span>**5.15**</span></div>
+            <div class="rate-item">EUR <span>**5.60**</span></div>
+            <div class="rate-item">GBP <span>**6.45**</span></div>
+            <div class="rate-item">CAD <span>**3.80**</span></div>
+            <div class="rate-item">CNY <span>**0.72**</span></div>
+        </div>
+        <div class="rate-update-info">
+            Updated: **12/12/2025** (Reference Only)
         </div>
     </div>
 </section>
+<section id="home" class="hero" aria-label="Global Freight Solutions Hero">
+    <div class="inner">
+        <div>
+            <h2 style="animation: fadeInUp 1s ease forwards 0.3s;">Global Freight, NVOCC & Advanced Supply Chain Solutions</h2>
+            <p style="animation: fadeInUp 1s ease forwards 0.6s;">
+                Delivering precision-driven international logistics, consolidation, air & ocean freight, cross-trade routing and global trading support for micro, small and medium enterprises — with technology, reliability and British-standard service excellence.
+            </p>
+            <div class="cta-group">
+                <a class="btn btn-primary" href="#contact" style="animation: fadeInUp 1s ease forwards 0.9s;">Request Quote</a>
+                <a class="btn btn-ghost" href="#services" style="animation: fadeInUp 1s ease forwards 1.1s;">Explore Our Services</a>
+            </div>
+        </div>
+
+        <aside class="quick-card" aria-label="Quick Facts Summary">
+            <h3>Quick Facts</h3>
+            <ul>
+                <li><strong>HQ:</strong> Guayaquil, Ecuador</li>
+                <li><strong>International Hotline:</strong> +44 7594 716370</li>
+                <li>**Core:** Global Freight • Trading • NVOCC • Cross-Trade</li>
+            </ul>
+        </aside>
+    </div>
+
+    <div style="position:absolute; right:6%; top:10%; font-size:38px; opacity:0.08;" class="floating" aria-hidden="true"><i class="fas fa-ship"></i></div>
+    <div style="position:absolute; left:6%; bottom:12%; font-size:40px; opacity:0.06;" class="floating" aria-hidden="true"><i class="fas fa-plane"></i></div>
+</section>
+
+<section id="services" class="section" aria-label="Our Services">
+    <div class="section-header">
+        <h2>Our Services</h2>
+        <p class="lead">Comprehensive logistics solutions tailored for international trade: consolidation, customs, warehousing and end-to-end supply chain management.</p>
+    </div>
+
+    <div class="grid container">
+        <article class="card"><h3><i class="fas fa-ship"></i> Ocean Freight (LCL/FCL)</h3><p>Smart routing, consolidated loads and full-container options with global coverage.</p></article>
+        <article class="card"><h3><i class="fas fa-plane-departure"></i> Air Freight</h3><p>Priority air cargo services with time-definite options and premium handling.</p></article>
+        <article class="card"><h3><i class="fas fa-warehouse"></i> Warehousing & Distribution</h3><p>Bonded facilities, inventory control and regional distribution networks.</p></article>
+        <article class="card"><h3><i class="fas fa-handshake"></i> Trading & Sourcing</h3><p>International procurement, supplier consolidation and regulatory compliance support.</p></article>
+        <article class="card"><h3><i class="fas fa-route"></i> Cross-Trade Operations</h3><p>Confidential third-country shipments with efficient routing and documentation.</p></article>
+        <article class="card"><h3><i class="fas fa-box-open"></i> Supplier Consolidation</h3><p>Weekly multi-factory consolidation services to reduce costs and lead-times.</p></article>
+        <article class="card"><h3><i class="fas fa-passport"></i> Customs Clearance</h3><p>Pre-clearance and customs brokerage for rapid border transit.</p></article>
+        <article class="card"><h3><i class="fas fa-shield-alt"></i> Insurance & Risk Management</h3><p>Freight insurance optimisation and cargo risk mitigation.</p></article>
+    </div>
+</section>
+
+<section id="portfolio" class="section" aria-label="Selected Operations Portfolio">
+    <div class="section-header">
+        <h2>Portfolio</h2>
+        <p class="lead">Selected operations and capabilities demonstrating our end-to-end logistics expertise.</p>
+    </div>
+
+    <div class="portfolio-grid container">
+        <article class="card">
+            <h3>Maritime & Consolidation</h3>
+            <p>Consolidation lanes across Asia, Europe and the Americas with real-time tracking and route optimisation.</p>
+        </article>
+
+        <article class="card">
+            <h3>Air Express Movements</h3>
+            <p>Priority airfreight for critical parts and seasonal inventory replenishment.</p>
+        </article>
+
+        <article class="card">
+            <h3>Cold Chain & Reefers</h3>
+            <p>Temperature-controlled handling preserving integrity across origin-to-destination transit.</p>
+        </article>
+    </div>
+</section>
+
+<section id="cases" class="section" aria-label="Client Case Studies">
+    <div class="section-header">
+        <h2>Case Studies</h2>
+        <p class="lead">Real client outcomes achieved through smarter consolidation and route planning.</p>
+    </div>
+
+    <div class="grid container">
+        <article class="card">
+            <h3>Spare Parts Global</h3>
+            <p>5.4 tonnes/month — China → Panama → Brazil — Lead-time reduced **17→9 days** — Stockouts **−41%** — Multi-supplier air + ocean solution.</p>
+        </article>
+
+        <article class="card">
+            <h3>FreshHarvest Premium</h3>
+            <p>Reefer LCL — Ecuador → Rotterdam — Spoilage **4.7%→1.1%** — Transit **24→17 days** — Cold-chain integrity **99.2%**.</p>
+        </article>
+
+        <article class="card">
+            <h3>ElectroNova Components</h3>
+            <p>Cross-trade Shenzhen → Mexico → Chile — Freight cost **−14%** — Customs pre-clearance — JIT reliability **99.8%**.</p>
+        </article>
+
+        <article class="card">
+            <h3>ModaExpress LATAM</h3>
+            <p>Garments consolidation — Vietnam → Bogotá — Volume efficiency **+32%** — Weekly bookings — Peak stability.</p>
+        </article>
+
+        <article class="card">
+            <h3>HeavyMach Solutions</h3>
+            <p>Machinery parts — India → Paraguay — OOG handling — Insurance optimisation — Delays **−52%**.</p>
+        </article>
+    </div>
+</section>
+
+<section id="hubs" class="section" aria-label="Our Global Hub Locations">
+    <div class="section-header">
+        <h2>Global Hubs</h2>
+        <p class="lead">Strategic offices and partner hubs supporting worldwide operations.</p>
+    </div>
+
+    <div class="card container hubs-list">
+        <p><strong>Nicaragua</strong> — Centro Comercial Novacentro, Torre Nova 2, Piso 9.</p>
+        <p><strong>Honduras</strong> — Torre Nova 2, Piso 11, Tegucigalpa.</p>
+        <p><strong>Cuba</strong> — 20 Genesis Close, George Town KY1-1208.</p>
+        <p><strong>Dominican Republic</strong> — Rafael Augusto Sanchez Nº 86, Santo Domingo.</p>
+        <p><strong>Peru</strong> — Av. Miguel Grau 709, Lima.</p>
+        <p><strong>Taiwan</strong> — Shin Liang Center, Taichung.</p>
+        <p><strong>Philippines</strong> — East Bloc Building 1, Tagbilaran City.</p>
+        <p><strong>Canada</strong> — Edmonton T5K 2P7.</p>
+        <p><strong>USA</strong> — North Miami 33181.</p>
+        <p><strong>Saudi Arabia</strong> — Jeddah 23412.</p>
+        <p><strong>Pakistan</strong> — Karachi 75500.</p>
+        <p><strong>Tajikistan</strong> — Dushanbe 734000.</p>
+        <p><strong>Lithuania</strong> — Vilnius 01103.</p>
+        <p><strong>Estonia / Latvia</strong> — Skanstes iela 25, Riga.</p>
+        <p><strong>Ukraine</strong> — Kyiv 04112.</p>
+        <p><strong>Slovenia</strong> — Ljubljana 1000.</p>
+        <p><strong>Bulgaria</strong> — Plovdiv 4000.</p>
+        <p><strong>Oman</strong> — Duqm 006.</p>
+    </div>
+</section>
+
+<section id="about" class="section" aria-label="About Hafen Consolidators">
+    <div class="section-header">
+        <h2>About Us</h2>
+        <p class="lead">Independent NVOCC & International Trading company with integrated freight forwarding, sourcing and consolidation solutions.</p>
+    </div>
+
+    <div class="grid container" style="align-items:center;">
+        <article class="card">
+            <h3>Hafen Consolidators</h3>
+            <p>
+                Hafen Consolidators is an independent NVOCC & International Trading company headquartered in Guayaquil, Ecuador. We provide integrated freight forwarding, sourcing, consolidation and cross-trade logistics solutions for global businesses — focused on micro, small and medium enterprises seeking reliable, cost-effective trade routes.
+            </p>
+            <p style="color:var(--muted)"><strong>Core capabilities:</strong> Consolidation, cross-trade routing, customs pre-clearance, bonded warehousing and supplier consolidation.</p>
+        </article>
+
+        <article class="card">
+            <h3>Our Approach</h3>
+            <p>
+                We combine hands-on operations experience with technology-driven planning — route optimisation, transparent documentation and trusted global partnerships — to reduce lead times and total landed cost while improving service reliability.
+            </p>
+            <p style="color:var(--muted)"><strong>Our promise:</strong> practical, measurable improvements for customers trading internationally.</p>
+        </article>
+    </div>
+</section>
+
+<section id="animations" class="animations-section" aria-label="Interactive Logistics Map">
+    <div class="section-header" style="padding-top:8px;">
+        <h2>Interactive Logistics Map</h2>
+        <p class="lead">Move your cursor or touch the screen to guide our ship and plane across the interactive map area.</p>
+    </div>
+
+    <div class="container">
+        <div class="animation-area" id="animationArea">
+            <div class="map-background"></div>
+
+            <div class="interactive-element container-ship" id="containerShip">
+                <div class="ship-body"></div>
+                <div class="ship-deck"></div>
+                <div class="ship-containers">
+                    <div class="ship-container" aria-label="Container 1"></div>
+                    <div class="ship-container" aria-label="Container 2"></div>
+                    <div class="ship-container" aria-label="Container 3"></div>
+                    <div class="ship-container" aria-label="Container 4"></div>
+                </div>
+            </div>
+
+            <div class="interactive-element cargo-plane" id="cargoPlane">
+                <div class="plane-body"></div>
+                <div class="plane-wing"></div>
+                <div class="plane-tail"></div>
+                <div class="plane-windows" aria-hidden="true">
+                    <div class="plane-window"></div>
+                    <div class="plane-window"></div>
+                    <div class="plane-window"></div>
+                    <div class="plane-window"></div>
+                </div>
+            </div>
+
+            <div class="water" aria-hidden="true">
+                <div class="wave"></div>
+                <div class="wave"></div>
+            </div>
+        </div>
+
+        <div style="text-align:center; margin-top:14px; color:var(--muted)">Move or touch to interact with the ship and plane</div>
+    </div>
+</section>
+
+<section id="careers" class="section" aria-label="Careers at Hafen Consolidators">
+    <div class="section-header">
+        <h2>Join Our Team</h2>
+        <p class="lead">Careers at Hafen Consolidators — global roles with real impact.</p>
+    </div>
+
+    <div class="container">
+        
+        <div class="career-highlight">
+            <h3 style="display:flex; align-items:center; gap:10px;"><i class="fas fa-bullhorn" style="color:var(--gold);"></i> URGENT HIRE: Social Media & Marketing Strategist (Junior)</h3>
+            <p class="lead-text">
+                We are actively seeking an **ambitious, young professional** to join our team! This is an ideal first job or opportunity for a current student. **No prior experience in the logistics sector is required; full training will be provided.**
+            </p>
+            <p style="color:var(--navy); font-size:15px; margin-top:15px;">
+                If you have fresh ideas and are ready to grow, please apply below or send your resume/CV directly to **contact@hafenconsolidators.com**
+            </p>
+        </div>
+
+        <div class="grid">
+            <article class="card">
+                <h3><i class="fas fa-globe"></i> International Sales Representative</h3>
+                <p>Developing new business channels across Latin America and Asia. Requires strong negotiation skills and fluency in English/Spanish.</p>
+                <a href="#contact" class="btn btn-ghost" style="font-size:14px;">Apply Now</a>
+            </article>
+            <article class="card">
+                <h3><i class="fas fa-chart-line"></i> Supply Chain Analyst</h3>
+                <p>Optimizing logistics flows, analyzing costs, and managing performance metrics. Advanced spreadsheet skills required.</p>
+                <a href="#contact" class="btn btn-ghost" style="font-size:14px;">Apply Now</a>
+            </article>
+        </div>
+    </div>
+</section>
+
+<section id="contact" class="section" aria-label="Contact Us">
+    <div class="section-header">
+        <h2>Contact Us</h2>
+        <p class="lead">Get in touch with our global team for a quote or detailed consultation.</p>
+    </div>
+
+    <div class="contact-container container">
+        <form class="contact-form" action="#" method="POST">
+            <h3 style="margin-top:0;">Request a Quote</h3>
+            <div style="margin-bottom:15px;">
+                <label for="name" style="display:block; margin-bottom:5px; font-weight:600;">Full Name</label>
+                <input type="text" id="name" name="name" required class="form-control" style="width:100%; padding:10px; border:1px solid #ccc; border-radius:4px;">
+            </div>
+            <div style="margin-bottom:15px;">
+                <label for="email" style="display:block; margin-bottom:5px; font-weight:600;">Email</label>
+                <input type="email" id="email" name="email" required class="form-control" style="width:100%; padding:10px; border:1px solid #ccc; border-radius:4px;">
+            </div>
+            <div style="margin-bottom:15px;">
+                <label for="message" style="display:block; margin-bottom:5px; font-weight:600;">Shipment Details / Message</label>
+                <textarea id="message" name="message" rows="4" required class="form-control" style="width:100%; padding:10px; border:1px solid #ccc; border-radius:4px; resize:vertical;"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary" style="width:100%;">Submit Request</button>
+        </form>
+
+        <div>
+            <h3 style="margin-top:0;">Contact Information</h3>
+            <p><strong>Global Hotline:</strong></p>
+            <a href="tel:+447594716370" class="contact-link"><i class="fas fa-phone-alt"></i> +44 7594 716370</a>
+
+            <p style="margin-top:20px;"><strong>Email:</strong></p>
+            <a href="mailto:contact@hafenconsolidators.com" class="contact-link"><i class="fas fa-envelope"></i> contact@hafenconsolidators.com</a>
+
+            <p style="margin-top:20px;"><strong>WhatsApp:</strong></p>
+            <a href="https://wa.me/447594716370" target="_blank" class="contact-link"><i class="fab fa-whatsapp" style="color:#25D366;"></i> Chat Now</a>
+
+            <p style="margin-top:20px;"><strong>Headquarters:</strong></p>
+            <p style="color:var(--muted);">Guayaquil, Ecuador</p>
+            <p style="color:var(--muted);">London, United Kingdom (Global Ops)</p>
+        </div>
+    </div>
+</section>
+
 <footer>
-    <div class="footer-flex">
-        <div class="footer-column">
-            <h4>HAFEN CONSOLIDATORS</h4>
-            <p>
-                Soluções logísticas globais, NVOCC e trading para PMEs, focado em consolidação, rotas cross-trade e serviço de excelência internacional.
-            </p>
-        </div>
-        <div class="footer-column">
-            <h4>Quick Links</h4>
-            <ul>
-                <li><a href="#services">Our Services</a></li>
-                <li><a href="#portfolio">Portfolio</a></li>
-                <li><a href="#hubs">Global Hubs</a></li>
-                <li><a href="#contact">Request Quote</a></li>
-            </ul>
-        </div>
-        <div class="footer-column">
-            <h4>Contact</h4>
-            <div class="contact-link">
-                <i class="fas fa-phone-alt"></i>
-                <a href="tel:+447594716370">+44 7594 716370 (International)</a>
-            </div>
-            <div class="contact-link">
-                <i class="fab fa-whatsapp" style="color:#25D366;"></i>
-                <a href="https://wa.me/447594716370" target="_blank">WhatsApp Chat</a>
-            </div>
-            <div class="contact-link">
-                <i class="fas fa-envelope"></i>
-                <a href="mailto:contact@hafenconsolidators.com">contact@hafenconsolidators.com</a>
-            </div>
-        </div>
-    </div>
-    <p style="text-align:center; margin-top:30px; padding-top:15px; border-top:1px solid #333;">
-        &copy; 2025 Hafen Consolidators. All Rights Reserved.
-    </p>
+    <div class="footer-flex">
+        <div class="footer-column">
+            <img src="data:image/png;base64,{{HAFEN_BASE64}}" alt="Hafen Consolidators Logo" class="footer-logo">
+            <p style="margin-top:10px;">Precision logistics and global trading solutions for SMEs.</p>
+        </div>
+
+        <div class="footer-column">
+            <h4>Quick Links</h4>
+            <ul style="list-style:none; padding:0;">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-column">
+            <h4>Contact Info</h4>
+            <a href="tel:+447594716370" class="contact-link"><i class="fas fa-phone-alt"></i> +44 7594 716370</a>
+            <a href="mailto:contact@hafenconsolidators.com" class="contact-link"><i class="fas fa-envelope"></i> contact@hafenconsolidators.com</a>
+            <a href="https://wa.me/447594716370" target="_blank" class="contact-link"><i class="fab fa-whatsapp"></i> WhatsApp Chat</a>
+            <p style="margin-top:15px;">Guayaquil, Ecuador</p>
+        </div>
+    </div>
+    <div style="text-align:center; padding-top:20px; border-top:1px solid #1a2c41; margin-top:30px;">
+        <p style="margin:0; font-size:12px; color:#aaa;">&copy; 2025 Hafen Consolidators. All Rights Reserved. | Designed and developed with AI assistance.</p>
+    </div>
 </footer>
 
 <script>
-    // JavaScript para o Menu Mobile
-    const hamburger = document.getElementById('hamburgerButton');
-    const mobileNav = document.getElementById('mobileNavMenu');
+    // Hamburger Menu Toggle
+    const hamburger = document.getElementById('hamburgerButton');
+    const mobileNav = document.getElementById('mobileNavMenu');
+    hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        mobileNav.classList.toggle('open');
+    });
 
-    hamburger.addEventListener('click', () => {
-        hamburger.classList.toggle('active');
-        mobileNav.classList.toggle('open');
-        document.body.classList.toggle('no-scroll');
-    });
+    // Close mobile menu on link click
+    mobileNav.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            mobileNav.classList.remove('open');
+        });
+    });
 
-    // Fechar o menu ao clicar em um link
-    mobileNav.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => {
-            hamburger.classList.remove('active');
-            mobileNav.classList.remove('open');
-            document.body.classList.remove('no-scroll');
-        });
-    });
+    // Custom Cursor Logic (V3)
+    const animationArea = document.getElementById('animationArea');
+    const containerShip = document.getElementById('containerShip');
+    const cargoPlane = document.getElementById('cargoPlane');
+    const cursor = document.createElement('div');
+    cursor.className = 'custom-cursor';
+    document.body.appendChild(cursor);
 
-    // Função para a animação de fadeInUp (V2)
-    const animateElements = (selector) => {
-        document.querySelectorAll(selector).forEach((el, index) => {
-            el.style.opacity = 0; // Garantir que está invisível inicialmente
-            el.style.animation = `fadeInUp 1s ease forwards ${0.3 + index * 0.2}s`;
-        });
-    };
+    document.addEventListener('mousemove', (e) => {
+        cursor.style.left = e.clientX + 'px';
+        cursor.style.top = e.clientY + 'px';
 
-    // Aplicar animação aos elementos do Hero (títulos, textos, CTAs)
-    animateElements('.hero h2');
-    animateElements('.hero p');
-    animateElements('.cta-group a');
+        // Animate elements inside the map area
+        if (animationArea && animationArea.contains(e.target)) {
+            // Get coordinates relative to the animation area
+            const rect = animationArea.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
 
-    // JS para o cursor personalizado (V3)
-    const cursor = document.createElement('div');
-    cursor.className = 'custom-cursor';
-    document.body.appendChild(cursor);
+            // Simple movement logic for ship
+            const shipMaxMove = 50; 
+            const shipX = (x - centerX) / rect.width * shipMaxMove;
+            const shipY = (y - centerY) / rect.height * shipMaxMove;
+            containerShip.style.transform = `translate(${shipX}px, ${shipY}px)`;
 
-    document.addEventListener('mousemove', e => {
-        cursor.style.transform = `translate(${e.clientX}px, ${e.clientY}px) translate(-50%,-50%)`;
-    });
+            // Simple movement logic for plane (opposite direction)
+            const planeMaxMove = 40; 
+            const planeX = (centerX - x) / rect.width * planeMaxMove;
+            const planeY = (centerY - y) / rect.height * planeMaxMove;
+            cargoPlane.style.transform = `translate(${planeX}px, ${planeY}px)`;
+        }
+    });
 
-    document.querySelectorAll('a, .btn, .card').forEach(el => {
-        el.addEventListener('mouseenter', () => cursor.classList.add('hover-state'));
-        el.addEventListener('mouseleave', () => cursor.classList.remove('hover-state'));
-    });
-
-
-    // JS para a animação interativa (V4)
-    const animationArea = document.querySelector('.animation-area');
-    const cargoPlane = document.querySelector('.cargo-plane');
-    const containerShip = document.querySelector('.container-ship');
-
-    if (animationArea && cargoPlane && containerShip) {
-        animationArea.addEventListener('mousemove', (e) => {
-            const rect = animationArea.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-            const width = rect.width;
-            const height = rect.height;
-
-            // Normalize position (0 to 1)
-            const normX = x / width;
-            const normY = y / height;
-
-            // Calculate Ship Position: follows the cursor horizontally on the bottom half
-            const shipX = normX * (width * 0.7) + (width * 0.1); 
-            const shipY = height * 0.82; 
-            containerShip.style.transform = `translate(${shipX - (width * 0.2)}px, ${shipY - (height * 0.82)}px)`;
-
-            // Calculate Plane Position: follows the cursor everywhere, faster on the top half
-            const planeX = normX * (width * 0.8) + (width * 0.05);
-            const planeY = normY * (height * 0.6) + (height * 0.1);
-            cargoPlane.style.transform = `translate(${planeX - (width * 0.8)}px, ${planeY - (height * 0.3)}px)`;
-        });
-    }
-
+    // Add hover state to cursor (for buttons and links)
+    document.querySelectorAll('a, button, .quick-card, .card, .hamburger').forEach(el => {
+        el.addEventListener('mouseenter', () => cursor.classList.add('hover-state'));
+        el.addEventListener('mouseleave', () => cursor.classList.remove('hover-state'));
+    });
+    
 </script>
 </body>
 </html>

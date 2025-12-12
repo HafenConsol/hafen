@@ -1,328 +1,689 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Hafen Consolidators — Global Freight & Trading</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Hafen Consolidators — Global Freight & Trading</title>
 
-<style>
- :root{
-   --gold:#d4af37;
-   --navy:#0d1b2a;
-   --muted:#7a7a7a;
-   --maxw:1320px;
- }
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
 
- body{
-   margin:0;
-   font-family:Inter,Arial;
-   line-height:1.6;
-   background:#ffffff;
-   color:#111;
- }
+    <style>
+        :root{
+            --gold:#d4af37;
+            --navy:#0d1b2a;
+            --muted:#6b6b6b;
+            --maxw:1320px;
+            --white:#ffffff;
+            --black:#0b0b0b;
+            --light-bg: #f7f9fb;
+        }
 
- header{
-   position:fixed;
-   top:0; left:0; right:0;
-   height:90px;
-   background:#ffffff;
-   display:flex;
-   align-items:center;
-   justify-content:space-between;
-   padding:0 40px;
-   border-bottom:1px solid #eee;
-   z-index:1000;
- }
+        /* Base Reset & Typography */
+        *, *::before, *::after{box-sizing:border-box}
+        html{scroll-behavior:smooth}
+        body{
+            margin:0;
+            font-family:'Open Sans', Arial, sans-serif;
+            background:var(--white);
+            color:var(--black);
+            line-height:1.6;
+            -webkit-font-smoothing: antialiased;
+        }
 
- header img{
-   height:60px;
- }
+        h1, h2, h3, h4 {
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.2;
+            color: var(--navy);
+        }
 
- nav{
-   display:flex;
-   gap:30px;
-   font-weight:600;
- }
+        /* Utility Classes & Components */
+        .container{max-width:var(--maxw); margin:0 auto; padding:0 28px}
 
- main{
-   padding-top:140px;
- }
+        .btn{
+            padding:12px 22px; 
+            border-radius:8px; 
+            font-weight:700; 
+            text-decoration:none; 
+            display:inline-block;
+            transition: transform 0.2s, opacity 0.2s;
+            text-align: center;
+            cursor: pointer;
+        }
+        .btn:hover{transform: translateY(-2px)}
+        .btn-primary{background:var(--gold); color:#081226; border:none;}
+        .btn-primary:hover{background: #c3a133}
+        .btn-ghost{border:1px solid #bbb; color:#222; background:transparent}
+        .btn-ghost:hover{background: #f0f0f0}
 
- .hero{
-   max-width:var(--maxw);
-   margin:0 auto;
-   padding:80px 40px;
-   display:grid;
-   grid-template-columns:1fr 420px;
-   gap:50px;
-   align-items:center;
- }
+        /* Header */
+        header{
+            position:sticky; top:0; left:0; right:0; 
+            height:88px;
+            background:rgba(255,255,255,0.98);
+            display:flex;
+            align-items:center;
+            justify-content:space-between;
+            padding:0 36px;
+            border-bottom:1px solid #eee;
+            z-index:1000;
+            box-shadow:0 2px 8px rgba(0,0,0,0.03);
+        }
+        .brand{
+            display:flex; align-items:center; gap:14px;
+        }
+        .brand img{height:56px; display:block}
+        .brand .title{font-weight:700; font-size:13px; letter-spacing:1px; color:#666}
 
- .hero h1{
-   font-size:52px;
-   color:var(--navy);
-   margin-bottom:16px;
-   font-weight:800;
- }
+        nav{display:flex; gap:26px; font-weight:600}
+        nav a{color:var(--black); text-decoration:none; font-size:15px; transition:color .2s}
+        nav a:hover{color:var(--gold)}
 
- .hero p{
-   font-size:19px;
-   color:var(--muted);
- }
+        .contact-mini{ text-align:right; font-size:13px; color:#222}
 
- .btn{
-   padding:14px 24px;
-   border-radius:10px;
-   font-weight:700;
-   display:inline-block;
- }
+        /* Hero */
+        .hero{
+            min-height:100vh; 
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            position:relative;
+            background:linear-gradient(135deg,#ffffff 0%,#f7f9fb 100%);
+            padding-top:88px;
+            overflow:hidden;
+        }
+        .hero .inner{
+            max-width:var(--maxw);
+            width:100%;
+            padding:80px 28px;
+            display:grid;
+            grid-template-columns:1fr 420px;
+            gap:48px;
+            align-items:center;
+        }
+        .hero h2{font-size:48px; margin:0 0 16px}
+        .hero p{color:var(--muted); font-size:17px; max-width:680px}
+        .cta-group{margin-top:30px; display:flex; gap:14px}
 
- .primary{
-   background:var(--gold);
-   color:#081226;
- }
+        .quick-card{
+            background:#fff; 
+            padding:24px; 
+            border-radius:12px; 
+            border:1px solid #e6e6e6; 
+            box-shadow:0 10px 30px rgba(0,0,0,0.04);
+            transition: all 0.3s;
+        }
+        .quick-card:hover { transform: translateY(-3px); box-shadow:0 12px 35px rgba(0,0,0,0.08); }
 
- .ghost{
-   border:1px solid #bbb;
-   color:#222;
- }
+        .quick-card h3{margin:0 0 12px; color:var(--navy)}
+        .quick-card ul{margin:0; padding-left:18px; color:var(--muted); font-size:15px; line-height:1.6}
 
- .section{
-   max-width:var(--maxw);
-   margin:60px auto;
-   padding:0 40px;
- }
+        /* Sections */
+        .section{
+            max-width:var(--maxw); 
+            margin:90px auto; 
+            padding:0 28px;
+        }
+        .section .section-header{ text-align:center; margin-bottom:40px}
+        .section h2{font-size:36px; color:var(--navy); margin-bottom:12px; font-weight:800}
+        .section p.lead{color:var(--muted); max-width:850px; margin:0 auto; font-size: 18px;}
 
- .section h2{
-   font-size:36px;
-   margin-bottom:20px;
-   font-weight:800;
-   color:var(--navy);
- }
+        .grid{
+            display:grid;
+            grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+            gap:24px;
+        }
+        .card{
+            background:#fff; 
+            padding:26px; 
+            border-radius:12px; 
+            border:1px solid #e7e7e7; 
+            box-shadow:0 8px 26px rgba(0,0,0,0.04);
+            transition: all 0.3s;
+        }
+        .card:hover { transform: translateY(-3px); box-shadow:0 10px 30px rgba(0,0,0,0.08); }
+        .card h3{margin-top:0; color:var(--navy)}
+        .card p{color:var(--muted)}
 
- .grid{
-   max-width:var(--maxw);
-   margin:30px auto;
-   padding:0 40px;
-   display:grid;
-   grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-   gap:28px;
- }
+        /* Clients Section */
+        #clients { background: var(--light-bg); padding: 60px 0; margin: 0 auto;}
+        .clients-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:28px; align-items:center; justify-content:center; padding: 0 28px;}
+        /* Added client logo styles */
+        .client-logo{
+            max-width:140px; 
+            filter:grayscale(100%); 
+            opacity:0.75; 
+            transition:all .25s; 
+            display: block; 
+            margin: 0 auto;
+            height: auto; /* Ensure aspect ratio is maintained */
+        }
+        .client-logo:hover{filter:none; opacity:1}
 
- .card{
-   background:#fff;
-   padding:26px;
-   border-radius:14px;
-   border:1px solid #e6e6e6;
-   box-shadow:0 10px 32px rgba(0,0,0,0.05);
- }
+        /* Portfolio / Cases */
+        .portfolio-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(320px,1fr)); gap:24px}
 
- footer{
-   background:var(--navy);
-   color:#ffffff;
-   margin-top:80px;
-   padding:70px 40px;
- }
+        /* Animations area */
+        .animations-section{padding:80px 0; background:linear-gradient(135deg,#fbfdff 0%,#f1f6fb 100%); position:relative; overflow:hidden; margin-top:90px; margin-bottom:90px;}
+        .animation-area{position:relative; width:100%; height:480px; border-radius:10px; overflow:hidden; border:2px solid rgba(212,175,55,0.08); background:linear-gradient(180deg,#eaf6ff 0%,#ffffff 100%)}
+        .map-background{position:absolute; inset:0; background-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><path d="M20,20 L80,20 L80,80 L20,80 Z" fill="none" stroke="%23d4af37" stroke-width="0.5" stroke-dasharray="2,2"/></svg>'); background-size:220px 220px; opacity:0.12}
 
- .footer-flex{
-   max-width:var(--maxw);
-   margin:0 auto;
-   display:flex;
-   flex-wrap:wrap;
-   gap:40px;
-   justify-content:space-between;
- }
+        .container-ship{position:absolute; bottom:18%; left:20%; width:200px; height:50px; transform-origin:center; z-index:10}
+        .ship-body{position:absolute;width:100%;height:100%; background:linear-gradient(to bottom,#34495e,#2c3e50); border-radius:10px 40px 10px 10px}
+        .ship-deck{position:absolute; top:-30px; left:10px; width:180px; height:30px; background:#34495e; border-radius:5px 5px 0 0}
+        .ship-containers{position:absolute; top:-60px; left:20px; width:160px; height:30px; display:flex; gap:6px}
+        .ship-container{flex:1;background:var(--gold); border:2px solid var(--navy)}
 
- .footer-logo{
-   height:100px;
-   margin-top:28px;
- }
+        .cargo-plane{position:absolute; top:18%; right:12%; width:180px; height:50px}
+        .plane-body{position:absolute;width:160px;height:40px;border-radius:20px 40px 10px 10px;background:linear-gradient(to bottom,#e74c3c,#c0392b)}
+        .plane-wing{position:absolute; width:200px; height:15px; background:#34495e; top:15px; left:-20px; border-radius:3px}
+        .plane-tail{position:absolute; width:30px; height:25px; background:#34495e; top:-5px; right:-5px}
+        .plane-windows{position:absolute; width:100px; height:10px; top:15px; left:30px; display:flex; gap:6px}
+        .plane-window{width:10px; height:10px; background:#fff; border-radius:50%}
 
- html{
-   scroll-behavior:smooth;
- }
+        .water{position:absolute; bottom:0; left:0; width:100%; height:26%; background:linear-gradient(to bottom,transparent 0%,#1e90ff 100%); z-index:1}
+        .wave{position:absolute; bottom:0; left:0; width:100%; height:24px; background-image:url('data:image/svg+xml;utf8,<svg viewBox="0 0 1200 120" xmlns="http://www.w3.org/2000/svg"><path d="M0 0v46c29.1-7.2 60.4-11 93-11s63.9 3.8 93 11c29.1 7.2 60.4 11 93 11s63.9-3.8 93-11c29.1-7.2 60.4-11 93-11s63.9 3.8 93 11c29.1-7.2 60.4 11 93 11s63.9-3.8 93-11c29.1-7.2 60.4-11 93-11s63.9 3.8 93 11V0H0z" fill="%231e90ff"/></svg>'); background-size:1200px 100%}
 
- @media(max-width:900px){
-   nav{display:none;}
-   .hero{grid-template-columns:1fr;}
- }
-</style>
+        /* Contact & Forms */
+        .contact-container{display:grid; grid-template-columns:1fr 1fr; gap:36px}
+        .contact-form{background:#f6f8fb; padding:25px; border-radius:8px; border:1px solid #eee}
+        .form-control{
+            font-family:'Open Sans', Arial, sans-serif;
+            font-size: 15px;
+        }
 
+        /* Footer */
+        footer{background:var(--navy); color:#fff; padding:46px 28px; margin-top:60px}
+        .footer-flex{max-width:var(--maxw); margin:0 auto; display:flex; flex-wrap:wrap; gap:36px; justify-content:space-between}
+        .footer-logo{height:86px; margin-top:16px; filter: invert(0.8) grayscale(1)} 
+        .footer-column{min-width:220px; max-width:360px}
+        .footer-column h4{margin:0 0 12px; color:#fff}
+        .footer-column p, .footer-column li{color:#d6d6d6; font-size:14px}
+        .footer-column a{color:#d6d6d6; text-decoration:none; transition: color .2s;}
+        .footer-column a:hover{color: var(--gold);}
+
+        /* Media Queries - Responsiveness */
+        @media(max-width:1100px){
+            .hero .inner{grid-template-columns:1fr 1fr; gap:30px;}
+        }
+
+        @media(max-width:980px){
+            nav{display:none}
+            header{padding:0 18px}
+            .contact-mini{display: none;}
+            .hero .inner{grid-template-columns:1fr; padding:40px 18px; text-align: center;}
+            .hero h2 {font-size: 38px;}
+            .cta-group{justify-content: center;}
+            .section h2{font-size: 32px;}
+            .contact-container{grid-template-columns:1fr}
+            .client-logo{max-width:110px}
+            .container-ship{width:160px}
+            .footer-flex{justify-content: center;}
+        }
+
+        @media(max-width:560px){
+            header{padding:0 14px; height: 70px;}
+            .brand img{height:44px}
+            .hero h2{font-size:28px}
+            .hero p{font-size:15px}
+            .quick-card{padding:16px}
+            .hero .inner{padding:36px 12px}
+            .btn{padding: 10px 18px; font-size: 14px;}
+            .cta-group {flex-direction: column; gap: 10px;}
+        }
+
+        /* animations */
+        @keyframes float { 0%{transform:translateY(0) translateX(0)}25%{transform:translateY(-18px) translateX(10px)}50%{transform:translateY(-8px) translateX(18px)}75%{transform:translateY(-12px) translateX(8px)}100%{transform:translateY(0) translateX(0)}}
+        .floating{animation:float 14s ease-in-out infinite}
+    </style>
 </head>
-
 <body>
 
 <header>
-  <div style="display:flex;align-items:center;gap:16px">
-    <img src="data:image/png;base64,{{HAFEN_BASE64}}" alt="Hafen Logo">
-    <div style="font-size:14px;color:#666;font-weight:700">HAFEN CONSOLIDATORS</div>
-  </div>
+    <div class="brand">
+        <img src="data:image/png;base64,{{HAFEN_BASE64}}" alt="Hafen Consolidators Logo">
+        <div class="title">HAFEN CONSOLIDATORS</div>
+    </div>
 
-  <nav>
-    <a href="#home">Home</a>
-    <a href="#services">Services</a>
-    <a href="#cases">Cases</a>
-    <a href="#hubs">Global Hubs</a>
-    <a href="#about">About</a>
-    <a href="#contact">Contact</a>
-  </nav>
+    <nav aria-label="Main Navigation">
+        <a href="#home">Home</a>
+        <a href="#services">Services</a>
+        <a href="#portfolio">Portfolio</a>
+        <a href="#cases">Case Studies</a>
+        <a href="#hubs">Global Hubs</a>
+        <a href="#about">About</a>
+        <a href="#careers">Careers</a>
+        <a href="#contact">Contact</a>
+    </nav>
 
-  <div style="text-align:right;font-size:14px;color:#222">
-    <strong>+44 7594 716370</strong><br>
-    contact@hafenconsolidators.com
-  </div>
+    <div class="contact-mini">
+        <strong>+44 7594 716370</strong><br>
+        contact@hafenconsolidators.com
+    </div>
 </header>
 
+<section id="home" class="hero" aria-label="Global Freight Solutions Hero">
+    <div class="inner">
+        <div>
+            <h2>Global Freight, NVOCC & Advanced Supply Chain Solutions</h2>
+            <p>
+                Delivering precision-driven international logistics, consolidation, air & ocean freight, cross-trade routing and global trading support for micro, small and medium enterprises — with technology, reliability and British-standard service excellence.
+            </p>
+            <div class="cta-group">
+                <a class="btn btn-primary" href="#contact">Request Quote</a>
+                <a class="btn btn-ghost" href="#services">Explore Our Services</a>
+            </div>
+        </div>
 
-<main id="home">
-
-<section class="hero">
-  <div>
-    <h1>Global Freight, NVOCC & International Trading</h1>
-    <p>Worldwide cargo movement with precision consolidation, air & ocean freight, cross-trade routing and international trading support for micro, small and medium companies.</p>
-
-    <div style="margin-top:22px;display:flex;gap:16px">
-      <a class="btn primary" href="#contact">Request Quote</a>
-      <a class="btn ghost" href="#services">Our Services</a>
-    </div>
-  </div>
-
-  <div class="card">
-    <h3 style="margin-top:0;color:var(--navy)">Quick Facts</h3>
-    <ul style="padding-left:20px;color:var(--muted);font-size:15px;line-height:1.5">
-      <li>HQ: Guayaquil, Ecuador</li>
-      <li>International Hotline: +44 7594 716370</li>
-      <li>Global Freight • Trading • NVOCC • Cross-Trade</li>
-    </ul>
-  </div>
-</section>
-
-
-<section id="services" class="section">
-  <h2>Services</h2>
-</section>
-
-<div class="grid">
-  <div class="card"><h3>Ocean Freight (LCL/FCL)</h3><p>Smart routing and global consolidation.</p></div>
-  <div class="card"><h3>Air Freight</h3><p>Priority cargo delivery worldwide.</p></div>
-  <div class="card"><h3>Warehousing</h3><p>Bonded facilities, inventory control and distribution.</p></div>
-  <div class="card"><h3>Trading & Sourcing</h3><p>International procurement and compliance.</p></div>
-  <div class="card"><h3>Cross-Trade Operations</h3><p>Third-country shipments with confidentiality.</p></div>
-  <div class="card"><h3>Supplier Consolidation</h3><p>Multi-factory weekly freight integration.</p></div>
-</div>
-
-
-<section id="cases" class="section">
-  <h2>Case Studies</h2>
-</section>
-
-<div class="grid">
-
-  <div class="card">
-    <h3>Spare Parts Global</h3>
-    <p>5.4 tons/month — China → Panama → Brazil — Lead-time 17→9 days — Stockouts −41% — Multi-supplier air + ocean mix.</p>
-  </div>
-
-  <div class="card">
-    <h3>FreshHarvest Premium</h3>
-    <p>Reefer LCL — Ecuador → Rotterdam — Spoilage 4.7%→1.1% — Transit 24→17 days — Cold-chain integrity 99.2%.</p>
-  </div>
-
-  <div class="card">
-    <h3>ElectroNova Components</h3>
-    <p>Cross-trade Shenzhen → Mexico → Chile — Freight cost −14% — Customs pre-clearance — JIT reliability 99.8%.</p>
-  </div>
-
-  <div class="card">
-    <h3>ModaExpress LATAM</h3>
-    <p>Garments consolidation — Vietnam → Bogotá — Volume efficiency +32% — Bookings weekly — Peak season stability.</p>
-  </div>
-
-  <div class="card">
-    <h3>HeavyMach Solutions</h3>
-    <p>Machinery parts — India → Paraguay — OOG handling — Insurance optimization — Delays −52%.</p>
-  </div>
-
-</div>
-
-
-<section id="hubs" class="section">
-  <h2>Global Hubs</h2>
-
-  <div class="card">
-    <p><strong>Nicaragua</strong> — Centro Comercial Novacentro, Torre Nova 2, Piso 9.</p>
-    <p><strong>Honduras</strong> — Torre Nova 2, Piso 11, Tegucigalpa.</p>
-    <p><strong>Cuba</strong> — 20 Genesis Close, George Town KY1-1208.</p>
-    <p><strong>Dominican Republic</strong> — Rafael Augusto Sanchez Nº 86, Santo Domingo.</p>
-    <p><strong>Peru</strong> — Av. Miguel Grau 709, Lima.</p>
-    <p><strong>Taiwan</strong> — Shin Liang Center, Taichung.</p>
-    <p><strong>Philippines</strong> — East Bloc Building 1, Tagbilaran City.</p>
-    <p><strong>Canada</strong> — Edmonton T5K 2P7.</p>
-    <p><strong>USA</strong> — North Miami 33181.</p>
-    <p><strong>Saudi Arabia</strong> — Jeddah 23412.</p>
-    <p><strong>Pakistan</strong> — Karachi 75500.</p>
-    <p><strong>Tajikistan</strong> — Dushanbe 734000.</p>
-    <p><strong>Lithuania</strong> — Vilnius 01103.</p>
-    <p><strong>Estonia / Latvia</strong> — Skanstes iela 25, Riga.</p>
-    <p><strong>Ukraine</strong> — Kyiv 04112.</p>
-    <p><strong>Slovenia</strong> — Ljubljana 1000.</p>
-    <p><strong>Bulgaria</strong> — Plovdiv 4000.</p>
-    <p><strong>Oman</strong> — Duqm 006.</p>
-  </div>
-</section>
-
-
-<section id="about" class="section">
-  <h2>About Us</h2>
-  <p style="max-width:900px;color:var(--muted)">
-    Hafen Consolidators is an independent NVOCC & International Trading company headquartered in Guayaquil, Ecuador, providing integrated freight forwarding, sourcing, consolidation and cross-trade logistics solutions for global businesses.
-  </p>
-</section>
-
-
-<section id="contact" class="section">
-  <h2>Contact</h2>
-
-  <div class="grid">
-    <div class="card">
-      <h3>Contact</h3>
-      <p><strong>Phone:</strong> +44 7594 716370<br>
-         <strong>Email:</strong> contact@hafenconsolidators.com</p>
+        <aside class="quick-card" aria-label="Quick Facts Summary">
+            <h3>Quick Facts</h3>
+            <ul>
+                <li><strong>HQ:</strong> Guayaquil, Ecuador</li>
+                <li><strong>International Hotline:</strong> +44 7594 716370</li>
+                <li>**Core:** Global Freight • Trading • NVOCC • Cross-Trade</li>
+            </ul>
+        </aside>
     </div>
 
-    <div class="card">
-      <h3>HQ — Ecuador</h3>
-      <p>
-        Francisco de Icaza 437, C 1 NE<br>
-        Guayaquil 090313 — Ecuador
-      </p>
-    </div>
-  </div>
+    <div style="position:absolute; right:6%; top:10%; font-size:38px; opacity:0.08;" class="floating" aria-hidden="true"><i class="fas fa-ship"></i></div>
+    <div style="position:absolute; left:6%; bottom:12%; font-size:40px; opacity:0.06;" class="floating" aria-hidden="true"><i class="fas fa-plane"></i></div>
 </section>
 
-</main>
+<section id="services" class="section" aria-label="Our Services">
+    <div class="section-header">
+        <h2>Our Services</h2>
+        <p class="lead">Comprehensive logistics solutions tailored for international trade: consolidation, customs, warehousing and end-to-end supply chain management.</p>
+    </div>
 
+    <div class="grid container">
+        <article class="card"><h3>Ocean Freight (LCL/FCL)</h3><p>Smart routing, consolidated loads and full-container options with global coverage.</p></article>
+        <article class="card"><h3>Air Freight</h3><p>Priority air cargo services with time-definite options and premium handling.</p></article>
+        <article class="card"><h3>Warehousing & Distribution</h3><p>Bonded facilities, inventory control and regional distribution networks.</p></article>
+        <article class="card"><h3>Trading & Sourcing</h3><p>International procurement, supplier consolidation and regulatory compliance support.</p></article>
+        <article class="card"><h3>Cross-Trade Operations</h3><p>Confidential third-country shipments with efficient routing and documentation.</p></article>
+        <article class="card"><h3>Supplier Consolidation</h3><p>Weekly multi-factory consolidation services to reduce costs and lead-times.</p></article>
+        <article class="card"><h3>Customs Clearance</h3><p>Pre-clearance and customs brokerage for rapid border transit.</p></article>
+        <article class="card"><h3>Insurance & Risk Management</h3><p>Freight insurance optimisation and cargo risk mitigation.</p></article>
+    </div>
+</section>
+
+<section id="portfolio" class="section" aria-label="Selected Operations Portfolio">
+    <div class="section-header">
+        <h2>Portfolio</h2>
+        <p class="lead">Selected operations and capabilities demonstrating our end-to-end logistics expertise.</p>
+    </div>
+
+    <div class="portfolio-grid container">
+        <article class="card">
+            <h3>Maritime & Consolidation</h3>
+            <p>Consolidation lanes across Asia, Europe and the Americas with real-time tracking and route optimisation.</p>
+        </article>
+
+        <article class="card">
+            <h3>Air Express Movements</h3>
+            <p>Priority airfreight for critical parts and seasonal inventory replenishment.</p>
+        </article>
+
+        <article class="card">
+            <h3>Cold Chain & Reefers</h3>
+            <p>Temperature-controlled handling preserving integrity across origin-to-destination transit.</p>
+        </article>
+    </div>
+</section>
+
+<section id="clients" aria-label="Our Global Clients">
+    <div class="container section-header">
+        <h2>Our Partners & Clients</h2>
+        <p class="lead">Trusted by businesses globally for reliable and cost-effective logistics.</p>
+    </div>
+
+    <div class="clients-grid container">
+        <img class="client-logo" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 100'><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-family='Arial' font-size='20' fill='#d4af37'>Client A</text></svg>" alt="Global Client Logo A">
+        <img class="client-logo" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 100'><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-family='Arial' font-size='20' fill='#d4af37'>Client B</text></svg>" alt="Global Client Logo B">
+        <img class="client-logo" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 100'><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-family='Arial' font-size='20' fill='#d4af37'>Client C</text></svg>" alt="Global Client Logo C">
+        <img class="client-logo" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 100'><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-family='Arial' font-size='20' fill='#d4af37'>Client D</text></svg>" alt="Global Client Logo D">
+        <img class="client-logo" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 100'><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-family='Arial' font-size='20' fill='#d4af37'>Client E</text></svg>" alt="Global Client Logo E">
+        <img class="client-logo" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 100'><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-family='Arial' font-size='20' fill='#d4af37'>Client F</text></svg>" alt="Global Client Logo F">
+    </div>
+</section>
+
+<section id="cases" class="section" aria-label="Client Case Studies">
+    <div class="section-header">
+        <h2>Case Studies</h2>
+        <p class="lead">Real client outcomes achieved through smarter consolidation and route planning.</p>
+    </div>
+
+    <div class="grid container">
+        <article class="card">
+            <h3>Spare Parts Global</h3>
+            <p>5.4 tonnes/month — China → Panama → Brazil — Lead-time reduced **17→9 days** — Stockouts **−41%** — Multi-supplier air + ocean solution.</p>
+        </article>
+
+        <article class="card">
+            <h3>FreshHarvest Premium</h3>
+            <p>Reefer LCL — Ecuador → Rotterdam — Spoilage **4.7%→1.1%** — Transit **24→17 days** — Cold-chain integrity **99.2%**.</p>
+        </article>
+
+        <article class="card">
+            <h3>ElectroNova Components</h3>
+            <p>Cross-trade Shenzhen → Mexico → Chile — Freight cost **−14%** — Customs pre-clearance — JIT reliability **99.8%**.</p>
+        </article>
+
+        <article class="card">
+            <h3>ModaExpress LATAM</h3>
+            <p>Garments consolidation — Vietnam → Bogotá — Volume efficiency **+32%** — Weekly bookings — Peak stability.</p>
+        </article>
+
+        <article class="card">
+            <h3>HeavyMach Solutions</h3>
+            <p>Machinery parts — India → Paraguay — OOG handling — Insurance optimisation — Delays **−52%**.</p>
+        </article>
+    </div>
+</section>
+
+<section id="hubs" class="section" aria-label="Our Global Hub Locations">
+    <div class="section-header">
+        <h2>Global Hubs</h2>
+        <p class="lead">Strategic offices and partner hubs supporting worldwide operations.</p>
+    </div>
+
+    <div class="card container">
+        <p><strong>Nicaragua</strong> — Centro Comercial Novacentro, Torre Nova 2, Piso 9.</p>
+        <p><strong>Honduras</strong> — Torre Nova 2, Piso 11, Tegucigalpa.</p>
+        <p><strong>Cuba</strong> — 20 Genesis Close, George Town KY1-1208.</p>
+        <p><strong>Dominican Republic</strong> — Rafael Augusto Sanchez Nº 86, Santo Domingo.</p>
+        <p><strong>Peru</strong> — Av. Miguel Grau 709, Lima.</p>
+        <p><strong>Taiwan</strong> — Shin Liang Center, Taichung.</p>
+        <p><strong>Philippines</strong> — East Bloc Building 1, Tagbilaran City.</p>
+        <p><strong>Canada</strong> — Edmonton T5K 2P7.</p>
+        <p><strong>USA</strong> — North Miami 33181.</p>
+        <p><strong>Saudi Arabia</strong> — Jeddah 23412.</p>
+        <p><strong>Pakistan</strong> — Karachi 75500.</p>
+        <p><strong>Tajikistan</strong> — Dushanbe 734000.</p>
+        <p><strong>Lithuania</strong> — Vilnius 01103.</p>
+        <p><strong>Estonia / Latvia</strong> — Skanstes iela 25, Riga.</p>
+        <p><strong>Ukraine</strong> — Kyiv 04112.</p>
+        <p><strong>Slovenia</strong> — Ljubljana 1000.</p>
+        <p><strong>Bulgaria</strong> — Plovdiv 4000.</p>
+        <p><strong>Oman</strong> — Duqm 006.</p>
+    </div>
+</section>
+
+<section id="about" class="section" aria-label="About Hafen Consolidators">
+    <div class="section-header">
+        <h2>About Us</h2>
+        <p class="lead">Independent NVOCC & International Trading company with integrated freight forwarding, sourcing and consolidation solutions.</p>
+    </div>
+
+    <div class="grid container" style="align-items:center;">
+        <article class="card">
+            <h3>Hafen Consolidators</h3>
+            <p>
+                Hafen Consolidators is an independent NVOCC & International Trading company headquartered in Guayaquil, Ecuador. We provide integrated freight forwarding, sourcing, consolidation and cross-trade logistics solutions for global businesses — focused on micro, small and medium enterprises seeking reliable, cost-effective trade routes.
+            </p>
+            <p style="color:var(--muted)"><strong>Core capabilities:</strong> Consolidation, cross-trade routing, customs pre-clearance, bonded warehousing and supplier consolidation.</p>
+        </article>
+
+        <article class="card">
+            <h3>Our Approach</h3>
+            <p>
+                We combine hands-on operations experience with technology-driven planning — route optimisation, transparent documentation and trusted global partnerships — to reduce lead times and total landed cost while improving service reliability.
+            </p>
+            <p style="color:var(--muted)"><strong>Our promise:</strong> practical, measurable improvements for customers trading internationally.</p>
+        </article>
+    </div>
+</section>
+
+<section id="animations" class="animations-section" aria-label="Interactive Logistics Map">
+    <div class="section-header" style="padding-top:8px;">
+        <h2>Interactive Logistics Animations</h2>
+        <p class="lead">Move your cursor or touch the screen to guide our ship and plane across the interactive map area.</p>
+    </div>
+
+    <div class="container">
+        <div class="animation-area" id="animationArea">
+            <div class="map-background"></div>
+
+            <div class="interactive-element container-ship" id="containerShip">
+                <div class="ship-body"></div>
+                <div class="ship-deck"></div>
+                <div class="ship-containers">
+                    <div class="ship-container" aria-label="Container 1"></div>
+                    <div class="ship-container" aria-label="Container 2"></div>
+                    <div class="ship-container" aria-label="Container 3"></div>
+                    <div class="ship-container" aria-label="Container 4"></div>
+                </div>
+            </div>
+
+            <div class="interactive-element cargo-plane" id="cargoPlane">
+                <div class="plane-body"></div>
+                <div class="plane-wing"></div>
+                <div class="plane-tail"></div>
+                <div class="plane-windows" aria-hidden="true">
+                    <div class="plane-window"></div>
+                    <div class="plane-window"></div>
+                    <div class="plane-window"></div>
+                    <div class="plane-window"></div>
+                </div>
+            </div>
+
+            <div class="water" aria-hidden="true"><div class="wave"></div><div class="wave"></div></div>
+        </div>
+
+        <div style="text-align:center; margin-top:14px; color:var(--muted)">Move or touch to interact with the ship and plane</div>
+    </div>
+</section>
+
+<section id="contact" class="section" aria-label="Contact and Quote Request">
+    <div class="section-header">
+        <h2>Contact</h2>
+        <p class="lead">Get in touch with our team for quotes, partnerships or operations support.</p>
+    </div>
+
+    <div class="container">
+        <div class="contact-container">
+            <div>
+                <article class="card">
+                    <h3>Contact Information</h3>
+                    <p><strong>Phone:</strong> +44 7594 716370<br>
+                        <strong>Email:</strong> contact@hafenconsolidators.com</p>
+
+                    <hr style="border:none;border-top:1px solid #eee;margin:12px 0">
+
+                    <h4 style="margin:0 0 8px">Head Office — Ecuador</h4>
+                    <address>Francisco de Icaza 437, C 1 NE<br>Guayaquil 090313 — Ecuador</address>
+                </article>
+
+                <article style="margin-top:24px" class="card">
+                    <h3>Quick Hotline</h3>
+                    <p>If you need immediate support for shipments, please call our international hotline: **+44 7594 716370**.</p>
+                </article>
+            </div>
+
+            <div class="contact-form card">
+                <h3>Request a Quote</h3>
+                <form id="contactForm" novalidate>
+                    <div style="display:flex; gap:10px; margin-bottom:12px;">
+                        <input type="text" id="name" name="name" placeholder="Name" required class="form-control" style="flex:1; padding:10px; border-radius:6px; border:1px solid #ddd">
+                        <input type="email" id="email" name="email" placeholder="Email" required class="form-control" style="flex:1; padding:10px; border-radius:6px; border:1px solid #ddd">
+                    </div>
+
+                    <div style="margin-bottom:12px;">
+                        <input type="text" id="subject" name="subject" placeholder="Subject (e.g., Ocean Freight Quote)" required class="form-control" style="width:100%; padding:10px; border-radius:6px; border:1px solid #ddd">
+                    </div>
+
+                    <div style="margin-bottom:12px;">
+                        <textarea id="message" name="message" placeholder="Message/Shipment Details" required class="form-control" style="width:100%; padding:12px; min-height:120px; border-radius:6px; border:1px solid #ddd"></textarea>
+                    </div>
+
+                    <div style="text-align:right;">
+                        <button type="submit" class="btn btn-primary">Send Message</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="careers" class="section" aria-label="Careers at Hafen Consolidators">
+    <div class="section-header">
+        <h2>Join Our Team</h2>
+        <p class="lead">Careers at Hafen Consolidators — global roles with real impact.</p>
+    </div>
+
+    <div class="container">
+        <div class="contact-container">
+            <article class="card">
+                <h3>Why work with us?</h3>
+                <ul style="margin-left:18px; color:var(--muted); line-height:1.8">
+                    <li>Competitive compensation and benefits</li>
+                    <li>Global career opportunities</li>
+                    <li>Technology training and innovation culture</li>
+                    <li>Inclusive, diverse and supportive environment</li>
+                    <li>Professional growth and mobility</li>
+                </ul>
+
+                <div style="margin-top:16px">
+                    <h4 style="margin-bottom:6px">Current openings</h4>
+                    <p style="color:var(--muted)">Inside Sales Export • Regional Consultant • Coordinator Global Logistics • Operations Assistant • European Business Developer • Asian Business Developer</p>
+                </div>
+            </article>
+
+            <div class="contact-form card">
+                <h3>Submit Your Application</h3>
+                <form id="careerForm" novalidate>
+                    <div style="margin-bottom:10px;"><input type="text" id="candidateName" name="candidateName" placeholder="Full name" required class="form-control" style="width:100%; padding:10px; border-radius:6px; border:1px solid #ddd"></div>
+                    <div style="margin-bottom:10px;"><input type="email" id="candidateEmail" name="candidateEmail" placeholder="Email" required class="form-control" style="width:100%; padding:10px; border-radius:6px; border:1px solid #ddd"></div>
+                    <div style="margin-bottom:10px;"><input type="text" id="position" name="position" placeholder="Position applied for" required class="form-control" style="width:100%; padding:10px; border-radius:6px; border:1px solid #ddd"></div>
+                    <div style="margin-bottom:10px;"><textarea id="coverLetter" name="coverLetter" placeholder="Cover letter" required class="form-control" style="width:100%; padding:12px; min-height:100px; border-radius:6px; border:1px solid #ddd"></textarea></div>
+                    <div style="margin-bottom:10px;">
+                        <label for="resume" style="font-size:13px;color:#666">Upload CV (PDF, DOCX)</label>
+                        <input type="file" id="resume" name="resume" accept=".pdf,.doc,.docx" class="form-control" style="display:block; margin-top:6px; border: none; padding: 0;">
+                    </div>
+                    <div style="text-align:right"><button type="submit" class="btn btn-primary">Submit Application</button></div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
 
 <footer>
-  <div class="footer-flex">
+    <div class="footer-flex container">
+        <div class="footer-column">
+            <p style="font-weight:700; margin-bottom:8px">Hafen Consolidators</p>
+            <p>NVOCC • International Trading • Global Freight</p>
+            <p style="margin-top:8px; color:#cfcfcf">© 2025 Hafen Consolidators — All Rights Reserved</p>
+            <p style="margin-top:6px; color:#cfcfcf">A Marvera Group Company</p>
+            <img class="footer-logo" src="data:image/png;base64,{{MARVERA_BASE64}}" alt="Marvera Group Logo">
+        </div>
 
-    <div>
-      <p><strong>Hafen Consolidators</strong></p>
-      <p>NVOCC • International Trading • Global Freight</p>
-      <p>© 2025 Hafen Consolidators — All Rights Reserved</p>
-      <p>A Marvera Group Company</p>
-      <img class="footer-logo" src="data:image/png;base64,{{MARVERA_BASE64}}" alt="Marvera Group">
+        <div class="footer-column">
+            <h4>HQ — Ecuador</h4>
+            <address>Francisco de Icaza 437, C 1 NE<br>Guayaquil 090313</address>
+            <p style="margin-top:12px"><strong>Phone:</strong> +44 7594 716370</p>
+            <p><strong>Email:</strong> contact@hafenconsolidators.com</p>
+        </div>
+
+        <div class="footer-column">
+            <h4>Quick Links</h4>
+            <ul style="list-style:none; padding-left:0; margin-top:8px;">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#careers">Careers</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
     </div>
-
-    <div>
-      <p><strong>HQ — Ecuador</strong></p>
-      <p>Francisco de Icaza 437, C 1 NE<br>Guayaquil 090313</p>
-      <p><strong>Phone:</strong> +44 7594 716370</p>
-      <p><strong>Email:</strong> contact@hafenconsolidators.com</p>
-    </div>
-
-  </div>
 </footer>
+
+<div id="customCursor" style="position:fixed; width:18px; height:18px; background:var(--gold); border-radius:50%; pointer-events:none; mix-blend-mode:difference; z-index:9999; transform:translate(-50%,-50%); display:none"></div>
+
+<script>
+    // Contact form simulation
+    document.getElementById('contactForm').addEventListener('submit', function(e){
+        e.preventDefault();
+        alert('Thank you — your message has been received. We will reply shortly.');
+        this.reset();
+    });
+
+    document.getElementById('careerForm').addEventListener('submit', function(e){
+        e.preventDefault();
+        alert('Thank you for your application. We will review it and contact you if suitable.');
+        this.reset();
+    });
+
+    // Animation interactivity: ship & plane follow cursor/touch
+    (function(){
+        const animationArea = document.getElementById('animationArea');
+        const containerShip = document.getElementById('containerShip');
+        const cargoPlane = document.getElementById('cargoPlane');
+
+        if(!animationArea || !containerShip || !cargoPlane) return;
+
+        function moveToCoordinates(x, y) {
+            const rect = animationArea.getBoundingClientRect();
+            const clampedX = Math.max(20, Math.min(x - rect.left, rect.width - 60)); 
+            const clampedY = Math.max(20, Math.min(y - rect.top, rect.height - 20));
+
+            // Ship stays lower area and handles its size (200px wide)
+            const shipX = Math.max(20, Math.min(clampedX - 60, rect.width - 240)); 
+            const shipBottom = Math.max(20, rect.height - clampedY);
+
+            containerShip.style.left = shipX + 'px';
+            containerShip.style.bottom = shipBottom + 'px';
+
+            // Plane stays upper area and handles its size (180px wide)
+            const planeX = Math.max(20, Math.min(clampedX - 40, rect.width - 220)); 
+            const planeY = Math.max(10, Math.min(clampedY, rect.height * 0.45));
+
+            cargoPlane.style.left = planeX + 'px';
+            cargoPlane.style.top = planeY + 'px';
+        }
+
+        animationArea.addEventListener('mousemove', function(e){
+            moveToCoordinates(e.clientX, e.clientY);
+        });
+
+        animationArea.addEventListener('touchmove', function(e){
+            e.preventDefault();
+            const t = e.touches[0];
+            moveToCoordinates(t.clientX, t.clientY);
+        }, {passive:false});
+
+        // initialise slightly offset
+        window.addEventListener('load', function(){
+            const rect = animationArea.getBoundingClientRect();
+            const startX = rect.width * 0.35 + rect.left;
+            const startY = rect.top + rect.height * 0.6;
+            moveToCoordinates(startX, startY);
+        });
+    })();
+
+    // Simple scroll animation trigger (fade in)
+    (function(){
+        const items = document.querySelectorAll('.card');
+        items.forEach(i => { 
+            i.style.opacity = 0; 
+            i.style.transform = 'translateY(18px)'; 
+            i.style.transition = 'opacity .6s ease, transform .6s ease, box-shadow .3s ease';
+        });
+
+        function reveal(){
+            items.forEach(el => {
+                const top = el.getBoundingClientRect().top;
+                if(top < window.innerHeight - 80){
+                    el.style.opacity = 1;
+                    el.style.transform = 'translateY(0)';
+                }
+            });
+        }
+        window.addEventListener('scroll', reveal);
+        window.addEventListener('load', reveal);
+        reveal();
+    })();
+</script>
 
 </body>
 </html>

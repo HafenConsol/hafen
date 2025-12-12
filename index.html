@@ -9,6 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
 
     <style>
+        /* Base Variables */
         :root{
             --gold:#d4af37;
             --navy:#0d1b2a;
@@ -81,6 +82,67 @@
 
         .contact-mini{ text-align:right; font-size:13px; color:#222}
 
+        /* Hamburger Menu (New V2 Addition) */
+        .hamburger {
+            display: none; /* Hidden on desktop */
+            cursor: pointer;
+            width: 30px;
+            height: 21px;
+            justify-content: space-around;
+            flex-direction: column;
+            z-index: 1001;
+        }
+        .hamburger span {
+            display: block;
+            width: 100%;
+            height: 3px;
+            background-color: var(--navy);
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+        .hamburger.active span:nth-child(1) {
+            transform: translateY(9px) rotate(45deg);
+        }
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+        .hamburger.active span:nth-child(3) {
+            transform: translateY(-9px) rotate(-45deg);
+        }
+
+        /* Mobile Nav (New V2 Addition) */
+        .mobile-nav {
+            display: none;
+            position: fixed;
+            top: 88px; /* Below header */
+            left: 0;
+            width: 100%;
+            height: calc(100vh - 88px);
+            background: rgba(255, 255, 255, 0.95);
+            z-index: 999;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 40px;
+            overflow-y: auto;
+        }
+        .mobile-nav.open {
+            display: flex;
+        }
+        .mobile-nav a {
+            padding: 15px 20px;
+            font-size: 1.2rem;
+            color: var(--navy);
+            text-decoration: none;
+            width: 80%;
+            text-align: center;
+            border-bottom: 1px solid #eee;
+            transition: background 0.2s;
+        }
+        .mobile-nav a:hover {
+            background: var(--light-bg);
+            color: var(--gold);
+        }
+        
         /* Hero */
         .hero{
             min-height:100vh; 
@@ -101,9 +163,11 @@
             gap:48px;
             align-items:center;
         }
-        .hero h2{font-size:48px; margin:0 0 16px}
-        .hero p{color:var(--muted); font-size:17px; max-width:680px}
+        .hero h2{font-size:48px; margin:0 0 16px; opacity: 0; /* For fadeInUp */}
+        .hero p{color:var(--muted); font-size:17px; max-width:680px; opacity: 0; /* For fadeInUp */}
         .cta-group{margin-top:30px; display:flex; gap:14px}
+        .cta-group a {opacity: 0; /* For fadeInUp */}
+
 
         .quick-card{
             background:#fff; 
@@ -144,11 +208,11 @@
         .card:hover { transform: translateY(-3px); box-shadow:0 10px 30px rgba(0,0,0,0.08); }
         .card h3{margin-top:0; color:var(--navy)}
         .card p{color:var(--muted)}
+        .card i.fas {color: var(--gold); margin-right: 10px;}
 
         /* Clients Section */
         #clients { background: var(--light-bg); padding: 60px 0; margin: 0 auto;}
         .clients-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:28px; align-items:center; justify-content:center; padding: 0 28px;}
-        /* Added client logo styles */
         .client-logo{
             max-width:140px; 
             filter:grayscale(100%); 
@@ -156,7 +220,7 @@
             transition:all .25s; 
             display: block; 
             margin: 0 auto;
-            height: auto; /* Ensure aspect ratio is maintained */
+            height: auto; 
         }
         .client-logo:hover{filter:none; opacity:1}
 
@@ -165,9 +229,17 @@
 
         /* Animations area */
         .animations-section{padding:80px 0; background:linear-gradient(135deg,#fbfdff 0%,#f1f6fb 100%); position:relative; overflow:hidden; margin-top:90px; margin-bottom:90px;}
-        .animation-area{position:relative; width:100%; height:480px; border-radius:10px; overflow:hidden; border:2px solid rgba(212,175,55,0.08); background:linear-gradient(180deg,#eaf6ff 0%,#ffffff 100%)}
+        .animation-area{position:relative; width:100%; height:480px; border-radius:10px; overflow:hidden; border:2px solid rgba(212,175,55,0.08); background:linear-gradient(180deg,#eaf6ff 0%,#ffffff 100%); cursor:none;}
         .map-background{position:absolute; inset:0; background-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><path d="M20,20 L80,20 L80,80 L20,80 Z" fill="none" stroke="%23d4af37" stroke-width="0.5" stroke-dasharray="2,2"/></svg>'); background-size:220px 220px; opacity:0.12}
 
+        /* Interactive Elements */
+        .interactive-element {
+            position: absolute;
+            transition: transform 0.1s linear; /* Fast transition for movement response */
+            pointer-events: none; /* Ignore mouse for interaction */
+            will-change: transform; /* Performance optimization */
+        }
+        
         .container-ship{position:absolute; bottom:18%; left:20%; width:200px; height:50px; transform-origin:center; z-index:10}
         .ship-body{position:absolute;width:100%;height:100%; background:linear-gradient(to bottom,#34495e,#2c3e50); border-radius:10px 40px 10px 10px}
         .ship-deck{position:absolute; top:-30px; left:10px; width:180px; height:30px; background:#34495e; border-radius:5px 5px 0 0}
@@ -182,7 +254,16 @@
         .plane-window{width:10px; height:10px; background:#fff; border-radius:50%}
 
         .water{position:absolute; bottom:0; left:0; width:100%; height:26%; background:linear-gradient(to bottom,transparent 0%,#1e90ff 100%); z-index:1}
-        .wave{position:absolute; bottom:0; left:0; width:100%; height:24px; background-image:url('data:image/svg+xml;utf8,<svg viewBox="0 0 1200 120" xmlns="http://www.w3.org/2000/svg"><path d="M0 0v46c29.1-7.2 60.4-11 93-11s63.9 3.8 93 11c29.1 7.2 60.4 11 93 11s63.9-3.8 93-11c29.1-7.2 60.4-11 93-11s63.9 3.8 93 11c29.1-7.2 60.4 11 93 11s63.9-3.8 93-11c29.1-7.2 60.4-11 93-11s63.9 3.8 93 11V0H0z" fill="%231e90ff"/></svg>'); background-size:1200px 100%}
+        .wave{
+            position:absolute; bottom:0; left:0; width:2400px; height:24px; 
+            background-image:url('data:image/svg+xml;utf8,<svg viewBox="0 0 1200 120" xmlns="http://www.w3.org/2000/svg"><path d="M0 0v46c29.1-7.2 60.4-11 93-11s63.9 3.8 93 11c29.1 7.2 60.4 11 93 11s63.9-3.8 93-11c29.1-7.2 60.4-11 93-11s63.9 3.8 93 11c29.1-7.2 60.4 11 93 11s63.9-3.8 93-11c29.1-7.2 60.4-11 93-11s63.9 3.8 93 11V0H0z" fill="%231e90ff"/></svg>'); 
+            background-size:1200px 100%;
+            animation: wave 12s linear infinite; /* Added wave animation */
+        }
+        .wave:nth-child(2) {
+            animation-delay: -6s; /* Offset second wave */
+            opacity: 0.7;
+        }
 
         /* Contact & Forms */
         .contact-container{display:grid; grid-template-columns:1fr 1fr; gap:36px}
@@ -202,13 +283,46 @@
         .footer-column a{color:#d6d6d6; text-decoration:none; transition: color .2s;}
         .footer-column a:hover{color: var(--gold);}
 
-        /* Media Queries - Responsiveness */
+        /* Animations Keyframes (Completed) */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes float { 
+            0%{transform:translateY(0) translateX(0)}
+            25%{transform:translateY(-18px) translateX(10px)}
+            50%{transform:translateY(-8px) translateX(18px)}
+            75%{transform:translateY(-12px) translateX(8px)}
+            100%{transform:translateY(0) translateX(0)}
+        }
+        .floating{animation:float 14s ease-in-out infinite}
+        @keyframes wave {
+            from { background-position-x: 0; }
+            to { background-position-x: -1200px; } /* Corrected direction for continuous scroll */
+        }
+
+        /* Custom Cursor Style */
+        .custom-cursor {
+            position: fixed;
+            width: 18px;
+            height: 18px;
+            background: var(--gold);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%,-50%);
+            transition: transform 0.1s ease, width 0.1s ease, height 0.1s ease;
+            mix-blend-mode: difference;
+        }
+
+        /* ========== RESPONSIVE DESIGN ========== */
         @media(max-width:1100px){
             .hero .inner{grid-template-columns:1fr 1fr; gap:30px;}
         }
 
         @media(max-width:980px){
-            nav{display:none}
+            nav{display:none} /* Hide desktop nav */
+            .hamburger{display:flex} /* Show hamburger button */
             header{padding:0 18px}
             .contact-mini{display: none;}
             .hero .inner{grid-template-columns:1fr; padding:40px 18px; text-align: center;}
@@ -223,6 +337,7 @@
 
         @media(max-width:560px){
             header{padding:0 14px; height: 70px;}
+            .mobile-nav {top: 70px; height: calc(100vh - 70px);}
             .brand img{height:44px}
             .hero h2{font-size:28px}
             .hero p{font-size:15px}
@@ -231,10 +346,6 @@
             .btn{padding: 10px 18px; font-size: 14px;}
             .cta-group {flex-direction: column; gap: 10px;}
         }
-
-        /* animations */
-        @keyframes float { 0%{transform:translateY(0) translateX(0)}25%{transform:translateY(-18px) translateX(10px)}50%{transform:translateY(-8px) translateX(18px)}75%{transform:translateY(-12px) translateX(8px)}100%{transform:translateY(0) translateX(0)}}
-        .floating{animation:float 14s ease-in-out infinite}
     </style>
 </head>
 <body>
@@ -255,23 +366,40 @@
         <a href="#careers">Careers</a>
         <a href="#contact">Contact</a>
     </nav>
-
+    
     <div class="contact-mini">
         <strong>+44 7594 716370</strong><br>
         contact@hafenconsolidators.com
     </div>
+
+    <div class="hamburger" id="hamburgerButton">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
 </header>
+
+<div class="mobile-nav" id="mobileNavMenu">
+    <a href="#home">Home</a>
+    <a href="#services">Services</a>
+    <a href="#portfolio">Portfolio</a>
+    <a href="#cases">Case Studies</a>
+    <a href="#hubs">Global Hubs</a>
+    <a href="#about">About</a>
+    <a href="#careers">Careers</a>
+    <a href="#contact">Contact</a>
+</div>
 
 <section id="home" class="hero" aria-label="Global Freight Solutions Hero">
     <div class="inner">
         <div>
-            <h2>Global Freight, NVOCC & Advanced Supply Chain Solutions</h2>
-            <p>
+            <h2 style="animation: fadeInUp 1s ease forwards 0.3s;">Global Freight, NVOCC & Advanced Supply Chain Solutions</h2>
+            <p style="animation: fadeInUp 1s ease forwards 0.6s;">
                 Delivering precision-driven international logistics, consolidation, air & ocean freight, cross-trade routing and global trading support for micro, small and medium enterprises — with technology, reliability and British-standard service excellence.
             </p>
             <div class="cta-group">
-                <a class="btn btn-primary" href="#contact">Request Quote</a>
-                <a class="btn btn-ghost" href="#services">Explore Our Services</a>
+                <a class="btn btn-primary" href="#contact" style="animation: fadeInUp 1s ease forwards 0.9s;">Request Quote</a>
+                <a class="btn btn-ghost" href="#services" style="animation: fadeInUp 1s ease forwards 1.1s;">Explore Our Services</a>
             </div>
         </div>
 
@@ -296,14 +424,14 @@
     </div>
 
     <div class="grid container">
-        <article class="card"><h3>Ocean Freight (LCL/FCL)</h3><p>Smart routing, consolidated loads and full-container options with global coverage.</p></article>
-        <article class="card"><h3>Air Freight</h3><p>Priority air cargo services with time-definite options and premium handling.</p></article>
-        <article class="card"><h3>Warehousing & Distribution</h3><p>Bonded facilities, inventory control and regional distribution networks.</p></article>
-        <article class="card"><h3>Trading & Sourcing</h3><p>International procurement, supplier consolidation and regulatory compliance support.</p></article>
-        <article class="card"><h3>Cross-Trade Operations</h3><p>Confidential third-country shipments with efficient routing and documentation.</p></article>
-        <article class="card"><h3>Supplier Consolidation</h3><p>Weekly multi-factory consolidation services to reduce costs and lead-times.</p></article>
-        <article class="card"><h3>Customs Clearance</h3><p>Pre-clearance and customs brokerage for rapid border transit.</p></article>
-        <article class="card"><h3>Insurance & Risk Management</h3><p>Freight insurance optimisation and cargo risk mitigation.</p></article>
+        <article class="card"><h3><i class="fas fa-ship"></i> Ocean Freight (LCL/FCL)</h3><p>Smart routing, consolidated loads and full-container options with global coverage.</p></article>
+        <article class="card"><h3><i class="fas fa-plane-departure"></i> Air Freight</h3><p>Priority air cargo services with time-definite options and premium handling.</p></article>
+        <article class="card"><h3><i class="fas fa-warehouse"></i> Warehousing & Distribution</h3><p>Bonded facilities, inventory control and regional distribution networks.</p></article>
+        <article class="card"><h3><i class="fas fa-handshake"></i> Trading & Sourcing</h3><p>International procurement, supplier consolidation and regulatory compliance support.</p></article>
+        <article class="card"><h3><i class="fas fa-route"></i> Cross-Trade Operations</h3><p>Confidential third-country shipments with efficient routing and documentation.</p></article>
+        <article class="card"><h3><i class="fas fa-box-open"></i> Supplier Consolidation</h3><p>Weekly multi-factory consolidation services to reduce costs and lead-times.</p></article>
+        <article class="card"><h3><i class="fas fa-passport"></i> Customs Clearance</h3><p>Pre-clearance and customs brokerage for rapid border transit.</p></article>
+        <article class="card"><h3><i class="fas fa-shield-alt"></i> Insurance & Risk Management</h3><p>Freight insurance optimisation and cargo risk mitigation.</p></article>
     </div>
 </section>
 
@@ -436,7 +564,7 @@
 
 <section id="animations" class="animations-section" aria-label="Interactive Logistics Map">
     <div class="section-header" style="padding-top:8px;">
-        <h2>Interactive Logistics Animations</h2>
+        <h2>Interactive Logistics Map</h2>
         <p class="lead">Move your cursor or touch the screen to guide our ship and plane across the interactive map area.</p>
     </div>
 
@@ -467,7 +595,10 @@
                 </div>
             </div>
 
-            <div class="water" aria-hidden="true"><div class="wave"></div><div class="wave"></div></div>
+            <div class="water" aria-hidden="true">
+                <div class="wave"></div>
+                <div class="wave"></div>
+            </div>
         </div>
 
         <div style="text-align:center; margin-top:14px; color:var(--muted)">Move or touch to interact with the ship and plane</div>
@@ -535,17 +666,17 @@
         <div class="contact-container">
             <article class="card">
                 <h3>Why work with us?</h3>
-                <ul style="margin-left:18px; color:var(--muted); line-height:1.8">
-                    <li>Competitive compensation and benefits</li>
-                    <li>Global career opportunities</li>
-                    <li>Technology training and innovation culture</li>
-                    <li>Inclusive, diverse and supportive environment</li>
-                    <li>Professional growth and mobility</li>
+                <ul style="list-style:none; padding-left:0; margin-left:18px; color:var(--muted); line-height:1.8">
+                    <li><i class="fas fa-money-bill-wave"></i> Competitive compensation and benefits</li>
+                    <li><i class="fas fa-globe"></i> Global career opportunities</li>
+                    <li><i class="fas fa-laptop-code"></i> Technology training and innovation culture</li>
+                    <li><i class="fas fa-users"></i> Inclusive, diverse and supportive environment</li>
+                    <li><i class="fas fa-chart-line"></i> Professional growth and mobility</li>
                 </ul>
 
                 <div style="margin-top:16px">
                     <h4 style="margin-bottom:6px">Current openings</h4>
-                    <p style="color:var(--muted)">Inside Sales Export • Regional Consultant • Coordinator Global Logistics • Operations Assistant • European Business Developer • Asian Business Developer</p>
+                    <p style="color:var(--muted)">Inside Sales Export • Social Media and Marketing Strategy Junior • Coordinator Global Logistics • Operations Assistant • European Business Developer • Asian Business Developer</p>
                 </div>
             </article>
 
@@ -598,91 +729,113 @@
     </div>
 </footer>
 
-<div id="customCursor" style="position:fixed; width:18px; height:18px; background:var(--gold); border-radius:50%; pointer-events:none; mix-blend-mode:difference; z-index:9999; transform:translate(-50%,-50%); display:none"></div>
+<div class="custom-cursor" id="customCursor"></div>
 
 <script>
-    // Contact form simulation
-    document.getElementById('contactForm').addEventListener('submit', function(e){
-        e.preventDefault();
-        alert('Thank you — your message has been received. We will reply shortly.');
-        this.reset();
-    });
+    document.addEventListener('DOMContentLoaded', () => {
 
-    document.getElementById('careerForm').addEventListener('submit', function(e){
-        e.preventDefault();
-        alert('Thank you for your application. We will review it and contact you if suitable.');
-        this.reset();
-    });
+        // --- 1. Form Submission Handlers (Functional) ---
+        
+        // Contact form simulation
+        document.getElementById('contactForm').addEventListener('submit', function(e){
+            e.preventDefault();
+            alert('Thank you — your message has been received. We will reply shortly.');
+            this.reset();
+        });
 
-    // Animation interactivity: ship & plane follow cursor/touch
-    (function(){
+        // Career form simulation
+        document.getElementById('careerForm').addEventListener('submit', function(e){
+            e.preventDefault();
+            alert('Thank you for your application. We will review it and contact you if suitable.');
+            this.reset();
+        });
+
+        // --- 2. Mobile Navigation Toggle (Hamburger Menu) ---
+        const hamburgerButton = document.getElementById('hamburgerButton');
+        const mobileNavMenu = document.getElementById('mobileNavMenu');
+        const navLinks = mobileNavMenu.querySelectorAll('a');
+
+        function toggleMenu() {
+            hamburgerButton.classList.toggle('active');
+            mobileNavMenu.classList.toggle('open');
+            document.body.classList.toggle('no-scroll'); // Optional class to prevent background scrolling
+        }
+
+        hamburgerButton.addEventListener('click', toggleMenu);
+
+        // Close menu when a link is clicked (for better UX)
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                if (mobileNavMenu.classList.contains('open')) {
+                    toggleMenu();
+                }
+            });
+        });
+
+        // --- 3. Interactive Animation (Ship/Plane Follow Cursor/Touch) ---
         const animationArea = document.getElementById('animationArea');
         const containerShip = document.getElementById('containerShip');
         const cargoPlane = document.getElementById('cargoPlane');
-
-        if(!animationArea || !containerShip || !cargoPlane) return;
-
-        function moveToCoordinates(x, y) {
-            const rect = animationArea.getBoundingClientRect();
-            const clampedX = Math.max(20, Math.min(x - rect.left, rect.width - 60)); 
-            const clampedY = Math.max(20, Math.min(y - rect.top, rect.height - 20));
-
-            // Ship stays lower area and handles its size (200px wide)
-            const shipX = Math.max(20, Math.min(clampedX - 60, rect.width - 240)); 
-            const shipBottom = Math.max(20, rect.height - clampedY);
-
-            containerShip.style.left = shipX + 'px';
-            containerShip.style.bottom = shipBottom + 'px';
-
-            // Plane stays upper area and handles its size (180px wide)
-            const planeX = Math.max(20, Math.min(clampedX - 40, rect.width - 220)); 
-            const planeY = Math.max(10, Math.min(clampedY, rect.height * 0.45));
-
-            cargoPlane.style.left = planeX + 'px';
-            cargoPlane.style.top = planeY + 'px';
+        const customCursor = document.getElementById('customCursor');
+        
+        // Hide the custom cursor if the device is a mobile (touch device)
+        if (window.matchMedia("(hover: none)").matches) {
+            customCursor.style.display = 'none';
+        } else {
+             customCursor.style.display = 'block';
         }
 
-        animationArea.addEventListener('mousemove', function(e){
-            moveToCoordinates(e.clientX, e.clientY);
-        });
-
-        animationArea.addEventListener('touchmove', function(e){
-            e.preventDefault();
-            const t = e.touches[0];
-            moveToCoordinates(t.clientX, t.clientY);
-        }, {passive:false});
-
-        // initialise slightly offset
-        window.addEventListener('load', function(){
+        function handleMove(clientX, clientY) {
             const rect = animationArea.getBoundingClientRect();
-            const startX = rect.width * 0.35 + rect.left;
-            const startY = rect.top + rect.height * 0.6;
-            moveToCoordinates(startX, startY);
-        });
-    })();
+            
+            // Check if pointer is over the animation area
+            if (clientX >= rect.left && clientX <= rect.right && clientY >= rect.top && clientY <= rect.bottom) {
+                // Calculate position relative to the animation area (0 to 100%)
+                const areaX = clientX - rect.left;
+                const areaY = clientY - rect.top;
+                const areaW = rect.width;
+                const areaH = rect.height;
 
-    // Simple scroll animation trigger (fade in)
-    (function(){
-        const items = document.querySelectorAll('.card');
-        items.forEach(i => { 
-            i.style.opacity = 0; 
-            i.style.transform = 'translateY(18px)'; 
-            i.style.transition = 'opacity .6s ease, transform .6s ease, box-shadow .3s ease';
+                // Move Ship (follows the lower half of the area, mainly X axis)
+                // Offset by half its size (100px) and a bit up (30px)
+                const shipX = areaX - (containerShip.offsetWidth / 2);
+                const shipY = (areaH * 0.75) - (containerShip.offsetHeight / 2) + ((areaY - (areaH / 2)) * 0.2); // Gentle Y sway
+                containerShip.style.transform = `translate(${shipX}px, ${shipY}px)`;
+
+                // Move Plane (follows the upper half of the area, mainly X axis)
+                // Offset by half its size (90px)
+                const planeX = areaX - (cargoPlane.offsetWidth / 2);
+                const planeY = (areaH * 0.25) - (cargoPlane.offsetHeight / 2) + ((areaY - (areaH / 2)) * 0.4); // More noticeable Y sway
+                cargoPlane.style.transform = `translate(${planeX}px, ${planeY}px)`;
+                
+                // Move Custom Cursor
+                customCursor.style.transform = `translate(${clientX}px, ${clientY}px)`;
+            }
+        }
+        
+        // Desktop listener (Mouse move)
+        document.addEventListener('mousemove', (e) => {
+             handleMove(e.clientX, e.clientY);
         });
 
-        function reveal(){
-            items.forEach(el => {
-                const top = el.getBoundingClientRect().top;
-                if(top < window.innerHeight - 80){
-                    el.style.opacity = 1;
-                    el.style.transform = 'translateY(0)';
-                }
+        // Mobile listener (Touch move)
+        animationArea.addEventListener('touchmove', (e) => {
+            if (e.touches.length > 0) {
+                e.preventDefault(); // Prevent scrolling while touching the map
+                handleMove(e.touches[0].clientX, e.touches[0].clientY);
+            }
+        });
+        
+        // --- 4. Smooth Scrolling for Anchor Links ---
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
             });
-        }
-        window.addEventListener('scroll', reveal);
-        window.addEventListener('load', reveal);
-        reveal();
-    })();
+        });
+    });
 </script>
 
 </body>

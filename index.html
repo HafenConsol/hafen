@@ -47,7 +47,7 @@
         .fa-box-open:before { content: "\f49e"; }
         .fa-passport:before { content: "\f5ea"; }
         .fa-shield-alt:before { content: "\f3ed"; }
-        .fa-money-bill-wave:before { content: "\f53a"; }
+        .fa-money-check-dollar:before { content: "\f4c3"; } /* New icon for money */
         .fa-globe:before { content: "\f0ac"; }
         .fa-laptop-code:before { content: "\f5fc"; }
         .fa-users:before { content: "\f0c0"; }
@@ -152,7 +152,6 @@
             color: #25D366; /* WhatsApp Green */
         }
 
-
         /* Hamburger Menu */
         .hamburger {
             display: none; 
@@ -214,6 +213,98 @@
             color: var(--gold);
         }
         
+        /* === V9 EXCHANGE BAR STYLES === */
+        #exchange-bar {
+            position: sticky;
+            top: 88px; /* Stick right under the main header */
+            background-color: var(--navy);
+            color: var(--white);
+            z-index: 900; /* Below the main header */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 8px 0;
+        }
+        .rate-container {
+            max-width: var(--maxw);
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 28px;
+            flex-wrap: wrap;
+        }
+        .rate-title {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 14px;
+            color: var(--gold);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex-shrink: 0;
+            margin-right: 15px;
+        }
+        .rate-list {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            flex-grow: 1;
+        }
+        .rate-item {
+            font-weight: 600;
+            font-size: 14px;
+            color: var(--white);
+            white-space: nowrap;
+        }
+        .rate-item span {
+            font-weight: 800;
+            color: var(--gold);
+            margin-left: 4px;
+        }
+        .rate-update-info {
+            font-style: italic;
+            font-weight: 400;
+            color: #ccc;
+            font-size: 11px;
+            white-space: nowrap;
+            margin-left: 15px;
+            flex-shrink: 0;
+        }
+        /* Mobile adjustment for Exchange Bar */
+        @media(max-width: 980px) {
+            #exchange-bar {
+                top: 70px; /* Adjust sticky position for smaller header */
+            }
+            .rate-container {
+                justify-content: center;
+                text-align: center;
+                gap: 10px;
+            }
+            .rate-title {
+                margin-bottom: 5px;
+            }
+            .rate-list {
+                justify-content: center;
+            }
+            .rate-update-info {
+                width: 100%;
+                text-align: center;
+                margin-top: 5px;
+            }
+        }
+        @media(max-width: 560px) {
+             .rate-item {
+                font-size: 13px;
+             }
+             .rate-update-info {
+                font-size: 10px;
+             }
+             .rate-list {
+                gap: 12px;
+             }
+        }
+        /* === END V9 EXCHANGE BAR STYLES === */
+
+
         /* Hero */
         .hero{
             min-height:100vh; 
@@ -311,21 +402,6 @@
             margin-bottom: 15px;
         }
         
-        /* Clients Section (CSS rules remain, but the HTML is gone)
-        #clients { background: var(--light-bg); padding: 60px 0; margin: 0 auto;}
-        .clients-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:28px; align-items:center; justify-content:center; padding: 0 28px;}
-        .client-logo{
-            max-width:140px; 
-            filter:grayscale(100%); 
-            opacity:0.75; 
-            transition:all .25s; 
-            display: block; 
-            margin: 0 auto;
-            height: auto; 
-        }
-        .client-logo:hover{filter:none; opacity:1}
-        */
-
         /* Portfolio / Cases */
         .portfolio-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(320px,1fr)); gap:24px}
 
@@ -358,7 +434,7 @@
         .water{position:absolute; bottom:0; left:0; width:100%; height:26%; background:linear-gradient(to bottom,transparent 0%,#1e90ff 100%); z-index:1}
         .wave{
             position:absolute; bottom:0; left:0; width:2400px; height:24px; 
-            background-image:url('data:image/svg+xml;utf8,<svg viewBox="0 0 1200 120" xmlns="http://www.w3.org/2000/svg"><path d="M0 0v46c29.1-7.2 60.4-11 93-11s63.9 3.8 93 11c29.1 7.2 60.4 11 93 11s63.9-3.8 93-11c29.1-7.2 60.4-11 93-11s63.9 3.8 93 11c29.1-7.2 60.4-11 93 11s63.9 3.8 93 11V0H0z" fill="%231e90ff"/></svg>'); 
+            background-image:url('data:image/svg+xml;utf8,<svg viewBox="0 0 1200 120" xmlns="http://www.w3.org/2000/svg"><path d="M0 0v46c29.1-7.2 60.4-11 93-11s63.9 3.8 93 11c29.1 7.2 60.4 11 93 11s63.9-3.8 93-11c29.1-7.2 60.4-11 93 11s63.9 3.8 93 11V0H0z" fill="%231e90ff"/></svg>'); 
             background-size:1200px 100%;
             animation: wave 12s linear infinite; 
         }
@@ -441,7 +517,8 @@
         @media(max-width:980px){
             nav{display:none} 
             .hamburger{display:flex} 
-            header{padding:0 18px}
+            header{padding:0 18px; height: 70px;}
+            .mobile-nav {top: 70px; height: calc(100vh - 70px);}
             .contact-mini{display: none;}
             .hero .inner{grid-template-columns:1fr; padding:40px 18px; text-align: center;}
             .hero h2 {font-size: 38px;}
@@ -512,6 +589,23 @@
     <a href="#contact">Contact</a>
 </div>
 
+<section id="exchange-bar" aria-label="Daily Exchange Rates">
+    <div class="rate-container">
+        <div class="rate-title">
+            <i class="fas fa-money-check-dollar"></i> DAILY EXCHANGE RATES (BRL)
+        </div>
+        <div class="rate-list">
+            <div class="rate-item">USD <span>**5.15**</span></div>
+            <div class="rate-item">EUR <span>**5.60**</span></div>
+            <div class="rate-item">GBP <span>**6.45**</span></div>
+            <div class="rate-item">CAD <span>**3.80**</span></div>
+            <div class="rate-item">CNY <span>**0.72**</span></div>
+        </div>
+        <div class="rate-update-info">
+            Updated: **12/12/2025** (Reference Only)
+        </div>
+    </div>
+</section>
 <section id="home" class="hero" aria-label="Global Freight Solutions Hero">
     <div class="inner">
         <div>
@@ -725,254 +819,156 @@
                 We are actively seeking an **ambitious, young professional** to join our team! This is an ideal first job or opportunity for a current student. **No prior experience in the logistics sector is required; full training will be provided.**
             </p>
             <p style="color:var(--navy); font-size:15px; margin-top:15px;">
-                If you have fresh ideas and are ready to grow, please apply below or send your resume/CV directly to **contact@hafenconsolidators.com** mentioning "Marketing Junior" in the subject.
+                If you have fresh ideas and are ready to grow, please apply below or send your resume/CV directly to **contact@hafenconsolidators.com**
             </p>
         </div>
-        <div class="contact-container">
+
+        <div class="grid">
             <article class="card">
-                <h3>Why work with us?</h3>
-                <ul style="list-style:none; padding-left:0; margin-left:18px; color:var(--muted); line-height:1.8">
-                    <li><i class="fas fa-money-bill-wave"></i> Competitive compensation and benefits</li>
-                    <li><i class="fas fa-globe"></i> Global career opportunities</li>
-                    <li><i class="fas fa-laptop-code"></i> Technology training and innovation culture</li>
-                    <li><i class="fas fa-users"></i> Inclusive, diverse and supportive environment</li>
-                    <li><i class="fas fa-chart-line"></i> Professional growth and mobility</li>
-                </ul>
-
-                <div style="margin-top:16px">
-                    <h4 style="margin-bottom:6px">Current openings</h4>
-                    <p style="color:var(--muted)">**Social Media & Marketing Strategist (Junior)** • Inside Sales Export • Regional Consultant • Coordinator Global Logistics • Operations Assistant • European Business Developer • Asian Business Developer</p>
-                </div>
+                <h3><i class="fas fa-globe"></i> International Sales Representative</h3>
+                <p>Developing new business channels across Latin America and Asia. Requires strong negotiation skills and fluency in English/Spanish.</p>
+                <a href="#contact" class="btn btn-ghost" style="font-size:14px;">Apply Now</a>
             </article>
-
-            <div class="contact-form card">
-                <h3>Submit Your Application</h3>
-                <form id="careerForm" novalidate>
-                    <div style="margin-bottom:10px;"><input type="text" id="candidateName" name="candidateName" placeholder="Full name" required class="form-control" style="width:100%; padding:10px; border-radius:6px; border:1px solid #ddd"></div>
-                    <div style="margin-bottom:10px;"><input type="email" id="candidateEmail" name="candidateEmail" placeholder="Email" required class="form-control" style="width:100%; padding:10px; border-radius:6px; border:1px solid #ddd"></div>
-                    <div style="margin-bottom:10px;"><input type="text" id="position" name="position" placeholder="Position applied for (e.g., Marketing Junior)" required class="form-control" style="width:100%; padding:10px; border-radius:6px; border:1px solid #ddd"></div>
-                    <div style="margin-bottom:10px;"><textarea id="coverLetter" name="coverLetter" placeholder="Cover letter" required class="form-control" style="width:100%; padding:12px; min-height:100px; border-radius:6px; border:1px solid #ddd"></textarea></div>
-                    <div style="margin-bottom:10px;">
-                        <label for="resume" style="font-size:13px;color:#666">Upload CV (PDF, DOCX)</label>
-                        <input type="file" id="resume" name="resume" accept=".pdf,.doc,.docx" class="form-control" style="display:block; margin-top:6px; border: none; padding: 0;">
-                    </div>
-                    <div style="text-align:right"><button type="submit" class="btn btn-primary">Submit Application</button></div>
-                </form>
-            </div>
+            <article class="card">
+                <h3><i class="fas fa-chart-line"></i> Supply Chain Analyst</h3>
+                <p>Optimizing logistics flows, analyzing costs, and managing performance metrics. Advanced spreadsheet skills required.</p>
+                <a href="#contact" class="btn btn-ghost" style="font-size:14px;">Apply Now</a>
+            </article>
         </div>
     </div>
 </section>
 
-<section id="contact" class="section" aria-label="Contact and Quote Request">
+<section id="contact" class="section" aria-label="Contact Us">
     <div class="section-header">
-        <h2>Contact</h2>
-        <p class="lead">Get in touch with our team for quotes, partnerships or operations support.</p>
+        <h2>Contact Us</h2>
+        <p class="lead">Get in touch with our global team for a quote or detailed consultation.</p>
     </div>
 
-    <div class="container">
-        <div class="contact-container">
-            <div>
-                <article class="card">
-                    <h3>Contact Information</h3>
-                    <p><strong>Phone:</strong> +44 7594 716370<br>
-                        <strong>Email:</strong> contact@hafenconsolidators.com</p>
-
-                    <hr style="border:none;border-top:1px solid #eee;margin:12px 0">
-
-                    <h4 style="margin:0 0 8px">Head Office — Ecuador</h4>
-                    <address>Francisco de Icaza 437, C 1 NE<br>Guayaquil 090313 — Ecuador</address>
-                </article>
-
-                <article style="margin-top:24px" class="card">
-                    <h3>Quick Hotline</h3>
-                    <p>If you need immediate support for shipments, please call our international hotline: **+44 7594 716370**.</p>
-                </article>
+    <div class="contact-container container">
+        <form class="contact-form" action="#" method="POST">
+            <h3 style="margin-top:0;">Request a Quote</h3>
+            <div style="margin-bottom:15px;">
+                <label for="name" style="display:block; margin-bottom:5px; font-weight:600;">Full Name</label>
+                <input type="text" id="name" name="name" required class="form-control" style="width:100%; padding:10px; border:1px solid #ccc; border-radius:4px;">
             </div>
-
-            <div class="contact-form card">
-                <h3>Request a Quote</h3>
-                <form id="contactForm" novalidate>
-                    <div style="display:flex; gap:10px; margin-bottom:12px;">
-                        <input type="text" id="name" name="name" placeholder="Name" required class="form-control" style="flex:1; padding:10px; border-radius:6px; border:1px solid #ddd">
-                        <input type="email" id="email" name="email" placeholder="Email" required class="form-control" style="flex:1; padding:10px; border-radius:6px; border:1px solid #ddd">
-                    </div>
-
-                    <div style="margin-bottom:12px;">
-                        <input type="text" id="subject" name="subject" placeholder="Subject (e.g., Ocean Freight Quote)" required class="form-control" style="width:100%; padding:10px; border-radius:6px; border:1px solid #ddd">
-                    </div>
-
-                    <div style="margin-bottom:12px;">
-                        <textarea id="message" name="message" placeholder="Message/Shipment Details" required class="form-control" style="width:100%; padding:12px; min-height:120px; border-radius:6px; border:1px solid #ddd"></textarea>
-                    </div>
-
-                    <div style="text-align:right;">
-                        <button type="submit" class="btn btn-primary">Send Message</button>
-                    </div>
-                </form>
+            <div style="margin-bottom:15px;">
+                <label for="email" style="display:block; margin-bottom:5px; font-weight:600;">Email</label>
+                <input type="email" id="email" name="email" required class="form-control" style="width:100%; padding:10px; border:1px solid #ccc; border-radius:4px;">
             </div>
+            <div style="margin-bottom:15px;">
+                <label for="message" style="display:block; margin-bottom:5px; font-weight:600;">Shipment Details / Message</label>
+                <textarea id="message" name="message" rows="4" required class="form-control" style="width:100%; padding:10px; border:1px solid #ccc; border-radius:4px; resize:vertical;"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary" style="width:100%;">Submit Request</button>
+        </form>
+
+        <div>
+            <h3 style="margin-top:0;">Contact Information</h3>
+            <p><strong>Global Hotline:</strong></p>
+            <a href="tel:+447594716370" class="contact-link"><i class="fas fa-phone-alt"></i> +44 7594 716370</a>
+
+            <p style="margin-top:20px;"><strong>Email:</strong></p>
+            <a href="mailto:contact@hafenconsolidators.com" class="contact-link"><i class="fas fa-envelope"></i> contact@hafenconsolidators.com</a>
+
+            <p style="margin-top:20px;"><strong>WhatsApp:</strong></p>
+            <a href="https://wa.me/447594716370" target="_blank" class="contact-link"><i class="fab fa-whatsapp" style="color:#25D366;"></i> Chat Now</a>
+
+            <p style="margin-top:20px;"><strong>Headquarters:</strong></p>
+            <p style="color:var(--muted);">Guayaquil, Ecuador</p>
+            <p style="color:var(--muted);">London, United Kingdom (Global Ops)</p>
         </div>
     </div>
 </section>
-
 
 <footer>
-    <div class="footer-flex container">
+    <div class="footer-flex">
         <div class="footer-column">
-            <p style="font-weight:700; margin-bottom:8px">Hafen Consolidators</p>
-            <p>NVOCC • International Trading • Global Freight</p>
-            <p style="margin-top:8px; color:#cfcfcf">© 2025 Hafen Consolidators — All Rights Reserved</p>
-            <p style="margin-top:6px; color:#cfcfcf">A Marvera Group Company</p>
-            <img class="footer-logo" src="data:image/png;base64,{{MARVERA_BASE64}}" alt="Marvera Group Logo">
+            <img src="data:image/png;base64,{{HAFEN_BASE64}}" alt="Hafen Consolidators Logo" class="footer-logo">
+            <p style="margin-top:10px;">Precision logistics and global trading solutions for SMEs.</p>
         </div>
-
-        <div class="footer-column">
-            <h4>HQ — Ecuador</h4>
-            <address>Francisco de Icaza 437, C 1 NE<br>Guayaquil 090313</address>
-        </div>
-        
-        <div class="footer-column">
-            <h4>Contact Details</h4>
-            <p class="contact-link">
-                <i class="fas fa-phone-alt" style="color: #66ff99;"></i> +44 7594 716370
-            </p>
-            <a class="contact-link" href="https://wa.me/447594716370" target="_blank" style="color: #25D366;">
-                 <i class="fab fa-whatsapp" style="color: #25D366;"></i> WhatsApp Chat
-            </a>
-            <p class="contact-link">
-                <i class="fas fa-envelope" style="color: #ffcc99;"></i> contact@hafenconsolidators.com
-            </p>
-        </div>
-
 
         <div class="footer-column">
             <h4>Quick Links</h4>
-            <ul style="list-style:none; padding-left:0; margin-top:8px;">
+            <ul style="list-style:none; padding:0;">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#services">Services</a></li>
                 <li><a href="#portfolio">Portfolio</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#careers">Careers</a></li>
+                <li><a href="#about">About Us</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </div>
+
+        <div class="footer-column">
+            <h4>Contact Info</h4>
+            <a href="tel:+447594716370" class="contact-link"><i class="fas fa-phone-alt"></i> +44 7594 716370</a>
+            <a href="mailto:contact@hafenconsolidators.com" class="contact-link"><i class="fas fa-envelope"></i> contact@hafenconsolidators.com</a>
+            <a href="https://wa.me/447594716370" target="_blank" class="contact-link"><i class="fab fa-whatsapp"></i> WhatsApp Chat</a>
+            <p style="margin-top:15px;">Guayaquil, Ecuador</p>
+        </div>
+    </div>
+    <div style="text-align:center; padding-top:20px; border-top:1px solid #1a2c41; margin-top:30px;">
+        <p style="margin:0; font-size:12px; color:#aaa;">&copy; 2025 Hafen Consolidators. All Rights Reserved. | Designed and developed with AI assistance.</p>
     </div>
 </footer>
 
-<div class="custom-cursor" id="customCursor"></div>
-
 <script>
-    document.addEventListener('DOMContentLoaded', () => {
+    // Hamburger Menu Toggle
+    const hamburger = document.getElementById('hamburgerButton');
+    const mobileNav = document.getElementById('mobileNavMenu');
+    hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        mobileNav.classList.toggle('open');
+    });
 
-        // --- 1. Form Submission Handlers (Simulation) ---
-        document.getElementById('contactForm').addEventListener('submit', function(e){
-            e.preventDefault();
-            alert('Thank you — your message has been received. We will reply shortly.');
-            this.reset();
-        });
-
-        document.getElementById('careerForm').addEventListener('submit', function(e){
-            e.preventDefault();
-            alert('Thank you for your application. We will review it and contact you if suitable.');
-            this.reset();
-        });
-
-        // --- 2. Mobile Navigation Toggle (Hamburger Menu) ---
-        const hamburgerButton = document.getElementById('hamburgerButton');
-        const mobileNavMenu = document.getElementById('mobileNavMenu');
-        const navLinks = mobileNavMenu.querySelectorAll('a');
-
-        function toggleMenu() {
-            hamburgerButton.classList.toggle('active');
-            mobileNavMenu.classList.toggle('open');
-            document.body.classList.toggle('no-scroll'); 
-        }
-
-        hamburgerButton.addEventListener('click', toggleMenu);
-
-        // Close menu when a link is clicked
-        navLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                if (mobileNavMenu.classList.contains('open')) {
-                    toggleMenu();
-                }
-            });
-        });
-
-        // --- 3. Interactive Animation (Ship/Plane Follow Cursor/Touch) & Custom Cursor (V3 UX) ---
-        const animationArea = document.getElementById('animationArea');
-        const containerShip = document.getElementById('containerShip');
-        const cargoPlane = document.getElementById('cargoPlane');
-        const customCursor = document.getElementById('customCursor');
-        const interactiveElements = document.querySelectorAll('a, .btn, button, .hamburger');
-
-        // Initialize cursor display based on device type
-        // Hides the custom cursor on touch devices to avoid interference
-        if (window.matchMedia("(hover: none)").matches) {
-            customCursor.style.display = 'none';
-        } else {
-             customCursor.style.display = 'block';
-        }
-
-        function handleMove(clientX, clientY) {
-            const rect = animationArea.getBoundingClientRect();
-            
-            // Move Custom Cursor position
-            customCursor.style.left = `${clientX}px`;
-            customCursor.style.top = `${clientY}px`;
-
-            // Check if pointer is over the animation area
-            if (clientX >= rect.left && clientX <= rect.right && clientY >= rect.top && clientY <= rect.bottom) {
-                const areaX = clientX - rect.left;
-                const areaY = clientY - rect.top;
-                const areaH = rect.height;
-
-                // Ship movement
-                const shipX = areaX - (containerShip.offsetWidth / 2);
-                const shipY = (areaH * 0.75) - (containerShip.offsetHeight / 2) + ((areaY - (areaH / 2)) * 0.2); 
-                containerShip.style.transform = `translate(${shipX}px, ${shipY}px)`;
-
-                // Plane movement
-                const planeX = areaX - (cargoPlane.offsetWidth / 2);
-                const planeY = (areaH * 0.25) - (cargoPlane.offsetHeight / 2) + ((areaY - (areaH / 2)) * 0.4); 
-                cargoPlane.style.transform = `translate(${planeX}px, ${planeY}px)`;
-                
-            }
-        }
-        
-        // Desktop listener (Mouse move)
-        document.addEventListener('mousemove', (e) => {
-             handleMove(e.clientX, e.clientY);
-        });
-
-        // Mobile listener (Touch move)
-        animationArea.addEventListener('touchmove', (e) => {
-            if (e.touches.length > 0) {
-                e.preventDefault(); 
-                handleMove(e.touches[0].clientX, e.touches[0].clientY);
-            }
-        });
-        
-        // Custom Cursor Hover State Toggle
-        interactiveElements.forEach(element => {
-            element.addEventListener('mouseenter', () => {
-                customCursor.classList.add('hover-state');
-            });
-            element.addEventListener('mouseleave', () => {
-                customCursor.classList.remove('hover-state');
-            });
-        });
-
-        // --- 4. Smooth Scrolling for Anchor Links ---
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
+    // Close mobile menu on link click
+    mobileNav.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            mobileNav.classList.remove('open');
         });
     });
-</script>
 
+    // Custom Cursor Logic (V3)
+    const animationArea = document.getElementById('animationArea');
+    const containerShip = document.getElementById('containerShip');
+    const cargoPlane = document.getElementById('cargoPlane');
+    const cursor = document.createElement('div');
+    cursor.className = 'custom-cursor';
+    document.body.appendChild(cursor);
+
+    document.addEventListener('mousemove', (e) => {
+        cursor.style.left = e.clientX + 'px';
+        cursor.style.top = e.clientY + 'px';
+
+        // Animate elements inside the map area
+        if (animationArea && animationArea.contains(e.target)) {
+            // Get coordinates relative to the animation area
+            const rect = animationArea.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+
+            // Simple movement logic for ship
+            const shipMaxMove = 50; 
+            const shipX = (x - centerX) / rect.width * shipMaxMove;
+            const shipY = (y - centerY) / rect.height * shipMaxMove;
+            containerShip.style.transform = `translate(${shipX}px, ${shipY}px)`;
+
+            // Simple movement logic for plane (opposite direction)
+            const planeMaxMove = 40; 
+            const planeX = (centerX - x) / rect.width * planeMaxMove;
+            const planeY = (centerY - y) / rect.height * planeMaxMove;
+            cargoPlane.style.transform = `translate(${planeX}px, ${planeY}px)`;
+        }
+    });
+
+    // Add hover state to cursor (for buttons and links)
+    document.querySelectorAll('a, button, .quick-card, .card, .hamburger').forEach(el => {
+        el.addEventListener('mouseenter', () => cursor.classList.add('hover-state'));
+        el.addEventListener('mouseleave', () => cursor.classList.remove('hover-state'));
+    });
+    
+</script>
 </body>
 </html>

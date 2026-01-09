@@ -648,6 +648,60 @@ header {
     color: #25D366;
 }
 
+/* --- PARTNERS STRIP ---*/
+
+.partners-section {
+    background-color: #ffffff;
+    padding: 40px 0;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+}
+
+.partners-title {
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: #999;
+    margin-bottom: 25px;
+}
+
+.partners-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 40px;
+    align-items: center;
+}
+
+.partner-logo {
+    height: 40px;
+    width: auto; 
+    object-fit: contain;
+    
+    /* Efeito de estilo */
+    filter: grayscale(100%);
+    opacity: 0.6;
+    transition: all 0.3s ease;
+}
+
+.partner-logo:hover {
+    filter: grayscale(0%);
+    opacity: 1; 
+    transform: scale(1.05);
+}
+
+/* No celular, diminui um pouco os logos para caberem melhor */
+@media (max-width: 768px) {
+    .partners-grid {
+        gap: 20px;
+    }
+    .partner-logo {
+        height: 30px;
+    }
+}
+
 /* --- FOOTER --- */
 footer {
     background-color: var(--navy);

@@ -652,7 +652,8 @@ header {
 
 .partners-section {
     background-color: #ffffff;
-    padding: 40px 0;
+    padding: 20px 0;
+    padding-top: 10px;
     border-top: 1px solid #eee;
     border-bottom: 1px solid #eee;
 }
@@ -671,7 +672,7 @@ header {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 40px;
+    gap: 40px; 
     align-items: center;
 }
 
@@ -748,6 +749,42 @@ footer {
     padding-top: 20px;
     font-size: 0.85rem;
     color: #666;
+}
+
+/* ========================
+   HOLDING BADGE (BlueHaven)
+   ======================== */
+.holding-badge {
+    text-align: center;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255,255,255,0.05); /* Linha sutil separando */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+.holding-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #6c757d; /* Cinza discreto */
+}
+
+.holding-link {
+    font-family: "Times New Roman", Times, serif; /* Fonte Clássica/Old Money */
+    font-size: 1.2rem;
+    letter-spacing: 1px;
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 700;
+    transition: all 0.3s ease;
+}
+
+.holding-link:hover {
+    letter-spacing: 2px; /* Efeito de expansão elegante */
+    opacity: 0.9;
 }
 
 /* Responsividade */
@@ -860,18 +897,3 @@ footer {
         font-size: 14px;
     }
 }}
-
-@media (max-width: 980px) {
-    .desktop-nav.mobile-open {
-        display: flex;
-        flex-direction: column;
-        position: absolute;
-        top: 80px;
-        left: 0;
-        width: 100%;
-        background: #fff;
-        padding: 20px;
-        box-shadow: 0 5px 10px rgba(0,0,0,0.1);
-        border-top: 1px solid #eee;
-    }
-}
